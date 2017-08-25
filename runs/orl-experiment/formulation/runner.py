@@ -62,5 +62,5 @@ for f in Fgroup:
                     cnt += 1
                     system("qsub shs/{0}.pbs".format(jobname))
                 #raise ValueError
-                
+
 print(cnt)
