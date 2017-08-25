@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -N 4_sos2_N2_P2_EX5
+#PBS -m abe
+#PBS -M sitew@g.clemsone.edu
+#PBS -l select=1:ncpus=8:mem=16gb,walltime=3:00:00
+#PBS -o /home/sitew/Outputs/POD/multiKN_expr/4_sos2_N2_P2_EX5.o
+#PBS -e /home/sitew/Outputs/POD/multiKN_expr/4_sos2_N2_P2_EX5.e
+
+
+module add gurobi/7.0.1 
+lscpu
+julia /home/sitew/Github/POD_experiment/runs/orl-experiment/hir/jls/4_sos2_N2_P2_EX5.jl
