@@ -1,23 +1,6 @@
-using POD, JuMP, Gurobi, AmplNLWriter, CoinOptServices, MathProgBase
+function meanvarx(;verbose=false, kwargs...)
 
-function meanvarx(;verbose=false, solver=nothing, convhull=true, sos2=true, sos2_alter=false, facet=false, delta=8, presolve=0)
-
-    if solver==nothing
-        m = Model(solver=PODSolver(nlp_local_solver=BonminNLSolver(["bonmin.num_resolve_at_root=1"; "bonmin.num_resolve_at_node=1"]),
-                                   mip_solver=GurobiSolver(OutputFlag=0),
-                                   log_level=100,
-                                   discretization_ratio=delta,
-                                   bilinear_convexhull=convhull,
-                                   monomial_convexhull=convhull,
-                                   convexhull_use_sos2=sos2,
-                                   convexhull_use_facet=facet,
-                                   convexhull_use_sos2_alter=sos2_alter,
-                                   presolve_bt_osutput_tol=1e-2,
-                                   presolve_bound_tightening=(presolve>0),
-                                   presolve_bound_tightening_algo=presolve))
-    else
-        m = Model(solver=solver)
-    end
+    m = Model(solver=fetch_solver(options=Dict(kwargs)))
 
     @variable(m, x[1:35]>=0)
     for i=22:35

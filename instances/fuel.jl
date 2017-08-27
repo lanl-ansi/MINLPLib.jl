@@ -1,19 +1,6 @@
-using POD, JuMP, CPLEX, Ipopt, MathProgBase, AmplNLWriter, CoinOptServices
+function fuel(;verbose=false, kwargs...)
 
-function fuel(;verbose=false, solver=nothing, convhull=true)
-
-    if solver == nothing
-        m = Model(solver=PODSolver(nlp_local_solver=BonminNLSolver(["bonmin.iteration_limit=100"]),
-    								mip_solver=CplexSolver(CPX_PARAM_SCRIND=0),
-                                    bilinear_convexhull=convhull,
-                                    monomial_convexhull=convhull,
-                                    presolve_bound_tightening=false,
-                                    log_level=100,
-                                    tol=1e-4,
-                                    rel_gap=0.001))
-    else
-        m = Model(solver=solver)
-    end
+    m = Model(solver=fetch_solver(options=Dict(kwargs)))
 
     #define variables and bounds
     @variable(m, x[1:15])
