@@ -1,0 +1,2 @@
+m=multiKN(N=6,facet=true,K=3,uniform=18,)
+solve(m)

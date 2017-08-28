@@ -1,0 +1,2 @@
+m=multiKN(N=8,K=3,sos2=true,uniform=18,)
+solve(m)

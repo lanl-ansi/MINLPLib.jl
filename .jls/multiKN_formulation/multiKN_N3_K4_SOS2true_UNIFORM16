@@ -1,0 +1,2 @@
+m=multiKN(N=3,K=4,sos2=true,uniform=16,)
+solve(m)
