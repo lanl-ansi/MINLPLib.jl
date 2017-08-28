@@ -8,7 +8,7 @@ function ORL_FORMULATION(;hpc_type="slurm", no_submit=false, just_one=false)
     Fgroup = ["sos2", "facet", "minib", "sos2b"]
     Kgroup = [2, 3, 4]
     Ngroup = Dict(2=>[16,15,14],3=>[8,7,6],4=>[4,3,2])
-    Pgroup = Dict(2=>range(2,32,2),3=>range(2,16,2),4=>range(2,14,2))
+    Pgroup = Dict(2=>[2:2:30;],3=>[2:2:16;],4=>[2:2:14;])
 
     cnt = 0
     for f in Fgroup

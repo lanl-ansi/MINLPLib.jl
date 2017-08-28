@@ -4,8 +4,6 @@ end
 
 load_prob(probname::Vector{AbstractString}) = for i in probname load_prob(i) end
 
-
-
 function write_slurm_head(f, j_name, expname;
                             username="sitew",
                             outputpath="/Outputs/POD",
@@ -23,6 +21,10 @@ function write_slurm_head(f, j_name, expname;
     write(f,"#SBATCH -t $(walltime)\n\n")
     (solver == "gurobi") && write(f,"julia $(homedir())/start_gurobi.jl\n")
     write(f,"lscpu\n")
+
+    if !isdir("$(homedir())/$(outputpath)/$(expname)/")
+        warn("Output path not detected. Consider creating it.")
+    end
 
     return
 end
@@ -47,6 +49,10 @@ function write_pbs_head(f, jname, expname;
     (solver == "gurobi") && write(f,"module add gurobi/7.0.1 \n")
     write(f,"lscpu\n")
 
+    if !isdir("$(homedir())/$(outputpath)/$(expname)/")
+        warn("Output path not detected. Consider creating it.")
+    end
+
     return
 end
 
@@ -65,6 +71,7 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
     end
 
     !isdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)") && mkdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)")
+
     jlf = open("$(Pkg.dir())/POD_experiment/.jls/$(expname)/$(jname)", "w")
     write(jlf, "m=$(probname)($(arg_string))\n")
     write(jlf, "solve(m)\n")
@@ -108,14 +115,18 @@ end
 function clear_cache()
 
     all_shs_dir = glob("*", "$(Pkg.dir())/POD_experiment/.shs/")
-    all_jls_dir = glob("*", "$(Pkg.dir())/POD_experiment/.shs/")
+    all_jls_dir = glob("*", "$(Pkg.dir())/POD_experiment/.jls/")
 
-    for i in all_shs_dir
-        rm(i, recursive=true)
+    if !isempty(all_shs_dir)
+        for i in all_shs_dir
+            rm(i, recursive=true)
+        end
     end
 
-    for i in all_jls_dir
-        rm(i, recursive=true)
+    if !isempty(all_jls_dir)
+        for i in all_jls_dir
+            rm(i, recursive=true)
+        end
     end
 
     return

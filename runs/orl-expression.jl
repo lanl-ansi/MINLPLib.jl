@@ -8,8 +8,8 @@ function ORL_EXPRESSION(;hpc_type="slurm", no_submit=false, just_one=false, expn
     Fgroup = ["sos2"]
     Kgroup = [3,4]
     Exprgroup = Dict(3=>[1,2,3], 4=>[1,2,3,4,5,6,7,8,9,10,11])
-    Ngroup = Dict(3=>range(2,5), 4=>range(2,5))
-    Pgroup = Dict(3=>range(2,32,2), 4=>range(2,32,2))
+    Ngroup = Dict(3=>[2:4;], 4=>[2:4;])
+    Pgroup = Dict(3=>[2:2:24;], 4=>[2:2:24;])
 
     cnt = 0
     for f in Fgroup
@@ -17,7 +17,7 @@ function ORL_EXPRESSION(;hpc_type="slurm", no_submit=false, just_one=false, expn
     for ex in Exprgroup[k]
     for n in Ngroup[k]
     for p in Pgroup[k]
-        jobname = write_basic_jl(probname, expname,
+        jobname = write_basic_jl("multi$(k)N", expname,
                                  Dict("K"=>k,"N"=>n,"exprmode"=>ex,"uniform"=>p,f=>true))
         write_basic_sh(expname, jobname, hpc_type)
         !no_submit && submit_to_hpc(hpc_type, jobname, expname)

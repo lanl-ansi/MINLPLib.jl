@@ -1,2 +1,0 @@
-m=multiKN(N=2,exprmode=8,K=4,sos2=true,uniform=34,)
-solve(m)
