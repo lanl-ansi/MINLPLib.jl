@@ -60,6 +60,12 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
 
     isempty(probname) && error("probname cannot be empty")
 
+    haskey(arguments, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
+    haskey(arguments, :nlp_solver) ? nlp_solver=options[:nlp_solver] : nlp_solver=IpoptSolver(print_level=0)
+
+    mip_solver_string = fetch_mip_solver_shortname(string(mip_solver))
+    nlp_solver_string = fetch_nlp_solver_shortname(string(nlp_solver))
+
     arg_string = ""
     for i in keys(arguments)
         arg_string = "$(arg_string)$(i)=$(arguments[i]),"
@@ -67,13 +73,13 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
 
     jname = "$(probname)"
     for i in keys(arguments)
-        jname = "$(jname)_$(uppercase(i))$(arguments[i])"
+        jname = "$(jname)_$(i)$(split(string(arguments[i]),".")[1])"
     end
 
     !isdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)") && mkdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)")
 
     jlf = open("$(Pkg.dir())/POD_experiment/.jls/$(expname)/$(jname).jl", "w")
-    write_jl_using(jlf, arguments)
+    write(jlf, "using JuMP, POD, $(mip_solver_string), $(nlp_solver_string)\n")
     write(jlf, "m=$(probname)($(arg_string))\n")
     write(jlf, "solve(m)\n")
     close(jlf)
@@ -81,30 +87,32 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
     return jname
 end
 
-function write_jl_using(jlf, arguments=Dict())
-
-    write(jlf, "using JuMP, POD\n")
-
-    haskey(arguments, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
-    haskey(arguments, :nlp_solver) ? nlp_solver=options[:nlp_solver] : nlp_solver=IpoptSolver(print_level=0)
+function fetch_mip_solver_shortname(mip_solver::AbstractString)
 
     if string(mip_solver)[1:6] == "Gurobi"
-        write(jlf, "using Gurobi\n")
+        return "Gurobi"
     elseif string(mip_solver)[1:7] == "CPLEX"
-        write(jlf, "using CPLEX\n")
+        return "CPLEX"
     elseif string(mip_solver)[1:3] == "Cbc"
-        write(jlf, "using Cbc\n")
+        return "Cbc"
     end
+
+    warning("Unsupported mip solver name. Using blank")
+    return ""
+end
+
+function fetch_nlp_solver_shortname(nlp_solver::AbstractString)
 
     if string(nlp_solver)[1:5] == "Ipopt"
-        write(jlf, "using Ipopt\n")
+        return "Ipopt"
     elseif string(nlp_solver)[1:6] == "Bonmin"
-        write(jlf, "using AmplNLWriter\n")
+        return "AmplNLWriter"
     elseif string(nlp_solver)[1:3] == "Knitro"
-        write(jlf, "using KNITRO\n")
+        return "KNITRO"
     end
 
-    return
+    warning("Unsupported nlp solver name. Using blank")
+    return ""
 end
 
 function write_basic_sh(expname="default", jobname="default", hpc_type="slurm", hpc_options=Dict())

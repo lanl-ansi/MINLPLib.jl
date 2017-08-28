@@ -3,9 +3,9 @@ function fetch_solver(;options=Dict(), kwargs...)
     additional_options = Dict(kwargs)
     options = merge(options, additional_options)
 
-    haskey(options, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
-    haskey(options, :nlp_solver) ? nlp_solver=options[:nlp_solver] : IpoptSolver(print_level=0)
-    haskey(options, :log_level) ? log_level=options[:log_level] : log_level=1
+    haskey(options, :mip_solver) ? mip_solver=options[:mipsolver] : mip_solver=GurobiSolver(OutputFlag=0)
+    haskey(options, :nlp_solver) ? nlp_solver=options[:nlpsolver] : IpoptSolver(print_level=0)
+    haskey(options, :loglevel) ? log_level=options[:loglevel] : log_level=1
     haskey(options, :sos2) ? sos2=options[:sos2] : sos2=true
     haskey(options, :facet) ? facet=options[:facet] : facet=false
     haskey(options, :sos2b) ? sos2=options[:facet] : sos2b=true
