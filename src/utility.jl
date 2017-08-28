@@ -4,18 +4,18 @@ end
 
 load_prob(probname::Vector{AbstractString}) = for i in probname load_prob(i) end
 
-function write_slurm_head(f, j_name, expname;
-                            username="sitew",
-                            outputpath="/Outputs/POD",
-                            cpu_model="E5-2660_v3",
-                            walltime="3:00:00",
-                            solver="gurobi",
-                            kwargs...)
+function write_slurm_head(f, j_name, expname, hpc_options=Dict())
+
+    haskey(hpc_options, :username) ? username=hpc_options[:username] : username=POD_USERNAME
+    haskey(hpc_options, :outputpath) ? outputpath=hpc_options[:outputpath] : outputpath="Outputs/POD"
+    haskey(hpc_options, :cpu) ? cpu=hpc_options[:cpu] : cpu="E5-2695_v4"
+    haskey(hpc_options, :walltime) ? walltime=hpc_options[:walltime] : walltime="3:00:00"
+    haskey(hpc_options, :solver) ? solver=hpc_options[:solver] : solver="gurobi"
 
     write(f,"#!/bin/bash\n")
     write(f,"#SBATCH --job-name=\"$(j_name)\"\n")
     write(f,"#SBATCH --output=\"$(homedir())/$(outputpath)/$(expname)/$(j_name).out\"\n")
-    write(f,"#SBATCH --constraint=\"cpu_model:$(cpu_model)\"\n")
+    write(f,"#SBATCH --constraint=\"cpu_model:$(cpu)\"\n")
     write(f,"#SBATCH --ntasks=1\n")
     write(f,"#SBATCH --no-requeue\n")
     write(f,"#SBATCH -t $(walltime)\n\n")
@@ -23,21 +23,21 @@ function write_slurm_head(f, j_name, expname;
     write(f,"lscpu\n")
 
     if !isdir("$(homedir())/$(outputpath)/$(expname)/")
-        warn("Output path not detected. Consider creating it.")
+        warn("Output path not detected. Consider creating $(homedir())/$(outputpath)/$(expname).")
     end
 
     return
 end
 
-function write_pbs_head(f, jname, expname;
-                        usermail="sitew@g.clemson.edu",
-                        username="sitew",
-                        outputpath="/Outputs/POD",
-                        ncpus="8",
-                        mem="16",
-                        walltime="3:00:00",
-                        solver="gurobi",
-                        kwargs...)
+function write_pbs_head(f, jname, expname, hpc_options=Dict())
+
+    haskey(hpc_options, :username) ? username=hpc_options[:username] : username=POD_USERNAME
+    haskey(hpc_options, :usermail) ? username=hpc_options[:usermail] : username="sitew@g.clemson.edu"
+    haskey(hpc_options, :outputpath) ? outputpath=hpc_options[:outputpath] : outputpath="Outputs/POD"
+    haskey(hpc_options, :ncpus) ? ncpus=hpc_options[:ncpus] : cpu="8"
+    haskey(hpc_options, :mem) ? mem=hpc_options[:mem] : cpu="16"
+    haskey(hpc_options, :walltime) ? walltime=hpc_options[:walltime] : walltime="3:00:00"
+    haskey(hpc_options, :solver) ? solver=hpc_options[:solver] : solver="gurobi"
 
     write(f,"#!/bin/bash\n")
     write(f,"#PBS -N $(jname)\n")
@@ -49,8 +49,8 @@ function write_pbs_head(f, jname, expname;
     (solver == "gurobi") && write(f,"module add gurobi/7.0.1 \n")
     write(f,"lscpu\n")
 
-    if !isdir("$(homedir())/$(outputpath)/$(expname)/")
-        warn("Output path not detected. Consider creating it.")
+    if !isdir("$(homedir())/$(outputpath)/$(expname)")
+        warn("Output path not detected. Consider creating $(homedir())/$(outputpath)/$(expname).")
     end
 
     return
@@ -72,7 +72,8 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
 
     !isdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)") && mkdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)")
 
-    jlf = open("$(Pkg.dir())/POD_experiment/.jls/$(expname)/$(jname)", "w")
+    jlf = open("$(Pkg.dir())/POD_experiment/.jls/$(expname)/$(jname).jl", "w")
+    write_jl_using(jlf, arguments)
     write(jlf, "m=$(probname)($(arg_string))\n")
     write(jlf, "solve(m)\n")
     close(jlf)
@@ -80,16 +81,42 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
     return jname
 end
 
-function write_basic_sh(expname="default", jobname="default", hpc_type="slurm")
+function write_jl_using(jlf, arguments=Dict())
+
+    write(jlf, "using JuMP, POD\n")
+
+    haskey(arguments, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
+    haskey(arguments, :nlp_solver) ? nlp_solver=options[:nlp_solver] : nlp_solver=IpoptSolver(print_level=0)
+
+    if string(mip_solver)[1:6] == "Gurobi"
+        write(jlf, "using Gurobi\n")
+    elseif string(mip_solver)[1:7] == "CPLEX"
+        write(jlf, "using CPLEX\n")
+    elseif string(mip_solver)[1:3] == "Cbc"
+        write(jlf, "using Cbc\n")
+    end
+
+    if string(nlp_solver)[1:5] == "Ipopt"
+        write(jlf, "using Ipopt\n")
+    elseif string(nlp_solver)[1:6] == "Bonmin"
+        write(jlf, "using AmplNLWriter\n")
+    elseif string(nlp_solver)[1:3] == "Knitro"
+        write(jlf, "using KNITRO\n")
+    end
+
+    return
+end
+
+function write_basic_sh(expname="default", jobname="default", hpc_type="slurm", hpc_options=Dict())
 
     !isdir("$(Pkg.dir())/POD_experiment/.shs/$(expname)") && mkdir("$(Pkg.dir())/POD_experiment/.shs/$(expname)")
 
     if hpc_type == "slurm"
         batchf = open("$(Pkg.dir())/POD_experiment/.shs/$(expname)/$(jobname).sh", "w")
-        write_slurm_head(batchf, jobname, expname)
+        write_slurm_head(batchf, jobname, expname, hpc_options)
     elseif hpc_type == "pbs"
         batchf = open("$(Pkg.dir())/POD_experiment/.shs/$(expname)/$(jobname).pbs", "w")
-        write_pbs_head(batchf, jobname, expname)
+        write_pbs_head(batchf, jobname, expname, hpc_options)
     end
     write(batchf,"julia $(Pkg.dir())/POD_experiment/.jls/$(expname)/$(jobname).jl\n")
     close(batchf)
@@ -97,7 +124,7 @@ function write_basic_sh(expname="default", jobname="default", hpc_type="slurm")
     return
 end
 
-function submit_to_hpc(expname="default", jobname="", hpc_type="slurm")
+function submit_to_hpc(hpc_type="slurm", jobname="", expname="default")
 
     isempty(jobname) && error("no file name with submission")
 
@@ -106,8 +133,25 @@ function submit_to_hpc(expname="default", jobname="", hpc_type="slurm")
     elseif hpc_type == "pbs"
         run(`qsub $(Pkg.dir())/POD_experiment/.shs/$(expname)/$(jobname).pbs`)
     else
-        error("wtf is this hpc_type ($(hpc_type))?")
+        error("what cluster are you running it on ($(hpc_type))?")
     end
+
+    return
+end
+
+function store_history(expname="default", hpc_type="slurm", instances=[], solver_options=Dict(), hpc_options=Dict(); kwargs...)
+
+    label = split(string(now()),".")[1]
+    ext = Dict(kwargs)
+    exp_info = Dict("instance"=>instances,
+                    "solver_options"=>solver_options,
+                    "hpc_options"=>hpc_options,
+                    "label"=>label,
+                    "ext"=>ext)
+
+    history_json = open("$(Pkg.dir())/POD_experiment/.history/$(expname)_$(label).json", "w")
+    JSON.print(history_json, exp_info)
+    close(history_json)
 
     return
 end
@@ -116,6 +160,7 @@ function clear_cache()
 
     all_shs_dir = glob("*", "$(Pkg.dir())/POD_experiment/.shs/")
     all_jls_dir = glob("*", "$(Pkg.dir())/POD_experiment/.jls/")
+    all_his_dir = glob("*", "$(Pkg.dir())/POD_experiment/.history/")
 
     if !isempty(all_shs_dir)
         for i in all_shs_dir
@@ -126,6 +171,12 @@ function clear_cache()
     if !isempty(all_jls_dir)
         for i in all_jls_dir
             rm(i, recursive=true)
+        end
+    end
+
+    if !isempty(all_his_dir)
+        for i in all_his_dir
+            rm(i)
         end
     end
 

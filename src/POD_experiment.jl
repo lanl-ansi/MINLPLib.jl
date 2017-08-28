@@ -1,21 +1,22 @@
 module POD_experiment
 
-using JuMP
-using Compat
-using POD
-using Glob
-using Gurobi, CPLEX
-using Ipopt, CoinOptServices, AmplNLWriter
+using Compat, Glob, JSON
+using Gurobi, Ipopt
 
-include("names.jl")
+include("consts.jl")
 include("solver.jl")
 include("utility.jl")
 
-# Load all existing scripts
+# Load all existing run scripts
 for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
     include(i)
 end
 
-export fetch_solver
+!isdir("$(Pkg.dir())/POD_experiment/.jls") && mkdir("$(Pkg.dir())/POD_experiment/.jls")
+!isdir("$(Pkg.dir())/POD_experiment/.shs") && mkdir("$(Pkg.dir())/POD_experiment/.shs")
+!isdir("$(Pkg.dir())/POD_experiment/.history") && mkdir("$(Pkg.dir())/POD_experiment/.history")
+
+PODe = POD_experiment
+export PODe, fetch_solver
 
 end #module
