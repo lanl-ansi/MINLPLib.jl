@@ -1,13 +1,12 @@
-println("--------------------------------------------------------------------------")
-println("Multi3/N - exprmode 1 -> X1 * X2 * X3")
-println("Multi3/N - exprmode 2 -> (X1*X2) * X3")
-println("Multi3/N - exprmode 3 -> X1 * (X2*X3)")
-println("--------------------------------------------------------------------------")
+function multi3N(;options=Dict())
 
-function multi3N(;verbose=false,
-				  exprmode=1, N=1, kwargs...)
-
-	m = Model(solver=fetch_solver(options=Dict(kwargs)))
+	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
+	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
+	haskey(options, :N) ? N=options[:N] : N=1
+	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
+	haskey(options, :randomub) ? randomub=options[:randomub] : randomub=10
+	
+	m = Model(solver=fetch_solver(solver_options))
 
 	M = 1+2*N
 	srand(100)

@@ -1,6 +1,9 @@
-function blend721(;verbose=false, kwargs...)
+function blend721(;options=Dict())
 
-    m = Model(solver=fetch_solver(options=Dict(kwargs)))
+    haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
+    haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
+
+    m = Model(solver=fetch_solver(solver_options))
 
     @variable(m, x[1:223])
 

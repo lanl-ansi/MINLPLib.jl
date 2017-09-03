@@ -1,5 +1,8 @@
+__precompile__()
+
 module POD_experiment
 
+using JuMP, POD
 using Compat, Glob, JSON
 using Gurobi, Ipopt
 
@@ -9,6 +12,11 @@ include("utility.jl")
 
 # Load all existing run scripts
 for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
+    include(i)
+end
+
+# Compile all problem instances
+for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/instances/")
     include(i)
 end
 

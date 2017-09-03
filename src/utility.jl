@@ -60,26 +60,35 @@ function write_basic_jl(probname="", expname="default", arguments=Dict())
 
     isempty(probname) && error("probname cannot be empty")
 
-    haskey(arguments, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
-    haskey(arguments, :nlp_solver) ? nlp_solver=options[:nlp_solver] : nlp_solver=IpoptSolver(print_level=0)
+    mip_solver_string=fetch_mip_solver_shortname(string(GurobiSolver(OutputFlag=0)))
+    nlp_solver_string=fetch_nlp_solver_shortname(string(IpoptSolver(print_level=0)))
 
-    mip_solver_string = fetch_mip_solver_shortname(string(mip_solver))
-    nlp_solver_string = fetch_nlp_solver_shortname(string(nlp_solver))
-
-    arg_string = ""
+    arg_string = "options=Dict("
     for i in keys(arguments)
-        arg_string = "$(arg_string)$(i)=$(arguments[i]),"
+        if i in [:solver_options,:N,:exprmode,:K,:D]    # Legal options for instance inputs
+            if isa(arguments[i], Dict)  # Write Dictionary Argument
+                arg_string = "$(arg_string):$(i)=>Dict("
+                for j in keys(arguments[i])
+                    (j==:mip_solver) && (mip_solver_string=fetch_mip_solver_shortname(string(arguments[i][j])))
+                    (j==:nlp_solver) && (nlp_solver_string=fetch_nlp_solver_shortname(string(arguments[i][j])))
+                    arg_string = "$(arg_string):$(j)=>$(arguments[i][j]),"
+                end
+                arg_string = "$(arg_string)),"
+            else # Write normal arguments
+                arg_string = "$(arg_string):$(i)=>$(arguments[i]),"
+            end
+        end
     end
+    arg_string = "$(arg_string))"
 
     jname = "$(probname)"
-    for i in keys(arguments)
-        jname = "$(jname)_$(i)$(split(string(arguments[i]),".")[1])"
-    end
+    jname = "$(jname)_$(hash(arg_string))"
 
     !isdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)") && mkdir("$(Pkg.dir())/POD_experiment/.jls/$(expname)")
 
     jlf = open("$(Pkg.dir())/POD_experiment/.jls/$(expname)/$(jname).jl", "w")
     write(jlf, "using JuMP, POD, $(mip_solver_string), $(nlp_solver_string)\n")
+    write(jlf, "include(\"\$(Pkg.dir())/POD_experiment/instances/$(probname).jl\")\n")
     write(jlf, "m=$(probname)($(arg_string))\n")
     write(jlf, "solve(m)\n")
     close(jlf)
@@ -91,13 +100,13 @@ function fetch_mip_solver_shortname(mip_solver::AbstractString)
 
     if string(mip_solver)[1:6] == "Gurobi"
         return "Gurobi"
-    elseif string(mip_solver)[1:7] == "CPLEX"
+    elseif string(mip_solver)[1:5] == "CPLEX"
         return "CPLEX"
     elseif string(mip_solver)[1:3] == "Cbc"
         return "Cbc"
     end
 
-    warning("Unsupported mip solver name. Using blank")
+    warn("Unsupported mip solver name $(mip_solver). Using blank")
     return ""
 end
 
@@ -111,7 +120,7 @@ function fetch_nlp_solver_shortname(nlp_solver::AbstractString)
         return "KNITRO"
     end
 
-    warning("Unsupported nlp solver name. Using blank")
+    warn("Unsupported nlp solver name $(nlp_solver). Using blank")
     return ""
 end
 
@@ -147,7 +156,7 @@ function submit_to_hpc(hpc_type="slurm", jobname="", expname="default")
     return
 end
 
-function store_history(expname="default", hpc_type="slurm", instances=[], solver_options=Dict(), hpc_options=Dict(); kwargs...)
+function store_history(expname="default", hpc_type="slurm", instances::Any=[], solver_options=Dict(), hpc_options=Dict(), jobname=""; kwargs...)
 
     label = split(string(now()),".")[1]
     ext = Dict(kwargs)
@@ -155,7 +164,8 @@ function store_history(expname="default", hpc_type="slurm", instances=[], solver
                     "solver_options"=>solver_options,
                     "hpc_options"=>hpc_options,
                     "label"=>label,
-                    "ext"=>ext)
+                    "ext"=>ext,
+                    "jobname"=>jobname)
 
     history_json = open("$(Pkg.dir())/POD_experiment/.history/$(expname)_$(label).json", "w")
     JSON.print(history_json, exp_info)
