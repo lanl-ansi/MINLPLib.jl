@@ -6,16 +6,20 @@ using JuMP, POD
 using Compat, Glob, JSON
 using Gurobi, Ipopt
 
+
 include("consts.jl")
+include("types.jl")
 include("solver.jl")
 include("utility.jl")
+include("external.jl")
+include("writer.jl")
 
 # Load all existing run scripts
 for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
     include(i)
 end
 
-# Compile all problem instances
+Compile all problem instances
 for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/instances/")
     include(i)
 end
@@ -23,8 +27,11 @@ end
 !isdir("$(Pkg.dir())/POD_experiment/.jls") && mkdir("$(Pkg.dir())/POD_experiment/.jls")
 !isdir("$(Pkg.dir())/POD_experiment/.shs") && mkdir("$(Pkg.dir())/POD_experiment/.shs")
 !isdir("$(Pkg.dir())/POD_experiment/.history") && mkdir("$(Pkg.dir())/POD_experiment/.history")
+!isdir("$(Pkg.dir())/POD_experiment/.gms") && mkdir("$(Pkg.dir())/POD_experiment/.gms")
 
 PODe = POD_experiment
+m_tester = Model()
+
 export PODe, fetch_solver
 
 end #module
