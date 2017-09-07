@@ -19,7 +19,7 @@ for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
     include(i)
 end
 
-Compile all problem instances
+# Compile all problem instances
 for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/instances/")
     include(i)
 end

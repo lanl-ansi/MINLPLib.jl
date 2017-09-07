@@ -164,7 +164,7 @@ function read_equation(file::IOStream, gms::oneProblem, lInit::AbstractString; k
             end
         end
     else
-        error("Non-indexed constraint detected.")
+        error("Non-indexed constraint detected.\n$(lInit)")
     end
 
     return
