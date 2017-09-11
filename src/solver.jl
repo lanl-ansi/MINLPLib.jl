@@ -1,8 +1,5 @@
 function fetch_solver(options=Dict())
 
-    additional_options = Dict(kwargs)
-    options = merge(options, additional_options)
-
     haskey(options, :colorful_pod) ? colorful_pod=options[:colorful_pod] : colorful_pod=true
     haskey(options, :log_level) ? log_level=options[:log_level] : log_level=100
     haskey(options, :timeout) ? timeout=options[:timeout] : timeout=7200
@@ -14,13 +11,13 @@ function fetch_solver(options=Dict())
     haskey(options, :monomial_convexhull) ? monomial_convexhull=options[:monomial_convexhull] : monomial_convexhull=true
 
     haskey(options, :minlp_local_solver) ? minlp_local_solver=options[:minlp_local_solver] : minlp_solver=POD.UnsetSolver()
-    haskey(options, :nlp_local_solver) ? nlp_solver=options[:nlpsolver] : nlp_solver=IpoptSolver(print_level=0)
-    haskey(options, :mip_solver) ? mip_solver=options[:mipsolver] : mip_solver=GurobiSolver(OutputFlag=0)
+    haskey(options, :nlp_local_solver) ? nlp_solver=options[:nlp_local_solver] : nlp_solver=IpoptSolver(print_level=0)
+    haskey(options, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
 
-    haskey(options, :convhull_formulation_sos2) ? sos2=options[:sos2] : sos2=true
-    haskey(options, :convhull_formulation_facet) ? facet=options[:facet] : facet=false
-    haskey(options, :convhull_formulation_sos2aux) ? sos2aux=options[:facet] : sos2aux=true
-    haskey(options, :convhull_formulation_minib) ? minib=options[:minib] : minib=true
+    haskey(options, :convhull_formulation_sos2) ? sos2=options[:convhull_formulation_sos2] : sos2=true
+    haskey(options, :convhull_formulation_facet) ? facet=options[:convhull_formulation_facet] : facet=false
+    haskey(options, :convhull_formulation_sos2aux) ? sos2aux=options[:convhull_formulation_sos2aux] : sos2aux=false
+    haskey(options, :convhull_formulation_minib) ? minib=options[:convhull_formulation_minib] : minib=false
 
     haskey(options, :delta) ? delta=options[:delta] : delta=4
     haskey(options, :presolve) ? presolve=options[:presolve] : presolve=0
@@ -39,8 +36,7 @@ function fetch_solver(options=Dict())
     haskey(options, :discretization_var_level) ? discretization_var_level=options[:discretization_var_level] : discretization_var_level=0.5
 
     if haskey(options, :uniform) && (options[:uniform] > 0)
-        uniform=options[:uniform]
-        # Special solver fetch
+
         solver=PODSolver(colorful_pod=colorful_pod,
                          nlp_local_solver=nlp_solver,
                          mip_solver=mip_solver,
@@ -50,12 +46,12 @@ function fetch_solver(options=Dict())
                          timeout=timeout,
                          discretization_add_partition_method="uniform",
 						 discretization_uniform_rate=uniform,
-                         monomial_convexhull=convhull,
-                         bilinear_convexhull=convhull,
-                         bilinear_mccormick=!convhull,
+                         monomial_convexhull=monomial_convexhull,
+                         bilinear_convexhull=bilinear_convexhull,
+                         bilinear_mccormick=bilinear_mccormick,
                          convhull_formulation_sos2=sos2,
                          convhull_formulation_facet=facet,
-                         convhull_formulation_sos2aux=sos2ux,
+                         convhull_formulation_sos2aux=sos2aux,
                          convhull_formulation_minib=minib,
                          discretization_ratio=delta,
                          presolve_bound_tightening=(presolve>0),
@@ -76,12 +72,12 @@ function fetch_solver(options=Dict())
                          rel_gap=rel_gap,
                          maxiter=maxiter,
                          timeout=timeout,
-                         monomial_convexhull=convhull,
-                         bilinear_convexhull=convhull,
-                         bilinear_mccormick=!convhull,
+                         monomial_convexhull=monomial_convexhull,
+                         bilinear_convexhull=bilinear_convexhull,
+                         bilinear_mccormick=bilinear_mccormick,
                          convhull_formulation_sos2=sos2,
                          convhull_formulation_facet=facet,
-                         convhull_formulation_sos2aux=sos2ux,
+                         convhull_formulation_sos2aux=sos2aux,
                          convhull_formulation_minib=minib,
                          discretization_ratio=delta,
                          presolve_bound_tightening=(presolve>0),
