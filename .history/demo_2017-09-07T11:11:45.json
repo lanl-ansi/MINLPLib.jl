@@ -1,0 +1,1 @@
+{"label":"2017-09-07T11:11:45","instance":"nlp3","jobname":1437463273962960015,"ext":{},"hpc_options":{},"solver_options":{"verbose":true,"solver_options":{"mip_solver":{"options":[["CPX_PARAM_SCRIND",0]]},"delta":8}}}

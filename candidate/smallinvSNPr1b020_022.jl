@@ -1,4 +1,4 @@
-function smallinvSNPr1b020-022(;options=Dict())
+function smallinvSNPr1b020_022(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :verbose) ? solver_options=optios[:verbose] : verbose=false

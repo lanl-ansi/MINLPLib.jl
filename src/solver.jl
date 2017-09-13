@@ -22,7 +22,7 @@ function fetch_solver(options=Dict())
     haskey(options, :delta) ? delta=options[:delta] : delta=4
     haskey(options, :presolve) ? presolve=options[:presolve] : presolve=0
 
-    haskey(options, :discretization_uniform_rate) ? uniform=options[:discretization_uniform_rate] : uniform=4
+    haskey(options, :discretization_uniform_rate) ? uniform=options[:discretization_uniform_rate] : uniform=0
 
     haskey(options, :bound_basic_propagation) ? bound_basic_propagation=options[:bound_basic_propagation] : bound_basic_propagation=false
 
@@ -35,14 +35,13 @@ function fetch_solver(options=Dict())
     haskey(options, :discretization_var_minimum) ? discretization_var_minimum=options[:discretization_var_minimum] : discretization_var_minimum=25
     haskey(options, :discretization_var_level) ? discretization_var_level=options[:discretization_var_level] : discretization_var_level=0.5
 
-    if haskey(options, :uniform) && (options[:uniform] > 0)
-
+    if haskey(options, :discretization_uniform_rate) && (options[:discretization_uniform_rate] > 0)
         solver=PODSolver(colorful_pod=colorful_pod,
                          nlp_local_solver=nlp_solver,
                          mip_solver=mip_solver,
                          log_level=log_level,
                          rel_gap=rel_gap,
-                         maxiter=maxiter,
+                         maxiter=1,
                          timeout=timeout,
                          discretization_add_partition_method="uniform",
 						 discretization_uniform_rate=uniform,

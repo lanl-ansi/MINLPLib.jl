@@ -1,4 +1,4 @@
-function graphpart_clique-50(;options=Dict())
+function graphpart_clique_50(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :verbose) ? solver_options=optios[:verbose] : verbose=false

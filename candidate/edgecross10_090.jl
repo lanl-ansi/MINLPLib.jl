@@ -1,4 +1,4 @@
-function edgecross10-090(;options=Dict())
+function edgecross10_090(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :verbose) ? solver_options=optios[:verbose] : verbose=false

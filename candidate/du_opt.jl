@@ -1,4 +1,4 @@
-function du-opt(;options=Dict())
+function du_opt(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :verbose) ? solver_options=optios[:verbose] : verbose=false
