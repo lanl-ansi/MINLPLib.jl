@@ -2,7 +2,7 @@ function run(instance="nlp3"; hpc_type="local", submit=false, expname="benchmark
 
     if isa(instance, AbstractString)
         println("Running instance $(instance)")
-        jobname = run_one(instance, hpc_type, submit, expname, options, hpc_options)
+        jobname, m = run_one(instance, hpc_type, submit, expname, options, hpc_options)
         store_history(expname, hpc_type, instance, options, hpc_options, jobname)
     else
         println("Running instance $(instance)")
@@ -10,10 +10,11 @@ function run(instance="nlp3"; hpc_type="local", submit=false, expname="benchmark
         for i in instances
             jobnames[i] = run_one(i, hpc_type, submit, expname, options, hpc_options)
         end
+        m = nothing
         store_history(expname, hpc_type, i, options, hpc_options, jobnames)
     end
 
-    return
+    return m
 end
 
 function run_one(instance::AbstractString, hpc_type, submit, expname, options, hpc_options)
@@ -22,6 +23,7 @@ function run_one(instance::AbstractString, hpc_type, submit, expname, options, h
         m = eval(parse(instance))(options=options)
         solve(m)
         jobname = hash(rand())
+        return jobname, m
     elseif hpc_type in ["slurm","pbs"]
         jobname = write_basic_jl(instance, expname, options)
         submit && write_basic_sh(expname, jobname, hpc_type, hpc_options)

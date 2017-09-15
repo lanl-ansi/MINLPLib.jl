@@ -10,8 +10,8 @@ function fetch_solver(options=Dict())
     haskey(options, :bilinear_convexhull) ? bilinear_convexhull=options[:bilinear_convexhull] : bilinear_convexhull=true
     haskey(options, :monomial_convexhull) ? monomial_convexhull=options[:monomial_convexhull] : monomial_convexhull=true
 
-    haskey(options, :minlp_local_solver) ? minlp_local_solver=options[:minlp_local_solver] : minlp_solver=POD.UnsetSolver()
-    haskey(options, :nlp_local_solver) ? nlp_solver=options[:nlp_local_solver] : nlp_solver=IpoptSolver(print_level=0)
+    haskey(options, :minlp_local_solver) ? minlp_local_solver=options[:minlp_local_solver] : minlp_local_solver=POD.UnsetSolver()
+    haskey(options, :nlp_local_solver) ? nlp_local_solver=options[:nlp_local_solver] : nlp_local_solver=IpoptSolver(print_level=0)
     haskey(options, :mip_solver) ? mip_solver=options[:mip_solver] : mip_solver=GurobiSolver(OutputFlag=0)
 
     haskey(options, :convhull_formulation_sos2) ? sos2=options[:convhull_formulation_sos2] : sos2=true
@@ -37,7 +37,7 @@ function fetch_solver(options=Dict())
     if haskey(options, :discretization_uniform_rate) && (options[:discretization_uniform_rate] > 0)
         solver=PODSolver(colorful_pod=colorful_pod,
                          minlp_local_solver=minlp_local_solver,
-                         nlp_local_solver=nlp_solver,
+                         nlp_local_solver=nlp_local_solver,
                          mip_solver=mip_solver,
                          log_level=log_level,
                          rel_gap=rel_gap,
@@ -48,6 +48,7 @@ function fetch_solver(options=Dict())
                          monomial_convexhull=monomial_convexhull,
                          bilinear_convexhull=bilinear_convexhull,
                          bilinear_mccormick=bilinear_mccormick,
+                         bound_basic_propagatio=bound_basic_propagation,
                          convhull_formulation_sos2=sos2,
                          convhull_formulation_facet=facet,
                          convhull_formulation_sos2aux=sos2aux,
@@ -65,7 +66,7 @@ function fetch_solver(options=Dict())
         # General Solver Fetch
         solver=PODSolver(colorful_pod=colorful_pod,
                          minlp_local_solver=minlp_local_solver,
-                         nlp_local_solver=nlp_solver,
+                         nlp_local_solver=nlp_local_solver,
                          mip_solver=mip_solver,
                          log_level=log_level,
                          rel_gap=rel_gap,
@@ -74,6 +75,7 @@ function fetch_solver(options=Dict())
                          monomial_convexhull=monomial_convexhull,
                          bilinear_convexhull=bilinear_convexhull,
                          bilinear_mccormick=bilinear_mccormick,
+                         bound_basic_propagation=bound_basic_propagation,
                          convhull_formulation_sos2=sos2,
                          convhull_formulation_facet=facet,
                          convhull_formulation_sos2aux=sos2aux,
