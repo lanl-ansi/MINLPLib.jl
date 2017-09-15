@@ -1,1 +1,0 @@
-{"label":"2017-09-13T13:51:12","instance":"simplebi","jobname":11434455633854813431,"ext":{},"hpc_options":{},"solver_options":{"verbose":true,"solver_options":{"discretization_uniform_rate":10,"mip_solver":{"env":null,"options":[["OutputFlag",1],["Cuts",0]]},"nlp_local_solver":{"options":[["print_level",0]]}}}}

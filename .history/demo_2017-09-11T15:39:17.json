@@ -1,1 +1,0 @@
-{"label":"2017-09-11T15:39:17","instance":"nlp3","jobname":10307167032364009371,"ext":{},"hpc_options":{},"solver_options":{"verbose":true,"solver_options":{"disc_ratio_branch_timeout":0.2,"mip_solver":{"env":null,"options":[["OutputFlag",0]]},"disc_ratio_branch":true,"nlp_local_solver":{"options":[["print_level",0]]},"delta":8}}}

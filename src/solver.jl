@@ -1,6 +1,6 @@
 function fetch_solver(options=Dict())
 
-    haskey(options, :colorful_pod) ? colorful_pod=options[:colorful_pod] : colorful_pod=true
+    haskey(options, :colorful_pod) ? colorful_pod=options[:colorful_pod] : colorful_pod="warmer"
     haskey(options, :log_level) ? log_level=options[:log_level] : log_level=100
     haskey(options, :timeout) ? timeout=options[:timeout] : timeout=7200
     haskey(options, :maxiter) ? maxiter=options[:maxiter] : maxiter=99
@@ -31,12 +31,12 @@ function fetch_solver(options=Dict())
     haskey(options, :disc_ratio_branch_focus) ? disc_ratio_branch_focus=options[:disc_ratio_branch_focus] : disc_ratio_branch_focus="bound"
 
     haskey(options, :discretization_var_pick_algo) ? discretization_var_pick_algo=options[:discretization_var_pick_algo] : discretization_var_pick_algo=0
-    haskey(options, :discretization_var_pick_dynamic) ? discretization_var_pick_dynamic=options[:discretization_var_pick_dynamic] : discretization_var_pick_dynamic=false
     haskey(options, :discretization_var_minimum) ? discretization_var_minimum=options[:discretization_var_minimum] : discretization_var_minimum=25
     haskey(options, :discretization_var_level) ? discretization_var_level=options[:discretization_var_level] : discretization_var_level=0.5
 
     if haskey(options, :discretization_uniform_rate) && (options[:discretization_uniform_rate] > 0)
         solver=PODSolver(colorful_pod=colorful_pod,
+                         minlp_local_solver=minlp_local_solver,
                          nlp_local_solver=nlp_solver,
                          mip_solver=mip_solver,
                          log_level=log_level,
@@ -59,12 +59,12 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         discretization_var_pick_dynamic=discretization_var_pick_dynamic,
                          discretization_var_minimum=discretization_var_minimum,
                          discretization_var_level=discretization_var_level)
     else
         # General Solver Fetch
         solver=PODSolver(colorful_pod=colorful_pod,
+                         minlp_local_solver=minlp_local_solver,
                          nlp_local_solver=nlp_solver,
                          mip_solver=mip_solver,
                          log_level=log_level,
@@ -85,7 +85,6 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         discretization_var_pick_dynamic=discretization_var_pick_dynamic,
                          discretization_var_minimum=discretization_var_minimum,
                          discretization_var_level=discretization_var_level)
     end

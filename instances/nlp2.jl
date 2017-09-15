@@ -1,12 +1,13 @@
-function nlp2(verbose=false)
+function nlp2(;options=Dict())
 
-	info("This model's expression is currently not suitable for expression operations...")
-	error("Quitting... so that ")
+    haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
+    haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 
-	m = Model(solver=PODSolver(nlp_local_solver=IpoptSolver(print_level=0), mip_solver=CplexSolver()))
+    m = Model(solver=fetch_solver(solver_options))
+
 	@variable(m, -500<=x[1:2]<=500)
 
-	@NLobjective(m, Min, sum((x[1]^2 - i)^2 for i in 1:2))
+	@NLobjective(m, Min, sum((x[i]^2 - i)^2 for i in 1:2))
 
 	if verbose
 		print(m)
