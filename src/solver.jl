@@ -34,6 +34,14 @@ function fetch_solver(options=Dict())
     haskey(options, :discretization_var_minimum) ? discretization_var_minimum=options[:discretization_var_minimum] : discretization_var_minimum=25
     haskey(options, :discretization_var_level) ? discretization_var_level=options[:discretization_var_level] : discretization_var_level=0.5
 
+    haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
+
+    if use_SCIP
+        info("Fetching a SCIP Solver...")
+        solver=SCIPSolver()
+        return solver
+    end
+
     if haskey(options, :discretization_uniform_rate) && (options[:discretization_uniform_rate] > 0)
         solver=PODSolver(colorful_pod=colorful_pod,
                          minlp_local_solver=minlp_local_solver,

@@ -297,3 +297,36 @@ function read_command(file::IOStream, gms::oneProblem, lInit::AbstractString; kw
     warn("I am not that smart to parse command in gms files, YET")
     return 0
 end
+
+function convert_equality(probname="")
+
+    info("This function handles problem with too many equality constraints.", prefix="POD Experiment: ")
+    if !isfile("$(Pkg.dir())/POD_experiment/instances/$(probname).jl")
+        info("NO problem file detected in $(Pkg.dir())/POD_experiment/instances/$(probname).jl", prefix="POD Experiment: ")
+        return
+    end
+
+    f = open("$(Pkg.dir())/POD_experiment/instances/$(probname).jl", "r")
+    outf = open("$(Pkg.dir())/POD_experiment/instances/$(probname)_gl.jl", "w")
+
+    for l in readlines(f)
+        if ismatch(r"==", l)
+            geq = replace(l, "==", ">=")
+            leq = replace(l, "==", "<=")
+            write(outf, geq)
+            write(outf, "\n")
+            write(outf, leq)
+            write(outf, "\n")
+        elseif ismatch(Regex(probname), l)
+            write(outf, "function $(probname)_gl(;options=Dict())\n")
+        else
+            write(outf, l)
+            write(outf, "\n")
+        end
+    end
+
+    close(f)
+    close(outf)
+
+    return
+end

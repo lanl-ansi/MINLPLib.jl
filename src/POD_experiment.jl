@@ -1,9 +1,10 @@
-__precompile__()
+# __precompile__()
 
 module POD_experiment
 
 using JuMP, POD
 using Compat, Glob, JSON
+using SCIP
 using Gurobi, Ipopt
 
 

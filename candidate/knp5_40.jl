@@ -1,7 +1,7 @@
 function knp5_40(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
-	haskey(options, :verbose) ? solver_options=optios[:verbose] : verbose=false
+	haskey(options, :verbose) ? solver_options=options[:verbose] : verbose=false
 
 	m = Model(solver=fetch_solver(options))
 

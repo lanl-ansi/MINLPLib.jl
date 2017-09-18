@@ -16,7 +16,7 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
     info("Writing headers...")
     write(f, "function $(juliaName)(;options=Dict())\n\n")
     write(f, "\thaskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()\n")
-    write(f, "\thaskey(options, :verbose) ? solver_options=optios[:verbose] : verbose=false\n\n")
+    write(f, "\thaskey(options, :verbose) ? verbose=options[:verbose] : verbose=false\n\n")
     write(f, "\tm = Model(solver=fetch_solver(options))\n")
 
     write(f, "\n\t# ----- Variables ----- #\n")
