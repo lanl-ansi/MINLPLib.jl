@@ -4,9 +4,10 @@ module POD_experiment
 
 using JuMP, POD
 using Compat, Glob, JSON
-using SCIP
-using Gurobi, Ipopt
 
+Pkg.installed("SCIP") != nothing ? using SCIP : warn("Running without SCIP package")
+Pkg.installed("Gurobi") != nothing ? using Gurobi : warn("Running without Gurobi package")
+Pkg.installed("Ipopt") != nothing ? using Ipopt : warn("Running without Ipopt package")
 
 include("consts.jl")
 include("types.jl")
