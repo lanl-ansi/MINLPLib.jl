@@ -37,10 +37,11 @@ function fetch_solver(options=Dict())
     haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
     haskey(options, :use_BARON) ? use_BARON = options[:use_BARON] : use_BARON = false
     haskey(options, :use_IPOPT) ? use_IPOPT = options[:use_IPOPT] : use_IPOPT = false
+    haskey(options, :use_KNITRO) ? use_KNITRO = options[:use_KNITRO] : use_KNITRO = false
 
     if use_SCIP
         info("Fetching a SCIP solver...")
-        solver=SCIPSolver()
+        solver=SCIPSolver("limits/time", timeout, "limits/gap", rel_gap)
         return solver
     end
 
@@ -53,6 +54,12 @@ function fetch_solver(options=Dict())
     if use_IPOPT
         info("Fetching a IPOPT solver (LOCAL)...")
         solver=IpoptSolver()
+        return solver
+    end
+
+    if use_KNITRO
+        info("Fetching a KNITRO solver (LOCAL)...")
+        solver=KnitroSolver(ms_enable=0, outle=1, maxtime_cpu=timeout)
         return solver
     end
 
