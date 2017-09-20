@@ -1,3 +1,4 @@
+using JuMP
 function johnall(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -413,5 +414,5 @@ function johnall(;options=Dict())
 	return m
 end
 
-
+m = johnall()
 # ----- END ----- #

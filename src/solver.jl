@@ -35,10 +35,24 @@ function fetch_solver(options=Dict())
     haskey(options, :discretization_var_level) ? discretization_var_level=options[:discretization_var_level] : discretization_var_level=0.5
 
     haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
+    haskey(options, :use_BARON) ? use_BARON = options[:use_BARON] : use_BARON = false
+    haskey(options, :use_IPOPT) ? use_IPOPT = options[:use_IPOPT] : use_IPOPT = false
 
     if use_SCIP
-        info("Fetching a SCIP Solver...")
+        info("Fetching a SCIP solver...")
         solver=SCIPSolver()
+        return solver
+    end
+
+    if use_BARON
+        info("Fetching a BARON solver...")
+        solver=BARONSolver()
+        return solver
+    end
+
+    if use_IPOPT
+        info("Fetching a IPOPT solver (LOCAL)...")
+        solver=IpoptSolver()
         return solver
     end
 

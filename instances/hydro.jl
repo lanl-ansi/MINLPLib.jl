@@ -1,3 +1,4 @@
+using JuMP
 function hydro(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -60,7 +61,7 @@ function hydro(;options=Dict())
 
 
 	# ----- Constraints ----- #
-	@constraint(m, e1, -82.8*(0.0016* (x[1])^2+8*x[1]+0.0016* (x[2])^2+8*x[2]+0.0016* (x[3])^2+8*x[3]+0.0016* (x[4])^2+8*x[4]+0.0016* (x[5])^2+8*x[5]+0.0016* (x[6])^2+8*x[6])+objvar == 248400.0)
+	@NLconstraint(m, e1, -82.8*(0.0016* (x[1])^2+8*x[1]+0.0016* (x[2])^2+8*x[2]+0.0016* (x[3])^2+8*x[3]+0.0016* (x[4])^2+8*x[4]+0.0016* (x[5])^2+8*x[5]+0.0016* (x[6])^2+8*x[6])+objvar == 248400.0)
 	@constraint(m, e2, x[1]+x[7]-x[13] >= 1200.0)
 	@constraint(m, e3, x[2]+x[8]-x[14] >= 1500.0)
 	@constraint(m, e4, x[3]+x[9]-x[15] >= 1100.0)
@@ -93,5 +94,5 @@ function hydro(;options=Dict())
 	return m
 end
 
-
+m = hydro()
 # ----- END ----- #

@@ -14,6 +14,7 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
     f = open(filepath, "w")
 
     info("Writing headers...")
+    write(f, "using JuMP\n\n")
     write(f, "function $(juliaName)(;options=Dict())\n\n")
     write(f, "\thaskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()\n")
     write(f, "\thaskey(options, :verbose) ? verbose=options[:verbose] : verbose=false\n\n")
@@ -52,9 +53,9 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
         end
         for col in keys(gms.colsType)
             if gms.colsType[col] == "Binary"
-                write(f, "\tsetCategory($(gms.cols2vars[col]), :Bin)\n")
+                write(f, "\tsetcategory($(gms.cols2vars[col]), :Bin)\n")
             elseif gms.colsType[col] == "Integer"
-                write(f, "\tsetCategory($(gms.cols2vars[col]), :Int)\n")
+                write(f, "\tsetcategory($(gms.cols2vars[col]), :Int)\n")
             elseif gms.colsType[col] == "Positive"
                 write(f, "\tsetlowerbound($(gms.cols2vars[col]), 0.0)\n")
             else
@@ -131,7 +132,8 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
 
     write(f, "\tverbose && print(m)\n")
     write(f, "\treturn m\n")
-    write(f, "end\n")
+    write(f, "end\n\n")
+    write(f, "m = $(juliaName)()\n")
     write(f, string("\n\n# ----- END ----- #"))
     info(" --------- Finish writing Julia script ---------")
     close(f)

@@ -1,3 +1,4 @@
+using JuMP
 function edgecross10_090(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -591,5 +592,5 @@ function edgecross10_090(;options=Dict())
 	return m
 end
 
-
+m = edgecross10_090()
 # ----- END ----- #

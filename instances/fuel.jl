@@ -1,3 +1,4 @@
+using JuMP
 function fuel(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -54,3 +55,4 @@ function fuel(;options=Dict())
 
     return m
 end
+m = fuel()

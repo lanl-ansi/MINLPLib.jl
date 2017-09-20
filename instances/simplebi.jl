@@ -14,3 +14,5 @@ function simplebi(;options=Dict())
 
 	return m
 end
+
+m = simplebi()

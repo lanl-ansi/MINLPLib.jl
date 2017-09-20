@@ -1,3 +1,4 @@
+using JuMP
 function meyer4(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -299,3 +300,4 @@ function meyer4(;options=Dict())
 
     return m
 end
+m = meyer4()

@@ -1,3 +1,4 @@
+using JuMP
 function ex1265(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -114,3 +115,4 @@ function ex1265(;options=Dict())
 
     return m
 end
+m = ex1265()

@@ -1,3 +1,4 @@
+using JuMP
 function hybriddynamic_fixed(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -65,7 +66,7 @@ function hybriddynamic_fixed(;options=Dict())
 
 
 	# ----- Constraints ----- #
-	@constraint(m, e1, -( ((-1.66666666666667)+x[71])^2+0.2* (x[51])^2+0.2* (x[52])^2+0.2* (x[53])^2+0.2* (x[54])^2+0.2* (x[55])^2+0.2* (x[56])^2+0.2* (x[57])^2+0.2* (x[58])^2+0.2* (x[59])^2+0.2* (x[60])^2)+objvar == 0.0)
+	@NLconstraint(m, e1, -( ((-1.66666666666667)+x[71])^2+0.2* (x[51])^2+0.2* (x[52])^2+0.2* (x[53])^2+0.2* (x[54])^2+0.2* (x[55])^2+0.2* (x[56])^2+0.2* (x[57])^2+0.2* (x[58])^2+0.2* (x[59])^2+0.2* (x[60])^2)+objvar == 0.0)
 	@constraint(m, e2, -x[31]+x[41] == 0.2)
 	@constraint(m, e3, -x[32]+x[42] == 0.2)
 	@constraint(m, e4, -x[33]+x[43] == 0.2)
@@ -153,5 +154,5 @@ function hybriddynamic_fixed(;options=Dict())
 	return m
 end
 
-
+m = hybriddynamic_fixed()
 # ----- END ----- #

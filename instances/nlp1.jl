@@ -1,3 +1,4 @@
+using JuMP
 function nlp1(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -15,3 +16,5 @@ function nlp1(;options=Dict())
 	end
 	return m
 end
+
+m = nlp1()

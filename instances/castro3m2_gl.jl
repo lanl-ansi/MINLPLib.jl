@@ -1,3 +1,4 @@
+using JuMP
 function castro3m2_gl(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -222,3 +223,5 @@ function castro3m2_gl(;options=Dict())
 	end
     return m
 end
+
+m = castro3m2_gl()

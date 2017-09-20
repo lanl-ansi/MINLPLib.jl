@@ -1,3 +1,4 @@
+using JuMP
 function castro10m2(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -812,3 +813,4 @@ function castro10m2(;options=Dict())
     verbose && print(m)
     return m
 end
+m = castro10m2()

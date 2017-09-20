@@ -1,3 +1,4 @@
+using JuMP
 function elf(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -106,7 +107,7 @@ function elf(;options=Dict())
 	@constraint(m, e36, x[52]*x[49]-8*b[1]-8.5*b[4]-8.3*b[7]-8.7*b[10]-8.6*b[13]-9*b[16]-9.2*b[19]-9.5*b[22] == 0.0)
 	@constraint(m, e37, x[53]*x[50]-8*b[2]-8.5*b[5]-8.3*b[8]-8.7*b[11]-8.6*b[14]-9*b[17]-9.2*b[20]-9.5*b[23] == 0.0)
 	@constraint(m, e38, x[54]*x[51]-8*b[3]-8.5*b[6]-8.3*b[9]-8.7*b[12]-8.6*b[15]-9*b[18]-9.2*b[21]-9.5*b[24] == 0.0)
-	@constraint(m, e39, -x[25]-x[26]-x[27]-x[28]-x[29]-x[30]-x[31]-x[32]-x[33]-x[34]-x[35]-x[36]-x[37]-x[38]-x[39]-x[40]-x[41]-x[42]-x[43]-x[44]-x[45]-x[46]-x[47]-x[48]+objvar == 0.0)
+	@NLconstraint(m, e39, -x[25]-x[26]-x[27]-x[28]-x[29]-x[30]-x[31]-x[32]-x[33]-x[34]-x[35]-x[36]-x[37]-x[38]-x[39]-x[40]-x[41]-x[42]-x[43]-x[44]-x[45]-x[46]-x[47]-x[48]+objvar == 0.0)
 
 
 	# ----- Objective ----- #
@@ -115,5 +116,5 @@ function elf(;options=Dict())
 	return m
 end
 
-
+m = elf()
 # ----- END ----- #

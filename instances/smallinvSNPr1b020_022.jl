@@ -1,3 +1,4 @@
+using JuMP
 function smallinvSNPr1b020_022(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -224,5 +225,5 @@ function smallinvSNPr1b020_022(;options=Dict())
 	return m
 end
 
-
+m = smallinvSNPr1b020_022()
 # ----- END ----- #

@@ -1,3 +1,4 @@
+using JuMP
 function eniplac(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()

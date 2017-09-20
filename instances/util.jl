@@ -1,3 +1,4 @@
+using JuMP
 function util(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -210,3 +211,4 @@ function util(;options=Dict())
 
     return m
 end
+m = util()

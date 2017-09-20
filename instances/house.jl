@@ -1,3 +1,4 @@
+using JuMP
 function house(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -17,7 +18,7 @@ function house(;options=Dict())
 
 
 	# ----- Constraints ----- #
-	@constraint(m, e1, -(x[1]*x[2]+x[5]*x[4])+x[7] == 0.0)
+	@NLconstraint(m, e1, -(x[1]*x[2]+x[5]*x[4])+x[7] == 0.0)
 	@constraint(m, e2, -x[1]*x[3]+x[8] == 0.0)
 	@constraint(m, e3, -x[7]-x[8]-objvar == 0.0)
 	@constraint(m, e4, -x[2]-x[5]+x[6] == 0.0)
@@ -34,5 +35,5 @@ function house(;options=Dict())
 	return m
 end
 
-
+m = house()
 # ----- END ----- #

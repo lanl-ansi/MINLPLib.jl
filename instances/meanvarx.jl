@@ -1,3 +1,4 @@
+using JuMP
 function meanvarx(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -66,3 +67,4 @@ function meanvarx(;options=Dict())
     verbose && print(m)
     return m
 end
+m = meanvarx()

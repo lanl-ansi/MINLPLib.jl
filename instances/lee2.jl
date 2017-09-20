@@ -1,3 +1,4 @@
+using JuMP
 function lee2(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -209,3 +210,4 @@ function lee2(;options=Dict())
 
 	return m
 end
+m = lee2()

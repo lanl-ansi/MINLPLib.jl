@@ -1,3 +1,4 @@
+using JuMP
 function bayes2_10(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -268,5 +269,7 @@ function bayes2_10(;options=Dict())
 	verbose && print(m)
 	return m
 end
+
+m = bayes2_10()
 
 # ----- END ----- #

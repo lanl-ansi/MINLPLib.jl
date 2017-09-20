@@ -1,3 +1,4 @@
+using JuMP
 function blend531(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -770,3 +771,5 @@ function blend531(;options=Dict())
 
     return m
 end
+
+m = blend531()

@@ -1,4 +1,4 @@
-# __precompile__()
+__precompile__()
 
 module POD_experiment
 
@@ -8,6 +8,7 @@ using Compat, Glob, JSON
 Pkg.installed("SCIP") != nothing ? using SCIP : warn("Running without SCIP package")
 Pkg.installed("Gurobi") != nothing ? using Gurobi : warn("Running without Gurobi package")
 Pkg.installed("Ipopt") != nothing ? using Ipopt : warn("Running without Ipopt package")
+Pkg.installed("BARON") != nothing ? using BARON : warn("Running without BARON package")
 
 include("consts.jl")
 include("types.jl")
@@ -21,9 +22,9 @@ for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
     include(i)
 end
 
-# Compile all problem instances
-for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/instances/")
-    include(i)
+# # Compile all problem instances
+for i in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac"]
+    include("$(Pkg.dir())/POD_experiment/instances/$(i).jl")
 end
 
 !isdir("$(Pkg.dir())/POD_experiment/.jls") && mkdir("$(Pkg.dir())/POD_experiment/.jls")

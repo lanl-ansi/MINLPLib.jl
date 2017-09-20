@@ -1,3 +1,4 @@
+using JuMP
 function forest(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -561,5 +562,5 @@ function forest(;options=Dict())
 	return m
 end
 
-
+m = forest()
 # ----- END ----- #

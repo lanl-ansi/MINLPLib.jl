@@ -1,3 +1,4 @@
+using JuMP
 function multiplants_mtg1a(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -496,7 +497,7 @@ function multiplants_mtg1a(;options=Dict())
 	@constraint(m, e254, -(x[188]-x[189])*(x[179]-x[173])-250000*b[93]+x[168] >= -250000.0)
 	@constraint(m, e255, 200000*b[82]+200000*b[85]+200000*b[88]+200000*b[91]-x[94]-x[95]-x[96]-x[97]-x[98]-x[99]+x[166] >= 0.0)
 	@constraint(m, e256, 150000*b[83]+150000*b[86]+150000*b[89]+150000*b[92]-x[103]-x[104]-x[105]-x[106]-x[107]-x[108]+x[167] >= 0.0)
-	@constraint(m, e257, 250000*b[84]+250000*b[87]+250000*b[90]+250000*b[93]-x[112]-x[113]-x[114]-x[115]-x[116]-x[117]+x[168] >= 0.0)
+	@NLconstraint(m, e257, 250000*b[84]+250000*b[87]+250000*b[90]+250000*b[93]-x[112]-x[113]-x[114]-x[115]-x[116]-x[117]+x[168] >= 0.0)
 
 
 	# ----- Objective ----- #
@@ -505,5 +506,5 @@ function multiplants_mtg1a(;options=Dict())
 	return m
 end
 
-
+m = multiplants_mtg1a()
 # ----- END ----- #

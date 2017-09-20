@@ -1,6 +1,5 @@
 function multiKND(;options=Dict())
 
-
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :N) ? N=options[:N] : N=1

@@ -1,3 +1,5 @@
+using JuMP
+
 function crudeoil_lee1_05(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -1798,5 +1800,5 @@ function crudeoil_lee1_05(;options=Dict())
 	return m
 end
 
-
+m = crudeoil_lee1_05()
 # ----- END ----- #

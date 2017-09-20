@@ -1,3 +1,5 @@
+using JuMP
+
 function nlp3(;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -26,7 +28,7 @@ function nlp3(;options=Dict())
 	setupperbound(x[8], 1000)
 
 	@constraint(m, 0.0025*(x[4]+x[6]) <= 1)
-	@constraint(m, 0.0025*(x[5] - x[4] + x[7]) <= 1)
+	@constraint(m, 0.0025*(x[5]-x[4]+x[7]) <= 1)
 	@constraint(m, 0.01(x[8]-x[5]) <= 1)
 	@NLconstraint(m, 100*x[1] - x[1]*x[6] + 833.33252*x[4] <= 83333.333)
 	@NLconstraint(m, x[2]*x[4] - x[2]*x[7] - 1250*x[4] + 1250*x[5] <= 0)
@@ -40,3 +42,5 @@ function nlp3(;options=Dict())
 
 	return m
 end
+
+m = nlp3()

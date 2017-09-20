@@ -1,3 +1,4 @@
+using JuMP
 function circleN(;verbose=false, N=2, kwargs...)
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()

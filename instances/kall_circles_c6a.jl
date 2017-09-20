@@ -1,3 +1,4 @@
+using JuMP
 function kall_circles_c6a(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
@@ -110,5 +111,5 @@ function kall_circles_c6a(;options=Dict())
 	return m
 end
 
-
+m = kall_circles_c6a()
 # ----- END ----- #
