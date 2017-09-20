@@ -46,7 +46,7 @@ function fetch_solver(options=Dict())
 
     if use_BARON
         info("Fetching a BARON solver...")
-        solver=BARONSolver()
+        solver=BARONSolver(LPSol=3, CplexLibName="libcplex1270.so", MaxTime=timeout)
         return solver
     end
 
@@ -66,7 +66,7 @@ function fetch_solver(options=Dict())
                          maxiter=1,
                          timeout=timeout,
                          discretization_add_partition_method="uniform",
-						 discretization_uniform_rate=uniform,
+                         discretization_uniform_rate=uniform,
                          monomial_convexhull=monomial_convexhull,
                          bilinear_convexhull=bilinear_convexhull,
                          bilinear_mccormick=bilinear_mccormick,
