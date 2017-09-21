@@ -27,6 +27,7 @@ function read_gms_file(filename::AbstractString)
 
     filepath = joinpath(Pkg.dir("POD_experiment"),".gms","")
     filepath = string(filepath,filename,".gms")
+    @show filepath
     if isfile(filepath)
         f = open(filepath, "r")
     else
@@ -195,6 +196,8 @@ function read_bounds(file::IOStream, gms::oneProblem, lInit::AbstractString; kwa
             gms.lb[var] = boundVal
         elseif attr == "l"
             gms.l[var] = boundVal
+        elseif attr == "fx"
+            gms.fx[var] = boundVal
         elseif attr == "up"
             gms.ub[var] = boundVal
         elseif attr == "m"
