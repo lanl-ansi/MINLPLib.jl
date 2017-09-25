@@ -1,10 +1,11 @@
 using JuMP
+
 function hydro(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
-	haskey(options, :verbose) ? solver_options=options[:verbose] : verbose=false
+	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 
-	m = Model(solver=fetch_solver(options))
+	m = Model(solver=fetch_solver(solver_options))
 
 	# ----- Variables ----- #
 	@variable(m, objvar)
@@ -46,6 +47,8 @@ function hydro(;options=Dict())
 	setupperbound(x[10], 1000.0)
 	setupperbound(x[11], 1000.0)
 	setupperbound(x[12], 1000.0)
+	setlowerbound(x[25], 100000.0)
+	setupperbound(x[25], 100000.0)
 	setlowerbound(x[26], 60000.0)
 	setupperbound(x[26], 120000.0)
 	setlowerbound(x[27], 60000.0)
@@ -61,7 +64,7 @@ function hydro(;options=Dict())
 
 
 	# ----- Constraints ----- #
-	@NLconstraint(m, e1, -82.8*(0.0016* (x[1])^2+8*x[1]+0.0016* (x[2])^2+8*x[2]+0.0016* (x[3])^2+8*x[3]+0.0016* (x[4])^2+8*x[4]+0.0016* (x[5])^2+8*x[5]+0.0016* (x[6])^2+8*x[6])+objvar == 248400.0)
+	@constraint(m, e1, -82.8*(0.0016* (x[1])^2+8*x[1]+0.0016* (x[2])^2+8*x[2]+0.0016* (x[3])^2+8*x[3]+0.0016* (x[4])^2+8*x[4]+0.0016* (x[5])^2+8*x[5]+0.0016* (x[6])^2+8*x[6])+objvar == 248400.0)
 	@constraint(m, e2, x[1]+x[7]-x[13] >= 1200.0)
 	@constraint(m, e3, x[2]+x[8]-x[14] >= 1500.0)
 	@constraint(m, e4, x[3]+x[9]-x[15] >= 1100.0)
@@ -95,4 +98,6 @@ function hydro(;options=Dict())
 end
 
 m = hydro()
+
+
 # ----- END ----- #

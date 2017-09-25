@@ -77,6 +77,10 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
         if haskey(gms.ub, col)
             write(f, "\tsetupperbound($(colName), $(gms.ub[col]))\n")
         end
+        if haskey(gms.fx, col)
+            write(f, "\tsetlowerbound($(colName), $(gms.fx[col]))\n")
+            write(f, "\tsetupperbound($(colName), $(gms.fx[col]))\n")
+        end
     end
 
     write(f, string("\n\n\t# ----- Constraints ----- #\n"))

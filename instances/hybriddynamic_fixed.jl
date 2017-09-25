@@ -1,10 +1,11 @@
 using JuMP
+
 function hybriddynamic_fixed(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
-	haskey(options, :verbose) ? solver_options=options[:verbose] : verbose=false
+	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 
-	m = Model(solver=fetch_solver(options))
+	m = Model(solver=fetch_solver(solver_options))
 
 	# ----- Variables ----- #
 	@variable(m, objvar)
@@ -12,17 +13,17 @@ function hybriddynamic_fixed(;options=Dict())
 	@variable(m, x[x_Idx])
 	b_Idx = Any[11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 	@variable(m, b[b_Idx])
-	setCategory(b[18], :Bin)
-	setCategory(b[12], :Bin)
-	setCategory(b[14], :Bin)
-	setCategory(b[20], :Bin)
-	setCategory(b[15], :Bin)
-	setCategory(b[11], :Bin)
-	setCategory(b[19], :Bin)
+	setcategory(b[18], :Bin)
+	setcategory(b[12], :Bin)
+	setcategory(b[14], :Bin)
+	setcategory(b[20], :Bin)
+	setcategory(b[15], :Bin)
+	setcategory(b[11], :Bin)
+	setcategory(b[19], :Bin)
 	setlowerbound(x[31], 0.0)
-	setCategory(b[16], :Bin)
-	setCategory(b[17], :Bin)
-	setCategory(b[13], :Bin)
+	setcategory(b[16], :Bin)
+	setcategory(b[17], :Bin)
+	setcategory(b[13], :Bin)
 	setlowerbound(x[1], -1.0)
 	setupperbound(x[1], 1.0)
 	setlowerbound(x[2], -1.0)
@@ -43,6 +44,10 @@ function hybriddynamic_fixed(;options=Dict())
 	setupperbound(x[9], 1.0)
 	setlowerbound(x[10], -1.0)
 	setupperbound(x[10], 1.0)
+	setlowerbound(x[21], -2.0)
+	setupperbound(x[21], -2.0)
+	setlowerbound(x[31], 0.0)
+	setupperbound(x[31], 0.0)
 	setlowerbound(x[51], -2.0)
 	setupperbound(x[51], 2.0)
 	setlowerbound(x[52], -2.0)
@@ -66,7 +71,7 @@ function hybriddynamic_fixed(;options=Dict())
 
 
 	# ----- Constraints ----- #
-	@NLconstraint(m, e1, -( ((-1.66666666666667)+x[71])^2+0.2* (x[51])^2+0.2* (x[52])^2+0.2* (x[53])^2+0.2* (x[54])^2+0.2* (x[55])^2+0.2* (x[56])^2+0.2* (x[57])^2+0.2* (x[58])^2+0.2* (x[59])^2+0.2* (x[60])^2)+objvar == 0.0)
+	@constraint(m, e1, -( ((-1.66666666666667)+x[71])^2+0.2* (x[51])^2+0.2* (x[52])^2+0.2* (x[53])^2+0.2* (x[54])^2+0.2* (x[55])^2+0.2* (x[56])^2+0.2* (x[57])^2+0.2* (x[58])^2+0.2* (x[59])^2+0.2* (x[60])^2)+objvar == 0.0)
 	@constraint(m, e2, -x[31]+x[41] == 0.2)
 	@constraint(m, e3, -x[32]+x[42] == 0.2)
 	@constraint(m, e4, -x[33]+x[43] == 0.2)
@@ -155,4 +160,6 @@ function hybriddynamic_fixed(;options=Dict())
 end
 
 m = hybriddynamic_fixed()
+
+
 # ----- END ----- #

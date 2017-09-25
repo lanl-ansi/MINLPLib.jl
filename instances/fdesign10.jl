@@ -1,10 +1,11 @@
 using JuMP
+
 function fdesign10(;options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
-	haskey(options, :verbose) ? solver_options=options[:verbose] : verbose=false
+	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 
-	m = Model(solver=fetch_solver(options))
+	m = Model(solver=fetch_solver(solver_options))
 
 	# ----- Variables ----- #
 	@variable(m, objvar)
@@ -13,6 +14,8 @@ function fdesign10(;options=Dict())
 	setlowerbound(x[13], 0.0)
 	setlowerbound(x[14], 0.0)
 	setlowerbound(objvar, 1.0)
+	setlowerbound(x[15], 2.0)
+	setupperbound(x[15], 2.0)
 
 
 	# ----- Constraints ----- #
@@ -332,4 +335,6 @@ function fdesign10(;options=Dict())
 end
 
 m = fdesign10()
+
+
 # ----- END ----- #
