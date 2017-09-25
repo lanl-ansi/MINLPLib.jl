@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(51,spn-pacbell.mod)
+APPLICATION = Network Design
+DESCR =  Telecommunication Network Design with Shared Protection
+REFERENCES = MINLP51
+ADDDATE = 2014-05-31

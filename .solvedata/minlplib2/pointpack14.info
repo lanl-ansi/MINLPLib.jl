@@ -1,0 +1,5 @@
+SOURCE      = ANTIGONELIB(Other_MIQCQP/pnt_pack_14.gms)
+APPLICATION = Geometry
+DESCR       = Find the maximum radius of 14 non-overlapping circles that all lie in the unix-box.
+REFERENCES  = Anstreicher2009
+ADDDATE     = 2014-08-15

@@ -1,5 +1,4 @@
 function run(instance="nlp3"; hpc_type="local", submit=false, expname="benchmark",options=Dict(), hpc_options=Dict())
-
     if isa(instance, AbstractString)
         println("Running instance $(instance)")
         jobname, m = run_one(instance, hpc_type, submit, expname, options, hpc_options)

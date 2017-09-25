@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(32,M1withinc.gms)
+APPLICATION = Density modification based on single-crystal X-ray diffraction data
+REFERENCES = MINLP32
+ADDDATE = 2013-09-24

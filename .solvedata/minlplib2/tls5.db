@@ -1,0 +1,32 @@
+[ALPHAECP]
+DUALBOUND      = 5.6
+DATE           = 2017-09-13
+
+[ANTIGONE]
+DUALBOUND      = 8.370001842
+DATE           = 2017-09-13
+
+[BARON]
+DUALBOUND      = 7.6
+DATE           = 2014-08-16
+
+[BONMIN]
+DUALBOUND      = 5.586042475
+DATE           = 2017-09-13
+
+[COUENNE]
+DUALBOUND      = 1.193727834
+DATE           = 2017-09-13
+
+[GUROBI]
+DUALBOUND      = 10.3
+DATE           = 2015-10-05
+
+[LINDO]
+DUALBOUND      = 6.433333333
+DATE           = 2014-03-02
+
+[SCIP]
+DUALBOUND      = 6.721225572
+DATE           = 2015-12-07
+

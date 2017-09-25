@@ -1,0 +1,3 @@
+SOURCE = CUTE model <a href="http://orfe.princeton.edu/~rvdb/ampl/nlmodels/cute/gilbert.mod">gilbert</a>
+REFERENCES = Gilbert1993
+ADDDATE = 2017-02-06

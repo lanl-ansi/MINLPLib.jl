@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(27,del_asl_minlp.gms)
+APPLICATION = Hybrid Dynamic Systems
+DESCR =  Variable Finite Elements
+REFERENCES = MINLP27
+ADDDATE = 2013-09-24

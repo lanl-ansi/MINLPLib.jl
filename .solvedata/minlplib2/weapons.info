@@ -1,0 +1,4 @@
+SOURCE =       GAMSMODELLIB
+APPLICATION =  Weapons Assignment
+REFERENCES =   g00100
+ADDDATE =      2001-07-31

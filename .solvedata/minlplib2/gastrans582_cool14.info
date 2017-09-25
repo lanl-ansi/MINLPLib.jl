@@ -1,0 +1,7 @@
+SOURCE      = <A href="http://gaslib.zib.de/">GasLib</A> instance gms-nom-582-np/nomination_cool_14.gms
+APPLICATION = Gas Transmission
+DESCR       = Given gas flow and pressure specifications at entries and exits of a realistic gas network, the problem is to find a feasible network flow or to prove that none exists.
+     The data is based on a real-world network from the gas transport company Open Grid Europe GmbH.
+     The network consists of 582 nodes, 278 pipes, 5 compressor stations, 23 control valve stations, 8 resistors, 26 valves, and 269 "short pipes".
+REFERENCES  = HumpolaJoormannOucherifPfetschScheweSchmidtSchwarz2015 KochHillerPfetschSchewe2015
+ADDDATE     = 2015-12-04

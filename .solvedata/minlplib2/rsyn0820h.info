@@ -1,0 +1,7 @@
+SOURCE = CMUIBMMINLP(RSyn0820H.gms)
+APPLICATION = Retrofit Planning
+REFERENCES = Sawaya2006
+DESCR = Redesign of existing plants to increase throughput, reduce energy consumption, improve yields, and reduce waste generation. Given limited capital investments to make process improvements and cost estimations over a given time horizon, the problem is to identify the modifications that yield the highest economic improvement which is defined as the income from product sales minus the cost of raw materials, energy, and process modifications.
+ADDDATE = 2013-09-28
+
+CONSCURVATURE = convex

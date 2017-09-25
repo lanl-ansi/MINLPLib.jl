@@ -1,0 +1,5 @@
+SOURCE =       FLOUDASBOOK(ex8.2.5)
+REFERENCES =   g00041 g00293
+ADDDATE =      2001-07-31
+REMOVEDATE =   2014-08-14
+REMOVEREASON = Variant of ex8_2_5b with some variable bounds missing and x2512..x2535 not substituted out

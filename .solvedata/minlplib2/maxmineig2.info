@@ -1,0 +1,2 @@
+SOURCE = maxmineig2 from <a href="http://orfe.princeton.edu/~rvdb/ampl/nlmodels/sdp/index.html">Semidefinite Programming Models</a> by R. Vanderbei
+ADDDATE = 2017-02-06

@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(41,UC_ZondervanE.gms)
+APPLICATION = Deterministic Security Constrained Unit Commitment
+REFERENCES = MINLP41
+ADDDATE = 2013-09-24

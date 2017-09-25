@@ -1,0 +1,2 @@
+DESCR =          Global optimum found by BARON. See paper "A polyhedral branch-and-cut approach to global optimization" to appear in Math. Prog.
+ADDDATE =      2004-11-30

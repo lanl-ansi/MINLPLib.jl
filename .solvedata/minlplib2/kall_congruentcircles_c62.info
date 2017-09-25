@@ -1,0 +1,8 @@
+SOURCE      = ANTIGONELIB(Other_MIQCQP/kall_congruentcircles_c62)
+APPLICATION = Geometry
+DESCR       = A set of circles are to be cut from rectangular design plates to be produced, or from a set of stocked rectangles of known geometric dimensions.
+   The objective is to minimize the area of the design rectangles.
+   The design plates are subject to lower and upper bounds of their widths and lengths.
+   The objects are free of any orientation restrictions.
+REFERENCES  = Kallrath2009
+ADDDATE     = 2014-08-15

@@ -1,0 +1,4 @@
+SOURCE =       MINOPTLIB(nous2.dat), GAMSMODELLIB(nsharpx)
+APPLICATION =  Synthesis of General Distillation Sequences
+REFERENCES =   g00026
+ADDDATE =      2001-05-01

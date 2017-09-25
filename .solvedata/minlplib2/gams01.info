@@ -1,0 +1,6 @@
+SOURCE = GAMSCLIENT
+ADDDATE = 2014-02-27
+DESCR = Instance of unknown origin. Obtained from M. Bussieck on 8th June 2012.
+
+# nonlinear constraints are upper limits on the 2-norm of certain vectors
+CONSCURVATURE = convex

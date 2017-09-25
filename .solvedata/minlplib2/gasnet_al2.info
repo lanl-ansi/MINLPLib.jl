@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(264,AL_2.gms)
+APPLICATION = Gas Transmission
+DESCR =  The problem considered is a complex industrial problem concerning the operation of an industrial gas pipeline network. Given the network information consisting of a set of plants, cold boxes, compressors, pipeline network sections and customer demands in every section, we wish to decide which compressors and cold boxes to operate and their operation levels in order to minimize the total cost of satisfying customer demands.
+REFERENCES = MINLP264
+ADDDATE = 2017-09-12

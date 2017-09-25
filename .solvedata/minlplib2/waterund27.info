@@ -1,0 +1,4 @@
+SOURCE      = ANTIGONELIB(Other_MIQCQP/teles_etal_2009_WUN_Ex27.gms)
+APPLICATION = Water Network Design
+REFERENCES  = CastroTeles2013 TelesCastroNovais2008 TelesCastroMatos2012
+ADDDATE     = 2014-08-15

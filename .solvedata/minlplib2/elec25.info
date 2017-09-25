@@ -1,0 +1,4 @@
+SOURCE =       GAMSMODELLIB(elec), COPS
+APPLICATION =  Electrons on a Sphere
+REFERENCES =   g00302 g00303 g00320
+ADDDATE =      2001-07-31

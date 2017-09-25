@@ -1,0 +1,16 @@
+[ANTIGONE]
+DUALBOUND      = 0.1057716389
+DATE           = 2017-09-13
+
+[BARON]
+DUALBOUND      = 0.1977875153
+DATE           = 2017-09-13
+
+[LINDO]
+DUALBOUND      = 0.09694281534
+DATE           = 2017-09-13
+
+[SCIP]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+

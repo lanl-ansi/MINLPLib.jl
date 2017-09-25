@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(69,Conventional.gms)
+APPLICATION = Separation Sequences Based on Distillation
+REFERENCES = MINLP69
+ADDDATE = 2013-09-25

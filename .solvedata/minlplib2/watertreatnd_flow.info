@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(24,flowbased.gms)
+APPLICATION = Water Network Design
+DESCR =  Flow Based Approach
+REFERENCES = MINLP24
+ADDDATE = 2013-09-25

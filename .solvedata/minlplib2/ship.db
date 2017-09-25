@@ -1,0 +1,12 @@
+[ANTIGONE]
+DUALBOUND      = 0
+DATE           = 2014-08-15
+
+[LINDO]
+DUALBOUND      = 548143.2558
+DATE           = 2014-08-15
+
+[SCIP]
+DUALBOUND      = -9.999999981e+19
+DATE           = 2014-08-15
+

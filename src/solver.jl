@@ -6,6 +6,9 @@ function fetch_solver(options=Dict())
     haskey(options, :maxiter) ? maxiter=options[:maxiter] : maxiter=99
     haskey(options, :rel_gap) ? rel_gap=options[:rel_gap] : rel_gap=0.0001
 
+    haskey(options, :enable_cache) ? enable_cache=options[:enable_cache] : enable_cache=false
+    haskey(options, :solve_id) ? solve_id=options[:solve_id] : solve_id=hash(time())
+
     haskey(options, :bilinear_mccormick) ? bilinear_mccormick=options[:bilinear_mccormick] : bilinear_mccormick=false
     haskey(options, :bilinear_convexhull) ? bilinear_convexhull=options[:bilinear_convexhull] : bilinear_convexhull=true
     haskey(options, :monomial_convexhull) ? monomial_convexhull=options[:monomial_convexhull] : monomial_convexhull=true
@@ -23,7 +26,6 @@ function fetch_solver(options=Dict())
     haskey(options, :presolve) ? presolve=options[:presolve] : presolve=0
 
     haskey(options, :discretization_uniform_rate) ? uniform=options[:discretization_uniform_rate] : uniform=0
-
     haskey(options, :bound_basic_propagation) ? bound_basic_propagation=options[:bound_basic_propagation] : bound_basic_propagation=false
 
     haskey(options, :disc_ratio_branch) ? disc_ratio_branch=options[:disc_ratio_branch] : disc_ratio_branch=false
@@ -31,8 +33,8 @@ function fetch_solver(options=Dict())
     haskey(options, :disc_ratio_branch_focus) ? disc_ratio_branch_focus=options[:disc_ratio_branch_focus] : disc_ratio_branch_focus="bound"
 
     haskey(options, :discretization_var_pick_algo) ? discretization_var_pick_algo=options[:discretization_var_pick_algo] : discretization_var_pick_algo=0
-    haskey(options, :discretization_var_minimum) ? discretization_var_minimum=options[:discretization_var_minimum] : discretization_var_minimum=25
-    haskey(options, :discretization_var_level) ? discretization_var_level=options[:discretization_var_level] : discretization_var_level=0.5
+    haskey(options, :embedding) ? embedding=options[:embedding] : embedding=false
+    haskey(options, :embedding_encode) ? embedding_encode=options[:embedding_encode] : embedding_encode=POD.encode_gray
 
     haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
     haskey(options, :use_BARON) ? use_BARON = options[:use_BARON] : use_BARON = false
@@ -70,7 +72,9 @@ function fetch_solver(options=Dict())
                          mip_solver=mip_solver,
                          log_level=log_level,
                          rel_gap=rel_gap,
-                         maxiter=1,
+                         enable_cache=enable_cache,
+                         solve_id=solve_id,
+                         max_iter=1,
                          timeout=timeout,
                          discretization_add_partition_method="uniform",
                          discretization_uniform_rate=uniform,
@@ -89,8 +93,8 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         discretization_var_minimum=discretization_var_minimum,
-                         discretization_var_level=discretization_var_level)
+                         embedding=embedding,
+                         embedding_encode=embedding_encode)
     else
         # General Solver Fetch
         solver=PODSolver(colorful_pod=colorful_pod,
@@ -101,6 +105,9 @@ function fetch_solver(options=Dict())
                          rel_gap=rel_gap,
                          maxiter=maxiter,
                          timeout=timeout,
+                         rel_gap=rel_gap,
+                         enable_cache=enable_cache,
+                         solve_id=solve_id,
                          monomial_convexhull=monomial_convexhull,
                          bilinear_convexhull=bilinear_convexhull,
                          bilinear_mccormick=bilinear_mccormick,
@@ -116,8 +123,8 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         discretization_var_minimum=discretization_var_minimum,
-                         discretization_var_level=discretization_var_level)
+                         embedding=embedding,
+                         embedding_encode=embedding_encode)
     end
 
     return solver
@@ -125,7 +132,19 @@ end
 
 function show_options()
     println("===========================================")
-    println("             POD Option Keywards           ")
+    println("        Avilable POD Option Keywards       ")
     println("===========================================")
+    println("LOGGING     => :colorful_pod, :log_level")
+    println("SUB-SOLVER  => :minlp_local_solver, :nlp_local_solver, :mip_solver")
+    println("TERMINATION => :iterm, :timeout, :rel_gap")
+    println("FORMULATION => :monomial_convexhull, :bilinear_convexhull, :bilinear_mccormick")
+    println("               :convhull_formulation_sos2, :convhull_formulation_facet")
+    println("               :convhull_formulation_minib, :convhull_formulation_sos2aux")
+    println("BOUND       => :bound_basic_propagation")
+    println("DISCRETIZE  => :discretization_ratio")
+    println("               :disc_ratio_branch, :disc_ratio_branch_timeout, :disc_ratio_branch_focus,")
+    println("               :discretization_var_pick_algo")
+    println("EMBEDDING   => :embedding, :embedding_encode")
+    println("PRESOLVE    => :presolve_bound_tightening, presolve_bound_tightening_algo")
     return
 end

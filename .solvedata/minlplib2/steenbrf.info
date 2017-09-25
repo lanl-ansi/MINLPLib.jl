@@ -1,0 +1,5 @@
+SOURCE = CUTE model <a href="http://orfe.princeton.edu/~rvdb/ampl/nlmodels/cute/steenbrf.mod">steenbrf</a>
+REFERENCES = Steenbrink1974
+DESCR = A totally separable nonconvex multi-commodity network problem
+APPLICATION = Network Design
+ADDDATE = 2017-02-06

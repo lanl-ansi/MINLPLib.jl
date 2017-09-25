@@ -1,0 +1,4 @@
+SOURCE =       MINOPTLIB(duran86-4.dat), VECCHIETTI
+APPLICATION =  Product positioning in a multiattribute space
+REFERENCES =   g00032
+ADDDATE =      2001-05-01

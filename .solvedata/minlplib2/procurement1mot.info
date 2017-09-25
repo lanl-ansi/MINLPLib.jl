@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(196,MotivatingExampleModelv1.gms)
+APPLICATION = Process Networks
+DESCR =  Optimal Procurement Contract Selection with Price Optimization under Uncertainty for Process Networks
+REFERENCES = MINLP196
+ADDDATE = 2017-09-12

@@ -1,0 +1,6 @@
+APPLICATION = Geometry
+DESCR = A set of tri-axial ellipsoids, with given semi-axes, is to be packed into a rectangular box;
+   its widths, lengths and height are subject to lower and upper bounds. We want to minimize the volume
+   of this box and seek an overlap-free placement of the ellipsoids which can take any orientation.
+REFERENCES = Kallrath2015
+ADDDATE = 2016-04-26

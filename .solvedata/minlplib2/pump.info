@@ -1,0 +1,6 @@
+SOURCE =       GAMSMODELLIB
+APPLICATION =  Pump configuration problem
+REFERENCES =   g00017
+ADDDATE =      2001-05-01
+REMOVEDATE =   2014-03-04
+REMOVEREASON = Duplicate of ex1252a

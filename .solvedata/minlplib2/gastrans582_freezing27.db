@@ -1,0 +1,20 @@
+[ANTIGONE]
+DUALBOUND      = inf
+DATE           = 2015-12-07
+
+[BARON]
+DUALBOUND      = inf
+DATE           = 2015-12-07
+
+[COUENNE]
+DUALBOUND      = inf
+DATE           = 2015-12-07
+
+[LINDO]
+DUALBOUND      = 0
+DATE           = 2015-12-07
+
+[SCIP]
+DUALBOUND      = 0
+DATE           = 2015-12-07
+

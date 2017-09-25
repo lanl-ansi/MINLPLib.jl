@@ -1,0 +1,4 @@
+SOURCE =       modified GAMSMODELLIB(meanvarx)
+APPLICATION =  Financial Optimization
+REFERENCES =   g00025
+ADDDATE =      2001-05-01

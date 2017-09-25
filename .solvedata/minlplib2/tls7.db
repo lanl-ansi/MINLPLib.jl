@@ -1,0 +1,32 @@
+[ALPHAECP]
+DUALBOUND      = 3.2
+DATE           = 2015-12-07
+
+[ANTIGONE]
+DUALBOUND      = 6.171835641
+DATE           = 2017-09-13
+
+[BARON]
+DUALBOUND      = 5.1
+DATE           = 2017-09-13
+
+[BONMIN]
+DUALBOUND      = 4.376497357
+DATE           = 2015-12-07
+
+[COUENNE]
+DUALBOUND      = 0.3543755561
+DATE           = 2015-12-07
+
+[Gurobi (using a MISOCP reformulation; by Miles Lubin and Emre Yamangil)]
+DUALBOUND      = 6.32253
+DATE           = 2015-10-05
+
+[LINDO]
+DUALBOUND      = 4.033818181
+DATE           = 2017-09-13
+
+[SCIP]
+DUALBOUND      = 2.886288142
+DATE           = 2015-06-13
+

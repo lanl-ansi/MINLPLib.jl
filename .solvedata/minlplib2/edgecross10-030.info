@@ -1,0 +1,12 @@
+SOURCE = POLIP(quadratic_linear_ordering/bip_cross_min.10.10.30.1)
+ADDDATE  =  2014-02-26
+APPLICATION  =  Edge-crossing minimization in bipartite graphs
+DESCR  =  edge-crossing minimization in bipartite graphs modeled as a quadratic linear ordering problem
+   This instance is for the edge crossing minimization problem in a
+   bipartite graph G. G has to be drawn in the plane so that the nodes of
+   its two shores are placed on two parallel horizontal lines. The task
+   is to minimize the number of edge crossings by permuting the order of 
+   nodes on each layer, assuming that all edges are drawn as straight
+   lines. The problem can be modeled as a quadratic objective over linear 
+   ordering variables.
+REFERENCES  =  BuchheimWiegeleZheng2010

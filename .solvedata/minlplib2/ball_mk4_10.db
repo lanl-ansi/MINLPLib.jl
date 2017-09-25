@@ -1,0 +1,24 @@
+[ALPHAECP]
+DUALBOUND      = -6.650244098
+DATE           = 2017-09-13
+
+[ANTIGONE]
+DUALBOUND      = 6.010019266
+DATE           = 2017-09-13
+
+[BARON]
+DUALBOUND      = 21
+DATE           = 2017-09-13
+
+[BONMIN]
+DUALBOUND      = 124.1637359
+DATE           = 2017-09-13
+
+[LINDO]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+
+[SCIP]
+DUALBOUND      = inf
+DATE           = 2017-09-13
+

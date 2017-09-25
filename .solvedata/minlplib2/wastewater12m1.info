@@ -1,0 +1,4 @@
+SOURCE      = ANTIGONELIB(Other_MIQCQP/castro_etal_2007_wts_Ex12_M1.gms)
+APPLICATION = Waste Water Treatment
+REFERENCES  = CastroMatosNovais2007 CastroTelesNovais2009
+ADDDATE     = 2014-08-15

@@ -1,0 +1,28 @@
+[ALPHAECP]
+DUALBOUND      = -80.5
+DATE           = 2013-09-24
+
+[ANTIGONE]
+DUALBOUND      = -80.5
+DATE           = 2013-09-17
+
+[BARON]
+DUALBOUND      = -80.5
+DATE           = 2013-09-17
+
+[BONMIN]
+DUALBOUND      = -80.5
+DATE           = 2013-09-24
+
+[COUENNE]
+DUALBOUND      = -80.5
+DATE           = 2013-09-17
+
+[LINDO]
+DUALBOUND      = -80.5
+DATE           = 2013-09-17
+
+[SCIP]
+DUALBOUND      = -80.5
+DATE           = 2013-09-17
+

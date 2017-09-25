@@ -1,0 +1,5 @@
+ADDDATE = 2014-08-18
+SOURCE = GAMSMODELLIB(fdesign) for a filter of length 100
+APPLICATION = Linear Phase Lowpass Filter Design
+REFERENCES = g00459
+DESCR = This model finds the filter weights for a finite impulse response (FIR) filter using the minimax linear phase lowpass filter design from Lobo et. al (Section 3.3).

@@ -1,5 +1,3 @@
-__precompile__()
-
 module POD_experiment
 
 using JuMP, POD

@@ -1,0 +1,5 @@
+SOURCE =
+APPLICATION =  Layout
+DESCR =        Optimization of block layout design problems with unequal areas
+REFERENCES =   g00508
+ADDDATE =      2005-12-19

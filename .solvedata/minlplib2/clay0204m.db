@@ -1,0 +1,28 @@
+[ALPHAECP]
+DUALBOUND      = 6545
+DATE           = 2013-09-30
+
+[ANTIGONE]
+DUALBOUND      = 6545
+DATE           = 2013-09-30
+
+[BARON]
+DUALBOUND      = 6545
+DATE           = 2013-09-30
+
+[BONMIN]
+DUALBOUND      = 6545
+DATE           = 2013-09-30
+
+[COUENNE]
+DUALBOUND      = 6545
+DATE           = 2013-09-30
+
+[LINDO]
+DUALBOUND      = 4.846784743e-05
+DATE           = 2015-03-08
+
+[SCIP]
+DUALBOUND      = 6545
+DATE           = 2015-03-08
+

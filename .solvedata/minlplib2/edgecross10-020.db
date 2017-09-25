@@ -1,0 +1,16 @@
+[BARON]
+DUALBOUND      = 10.99999999
+DATE           = 2014-02-28
+
+[COUENNE]
+DUALBOUND      = 11
+DATE           = 2014-02-28
+
+[LINDO]
+DUALBOUND      = 11
+DATE           = 2014-02-28
+
+[SCIP]
+DUALBOUND      = 11
+DATE           = 2014-02-28
+

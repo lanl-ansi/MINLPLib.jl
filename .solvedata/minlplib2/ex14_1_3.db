@@ -1,0 +1,20 @@
+[ANTIGONE]
+DUALBOUND      = -1e-09
+DATE           = 2014-08-15
+
+[BARON]
+DUALBOUND      = -1.665334537e-16
+DATE           = 2014-08-15
+
+[COUENNE]
+DUALBOUND      = -6.005122031e-11
+DATE           = 2014-08-15
+
+[LINDO]
+DUALBOUND      = -6.000003827e-10
+DATE           = 2014-08-15
+
+[SCIP]
+DUALBOUND      = -6.937713489e-08
+DATE           = 2014-08-15
+
