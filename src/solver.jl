@@ -33,8 +33,9 @@ function fetch_solver(options=Dict())
     haskey(options, :disc_ratio_branch_focus) ? disc_ratio_branch_focus=options[:disc_ratio_branch_focus] : disc_ratio_branch_focus="bound"
 
     haskey(options, :discretization_var_pick_algo) ? discretization_var_pick_algo=options[:discretization_var_pick_algo] : discretization_var_pick_algo=0
-    haskey(options, :embedding) ? embedding=options[:embedding] : embedding=false
-    haskey(options, :embedding_encode) ? embedding_encode=options[:embedding_encode] : embedding_encode=POD.encode_gray
+    haskey(options, :embedding_sos1) ? embedding_sos1=options[:embedding_sos1] : embedding_sos1=false
+    haskey(options, :embedding_sos2) ? embedding_sos2=options[:embedding_sos2] : embedding_sos2=false
+    haskey(options, :embedding_encode) ? embedding_encode=options[:embedding_encode] : embedding_encode="default"
 
     haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
     haskey(options, :use_BARON) ? use_BARON = options[:use_BARON] : use_BARON = false
@@ -93,7 +94,8 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         embedding=embedding,
+                         embedding_sos1=embedding_sos1,
+                         embedding_sos2=embedding_sos2,
                          embedding_encode=embedding_encode)
     else
         # General Solver Fetch
@@ -123,7 +125,8 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         embedding=embedding,
+                         embedding_sos1=embedding_sos1,
+                         embedding_sos2=embedding_sos2,
                          embedding_encode=embedding_encode)
     end
 
