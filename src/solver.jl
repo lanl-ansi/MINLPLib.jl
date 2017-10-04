@@ -33,9 +33,9 @@ function fetch_solver(options=Dict())
     haskey(options, :disc_ratio_branch_focus) ? disc_ratio_branch_focus=options[:disc_ratio_branch_focus] : disc_ratio_branch_focus="bound"
 
     haskey(options, :discretization_var_pick_algo) ? discretization_var_pick_algo=options[:discretization_var_pick_algo] : discretization_var_pick_algo=0
-    haskey(options, :embedding_sos1) ? embedding_sos1=options[:embedding_sos1] : embedding_sos1=false
-    haskey(options, :embedding_sos2) ? embedding_sos2=options[:embedding_sos2] : embedding_sos2=false
+    haskey(options, :embedding) ? embedding=options[:embedding] : embedding=false
     haskey(options, :embedding_encode) ? embedding_encode=options[:embedding_encode] : embedding_encode="default"
+    haskey(options, :embedding_ibs) ? embedding_ibs=options[:embedding_ibs] : embedding_ibs=false
 
     haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
     haskey(options, :use_BARON) ? use_BARON = options[:use_BARON] : use_BARON = false
@@ -94,11 +94,10 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         embedding_sos1=embedding_sos1,
-                         embedding_sos2=embedding_sos2,
-                         embedding_encode=embedding_encode)
+                         embedding=embedding,
+                         embedding_encode=embedding_encode,
+                         embedding_ibs=embedding_ibs)
     else
-        # General Solver Fetch
         solver=PODSolver(colorful_pod=colorful_pod,
                          minlp_local_solver=minlp_local_solver,
                          nlp_local_solver=nlp_local_solver,
@@ -125,9 +124,9 @@ function fetch_solver(options=Dict())
                          disc_ratio_branch_timeout=disc_ratio_branch_timeout,
                          disc_ratio_branch_focus=disc_ratio_branch_focus,
                          discretization_var_pick_algo=discretization_var_pick_algo,
-                         embedding_sos1=embedding_sos1,
-                         embedding_sos2=embedding_sos2,
-                         embedding_encode=embedding_encode)
+                         embedding=embedding,
+                         embedding_encode=embedding_encode,
+                         embedding_ibs=embedding_ibs)
     end
 
     return solver
@@ -147,7 +146,7 @@ function show_options()
     println("DISCRETIZE  => :discretization_ratio")
     println("               :disc_ratio_branch, :disc_ratio_branch_timeout, :disc_ratio_branch_focus,")
     println("               :discretization_var_pick_algo")
-    println("EMBEDDING   => :embedding, :embedding_encode")
+    println("EMBEDDING   => :embedding, :embedding_encode, :embedding_ibs")
     println("PRESOLVE    => :presolve_bound_tightening, presolve_bound_tightening_algo")
     return
 end
