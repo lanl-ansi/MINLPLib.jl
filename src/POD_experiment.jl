@@ -21,7 +21,7 @@ for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
 end
 
 # # Compile all problem instances
-for i in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac"]
+for i in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac", "simpleN"]
     include("$(Pkg.dir())/POD_experiment/instances/$(i).jl")
 end
 

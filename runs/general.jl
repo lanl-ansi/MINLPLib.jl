@@ -19,7 +19,7 @@ end
 function run_one(instance::AbstractString, hpc_type, submit, expname, options, hpc_options)
 
     if hpc_type == "local"
-        if instance in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac"]
+        if instance in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac", "simpleN"]
             p = eval(parse(instance))(options=options)
         else
             p = include("$(Pkg.dir())/POD_experiment/instances/$(instance).jl")
