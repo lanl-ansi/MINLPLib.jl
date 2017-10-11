@@ -7,7 +7,7 @@ function fetch_solver(options=Dict())
     haskey(options, :rel_gap) ? rel_gap=options[:rel_gap] : rel_gap=0.0001
 
     haskey(options, :enable_cache) ? enable_cache=options[:enable_cache] : enable_cache=false
-    haskey(options, :solve_id) ? solve_id=options[:solve_id] : solve_id=hash(time())
+    haskey(options, :cache_identifier) ? cache_identifier=options[:cache_identifier] : cache_identifier=hash(time())
 
     haskey(options, :bilinear_mccormick) ? bilinear_mccormick=options[:bilinear_mccormick] : bilinear_mccormick=false
     haskey(options, :bilinear_convexhull) ? bilinear_convexhull=options[:bilinear_convexhull] : bilinear_convexhull=true
@@ -75,7 +75,7 @@ function fetch_solver(options=Dict())
                          log_level=log_level,
                          rel_gap=rel_gap,
                          enable_cache=enable_cache,
-                         solve_id=solve_id,
+                         cache_identifier=cache_identifier,
                          max_iter=1,
                          timeout=timeout,
                          discretization_add_partition_method="uniform",
@@ -110,7 +110,7 @@ function fetch_solver(options=Dict())
                          timeout=timeout,
                          rel_gap=rel_gap,
                          enable_cache=enable_cache,
-                         solve_id=solve_id,
+                         cache_identifier=cache_identifier,
                          monomial_convexhull=monomial_convexhull,
                          bilinear_convexhull=bilinear_convexhull,
                          bilinear_mccormick=bilinear_mccormick,
