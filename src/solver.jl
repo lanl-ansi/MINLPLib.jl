@@ -36,6 +36,7 @@ function fetch_solver(options=Dict())
     haskey(options, :embedding) ? embedding=options[:embedding] : embedding=false
     haskey(options, :embedding_encode) ? embedding_encode=options[:embedding_encode] : embedding_encode="default"
     haskey(options, :embedding_ibs) ? embedding_ibs=options[:embedding_ibs] : embedding_ibs=false
+    haskey(options, :embedding_link) ? embedding_link=options[:embedding_link] : embedding_link=false
 
     haskey(options, :use_SCIP) ? use_SCIP = options[:use_SCIP] : use_SCIP = false
     haskey(options, :use_BARON) ? use_BARON = options[:use_BARON] : use_BARON = false
@@ -96,7 +97,8 @@ function fetch_solver(options=Dict())
                          discretization_var_pick_algo=discretization_var_pick_algo,
                          embedding=embedding,
                          embedding_encode=embedding_encode,
-                         embedding_ibs=embedding_ibs)
+                         embedding_ibs=embedding_ibs,
+                         embedding_link=embedding_link)
     else
         solver=PODSolver(colorful_pod=colorful_pod,
                          minlp_local_solver=minlp_local_solver,
@@ -126,7 +128,8 @@ function fetch_solver(options=Dict())
                          discretization_var_pick_algo=discretization_var_pick_algo,
                          embedding=embedding,
                          embedding_encode=embedding_encode,
-                         embedding_ibs=embedding_ibs)
+                         embedding_ibs=embedding_ibs,
+                         embedding_link=embedding_links)
     end
 
     return solver
