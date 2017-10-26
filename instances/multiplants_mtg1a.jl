@@ -1,6 +1,4 @@
-using JuMP
-
-function multiplants_mtg1a(;options=Dict())
+function multiplants_mtg1a(fetch_solver::Function; options=Dict())
 
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
@@ -508,8 +506,3 @@ function multiplants_mtg1a(;options=Dict())
 	verbose && print(m)
 	return m
 end
-
-m = multiplants_mtg1a()
-
-
-# ----- END ----- #

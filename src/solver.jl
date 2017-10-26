@@ -3,7 +3,7 @@ function fetch_solver(options=Dict())
     haskey(options, :colorful_pod) ? colorful_pod=options[:colorful_pod] : colorful_pod="warmer"
     haskey(options, :log_level) ? log_level=options[:log_level] : log_level=100
     haskey(options, :timeout) ? timeout=options[:timeout] : timeout=7200
-    haskey(options, :maxiter) ? maxiter=options[:maxiter] : maxiter=99
+    haskey(options, :max_iter) ? max_iter=options[:max_iter] : max_iter=99
     haskey(options, :rel_gap) ? rel_gap=options[:rel_gap] : rel_gap=0.0001
 
     haskey(options, :enable_cache) ? enable_cache=options[:enable_cache] : enable_cache=false
@@ -106,7 +106,7 @@ function fetch_solver(options=Dict())
                          mip_solver=mip_solver,
                          log_level=log_level,
                          rel_gap=rel_gap,
-                         maxiter=maxiter,
+                         max_iter=max_iter,
                          timeout=timeout,
                          rel_gap=rel_gap,
                          enable_cache=enable_cache,
@@ -129,7 +129,7 @@ function fetch_solver(options=Dict())
                          embedding=embedding,
                          embedding_encode=embedding_encode,
                          embedding_ibs=embedding_ibs,
-                         embedding_link=embedding_links)
+                         embedding_link=embedding_link)
     end
 
     return solver

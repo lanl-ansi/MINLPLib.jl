@@ -18,20 +18,11 @@ end
 
 function run_one(instance::AbstractString, hpc_type, submit, expname, options, hpc_options)
 
-    if hpc_type == "local"
-        if instance in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac", "simpleN"]
-            p = eval(parse(instance))(options=options)
-        else
-            p = include("$(Pkg.dir())/POD_experiment/instances/$(instance).jl")
-            setsolver(p, fetch_solver(options[:solver_options]))
-        end
-        solve(p)
-        jobname = hash(rand())
-        return jobname, p
-    elseif hpc_type in ["slurm","pbs"]
-        jobname = write_basic_jl(instance, expname, options)
-        submit && write_basic_sh(expname, jobname, hpc_type, hpc_options)
-        submit && submit_to_hpc(hpc_type, jobname, expname)
-        return jobname
-    end
+    info("Start loading problem $(instance)", prefix="PODe: ")
+    p = eval(parse(instance))(fetch_solver, options=options)
+    info("Finish loading problem $(instance)", prefix="PODe: ")
+    solve(p)
+    jobname = hash(rand())
+
+    return jobname, p
 end

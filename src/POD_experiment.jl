@@ -1,3 +1,5 @@
+__precompile__()
+
 module POD_experiment
 
 using JuMP, POD
@@ -21,8 +23,9 @@ for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
 end
 
 # # Compile all problem instances
-for i in ["multi3N", "multi4N", "multiKND", "circleN", "eniplac", "simpleN"]
-    include("$(Pkg.dir())/POD_experiment/instances/$(i).jl")
+for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/instances/")
+    include(i)
+    # include("$(Pkg.dir())/POD_experiment/instances/$(i)")
 end
 
 !isdir("$(Pkg.dir())/POD_experiment/.jls") && mkdir("$(Pkg.dir())/POD_experiment/.jls")

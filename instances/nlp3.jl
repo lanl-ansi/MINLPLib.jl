@@ -1,6 +1,4 @@
-using JuMP
-
-function nlp3(;options=Dict())
+function nlp3(fetch_solver;options=Dict())
 
     haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
     haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
@@ -42,5 +40,3 @@ function nlp3(;options=Dict())
 
 	return m
 end
-
-m = nlp3()

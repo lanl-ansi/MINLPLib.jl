@@ -1,4 +1,4 @@
-function multi4N(;options=Dict())
+function multi4N(fetch_solver::Function; options=Dict())
 
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()

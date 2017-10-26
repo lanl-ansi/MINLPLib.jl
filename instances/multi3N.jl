@@ -1,11 +1,11 @@
-function multi3N(;options=Dict())
+function multi3N(fetch_solver::Function; options=Dict())
 
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
 	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :N) ? N=options[:N] : N=1
 	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 	haskey(options, :randomub) ? randomub=options[:randomub] : randomub=10
-	
+
 	m = Model(solver=fetch_solver(solver_options))
 
 	M = 1+2*N
