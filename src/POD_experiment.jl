@@ -16,11 +16,7 @@ include("solver.jl")
 include("utility.jl")
 include("external.jl")
 include("writer.jl")
-
-# Load all existing run scripts
-for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
-    include(i)
-end
+include("general.jl")
 
 # Compile all problem instances
 special_instances = ["multi3N", "multi4N", "multiKND", "eniplac", "simpleN", "circleN"]
