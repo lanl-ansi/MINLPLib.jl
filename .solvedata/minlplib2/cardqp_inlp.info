@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(166,Formulation_MINLP.gms)
+DESCR =  Binary Quadratic Programming with cardinality constraints
+ Integer Nonlinear Programming Formulation
+REFERENCES = MINLP166
+ADDDATE = 2013-09-25

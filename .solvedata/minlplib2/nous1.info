@@ -1,0 +1,4 @@
+SOURCE =       MINOPTLIB(nous1.dat)
+APPLICATION =  Synthesis of General Distillation Sequences
+REFERENCES =   g00026
+ADDDATE =      2001-05-01

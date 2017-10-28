@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(123,generalizedpooling_lee2.gms)
+APPLICATION = Pooling Problem
+REFERENCES = MINLP123
+ADDDATE = 2013-09-25

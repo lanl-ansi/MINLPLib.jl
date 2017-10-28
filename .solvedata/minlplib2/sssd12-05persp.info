@@ -1,0 +1,5 @@
+APPLICATION = Service System Design
+DESCR       = Stochastic Service System Design. Servers are modeled as M/M/1 queues, and a set of customers must be assigned to the servers which can be operated at different service levels. The objective is to minimize assignment and operating costs.
+   Perspective reformulation of sssd12-05.
+REFERENCES  = Elhedhli2006 GuenluekLinderoth2010 GuenluekLinderorth2012
+ADDDATE     = 2014-02-24

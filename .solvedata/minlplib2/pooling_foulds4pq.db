@@ -1,0 +1,20 @@
+[ANTIGONE]
+DUALBOUND      = -8.0008
+DATE           = 2017-09-13
+
+[BARON]
+DUALBOUND      = -8
+DATE           = 2017-09-13
+
+[COUENNE]
+DUALBOUND      = -8.000000016
+DATE           = 2017-09-13
+
+[LINDO]
+DUALBOUND      = -8.000000001
+DATE           = 2017-09-13
+
+[SCIP]
+DUALBOUND      = -8.000001
+DATE           = 2017-09-13
+

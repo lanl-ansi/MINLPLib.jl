@@ -1,0 +1,12 @@
+[BARON]
+DUALBOUND      = -10830269.5
+DATE           = 2017-09-13
+
+[LINDO]
+DUALBOUND      = 129863.0497
+DATE           = 2015-12-07
+
+[SCIP]
+DUALBOUND      = 136000.9577
+DATE           = 2014-03-04
+

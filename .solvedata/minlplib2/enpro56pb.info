@@ -1,0 +1,4 @@
+SOURCE =       VECCHIETTI, modified
+APPLICATION =  Batch processing
+DESCR =        enpro56 with added bounds to avoid evaluation errors
+ADDDATE =      2007-06-14

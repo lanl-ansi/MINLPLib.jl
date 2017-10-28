@@ -1,0 +1,16 @@
+[BARON]
+DUALBOUND      = 214689.6524
+DATE           = 2017-09-13
+
+[COUENNE]
+DUALBOUND      = 71293.35626
+DATE           = 2017-09-13
+
+[LINDO]
+DUALBOUND      = 236056
+DATE           = 2017-09-13
+
+[SCIP]
+DUALBOUND      = 175744.5271
+DATE           = 2017-09-13
+

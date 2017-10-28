@@ -1,0 +1,5 @@
+SOURCE = CMUIBMMINLP(CLay0203M.gms)
+APPLICATION = Layout
+REFERENCES = Sawaya2006
+DESCR = Non overlapping rectangular units must be placed within the confines of certain designated areas such that the cost of connecting these units is minimized.
+ADDDATE = 2013-09-28

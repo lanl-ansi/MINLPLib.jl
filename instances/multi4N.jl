@@ -1,21 +1,12 @@
-println("--------------------------------------------------------------------------")
-println("Multi4/N - exprmode 1 -> X1 * X2 * X3 * X4")
-println("Multi4/N - exprmode 2 -> (X1*X2) * (X3*X4)")
-println("Multi4/N - exprmode 3 -> (X1*X2) * X3 * X4")
-println("Multi4/N - exprmode 4 -> X1 * X2 * (X3*X4)")
-println("Multi4/N - exprmode 5 -> ((X1*X2) * X3) * X4")
-println("Multi4/N - exprmode 6 -> (X1*X2*X3) *X4")
-println("Multi4/N - exprmode 7 -> X1 * (X2 * (X3*X4))")
-println("Multi4/N - exprmode 8 -> X1 * (X2*X3) * X4")
-println("Multi4/N - exprmode 9 -> X1 * (X2*X3*X4)")
-println("Multi4/N - exprmode 10 -> X1 * ((X2*X3) * X4)")
-println("Multi4/N - exprmode 11 -> (X1 * (X2*X3)) * X4")
-println("--------------------------------------------------------------------------")
+function multi4N(fetch_solver::Function; options=Dict())
 
-function multi4N(;verbose=false, exprmode=1, N=1, kwargs...)
+	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
+	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
+	haskey(options, :N) ? N=options[:N] : N=1
+	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
+	haskey(options, :randomub) ? randomub=options[:randomub] : randomub=10
 
-	m = Model(solver=fetch_solver(options=Dict(kwargs)))
-
+	m = Model(solver=fetch_solver(solver_options))
 	M = 1+3*N
 	srand(100)
 	isa(randomub, Bool) ? @variable(m, 0.1 <= x[1:M] <= 100*rand()) : @variable(m, 0.1 <= x[1:M] <= randomub)

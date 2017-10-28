@@ -1,0 +1,4 @@
+SOURCE = CUTE model <a href="http://orfe.princeton.edu/~rvdb/ampl/nlmodels/cute/hvycrash.mod">hvycrash</a>
+REFERENCES = Ivashkevich1976 Tyatushkin1992
+APPLICATION = Spacecraft Landing
+ADDDATE = 2017-02-06

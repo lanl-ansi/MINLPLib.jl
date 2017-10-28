@@ -1,0 +1,8 @@
+SOURCE = ANTIGONELIB(Other_MIQCQP/Sarawak_Scenario81)
+APPLICATION = Natural Gas Production
+REFERENCES = selot-etal:2008 li-etal:2011-aiche_journal li-etal:2011-jogo
+ADDDATE = 2013-09-24
+DESCR = Li et al. reformulated the natural gas production model of Selot et al. from a general
+  MINLP to MIQCQP. The modeling files corresponding to these problems have been scaled in accordance
+  with the design of Li et al. The 3 test cases are effectively the same
+  problem with a different number of uncertain scenarios.

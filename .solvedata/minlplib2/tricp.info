@@ -1,0 +1,5 @@
+ADDDATE = 2014-08-18
+SOURCE = GAMSMODELLIB
+APPLICATION = Geometry
+REFERENCES = g00570
+DESCR = Triangular Graph Circle Packing

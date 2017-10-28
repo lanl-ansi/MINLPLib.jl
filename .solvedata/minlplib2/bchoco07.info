@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(57,bcp7.gms)
+APPLICATION = Belgian chocolate problem
+REFERENCES = MINLP57
+ADDDATE = 2013-09-24

@@ -1,0 +1,5 @@
+SOURCE = CMUIBMMINLP(BatchS121208M.gms)
+APPLICATION = Multi-Product Batch Plant Design
+REFERENCES = RavemarkRippin1998 VecchiettiGrossmann1999
+DESCR = Determine volume of equipment, number of units to operate in parallel, and locations of intermediate storage tanks.
+ADDDATE = 2013-09-28

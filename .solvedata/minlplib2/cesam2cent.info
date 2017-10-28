@@ -1,0 +1,5 @@
+ADDDATE = 2014-08-18
+SOURCE = GAMSMODELLIB(cesam2)
+APPLICATION = Social Accounting Matrix Balancing
+REFERENCES = g00214 g00215 g00567
+DESCR = Illustrates a cross entropy technique for estimating the cells of a consistent SAM assuming that the initial data are inconsistent and measured with error.

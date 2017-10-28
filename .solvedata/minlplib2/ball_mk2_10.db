@@ -1,0 +1,28 @@
+[ALPHAECP]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+
+[ANTIGONE]
+DUALBOUND      = -1e-09
+DATE           = 2017-09-13
+
+[BARON]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+
+[BONMIN]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+
+[COUENNE]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+
+[LINDO]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+
+[SCIP]
+DUALBOUND      = 0
+DATE           = 2017-09-13
+

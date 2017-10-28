@@ -1,0 +1,36 @@
+DESCR =          Solution found by SBB/SNOPT/CONOPT.
+ 
+ SBB used an option file:
+ 
+ ninfmult 30
+ memnodes 1000000
+ printbbinfo 1
+ varsel 3
+ subsolver conopt2
+ 
+ The statistics of this run (on a 450 Mhz PII running Linux) are:
+ 
+  Statistics:
+    Iterations    :           1827608 (pseudo costs calculations:   605769)
+    NLP Seconds   :     183409.150000 (pseudo costs calculations: 35398.85)
+    B&amp;B nodes     :            264619
+    MIP solution  :        598.919176 found in node 212137
+    Best possible :        598.919176
+    Absolute gap  :          0.000000     optca :  0.000000
+    Relative gap  :          0.000000     optcr :  0.000000
+    Model Status  :                 8
+    Solver Status :                 1
+ 
+ Non convex model!
+    # jumps in best bound       :                 8
+    Maximum jump in best bound  :          0.008726 in node 191936
+    # jumps to better objective :                11
+    Maximum jump in objective   :          0.008726 in node 191936
+ 
+ NLP Solver Statistics
+    Total Number of NLP solves  :     264621
+    Total Number of NLP failures:          0
+    Details:        conopt2     snopt
+      # execs        264620         1
+      # failures          0         0
+ADDDATE =      2001-05-04

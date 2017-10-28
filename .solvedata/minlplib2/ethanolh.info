@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(81,GMA_ethanol_model_CH.gms)
+APPLICATION = Metabolic Networks
+REFERENCES = MINLP81
+ADDDATE = 2013-09-25

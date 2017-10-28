@@ -1,0 +1,6 @@
+SOURCE =       GAMSMODELLIB(flowchan) from GAMS < 24.4, COPS
+APPLICATION =  Flow in a Channel
+REFERENCES =   g00304 g00320
+ADDDATE =      2001-07-31
+REMOVEDATE =   2015-02-09
+REMOVEREASON = Bug in original GAMS model had been found, fixed version available as flowchan100fix

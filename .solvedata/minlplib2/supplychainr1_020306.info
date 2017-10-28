@@ -1,0 +1,4 @@
+SOURCE = MINLPORG(157,r1-236.gms)
+APPLICATION = Supply Chain Design with Stochastic Inventory Management
+REFERENCES = MINLP157
+ADDDATE = 2013-09-25

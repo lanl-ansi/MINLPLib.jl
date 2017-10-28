@@ -1,0 +1,6 @@
+SOURCE = POLIP(maxcut/sched-24-4711)
+ADDDATE  =  2014-02-26
+APPLICATION  =  Sports Tournament
+DESCR  =  This is a quadratic model for the max-cut problem. The instance arises
+   when minimizing so-called breaks in sports tournaments.
+REFERENCES  =  ElfJuengerRinaldi2003

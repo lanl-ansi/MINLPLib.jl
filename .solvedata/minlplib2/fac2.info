@@ -1,0 +1,3 @@
+SOURCE =       MINOPTLIB(facility2.dat)
+APPLICATION =  Multi-commodity capacity facility location-allocation
+ADDDATE =      2001-05-01

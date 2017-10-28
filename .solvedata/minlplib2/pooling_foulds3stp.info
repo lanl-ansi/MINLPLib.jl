@@ -1,0 +1,5 @@
+SOURCE      = <A href="http://www.ii.uib.no/~mohammeda/spooling/Foulds3.gms">Foulds3.gms</A> from <A href="http://www.ii.uib.no/~mohammeda/spooling/">Standard Pooling Problem Instances</A>
+APPLICATION = Pooling problem
+DESCR       = STP formulation of pooling problem. Explicitly added RLT constraints were removed from the original formulation of Alfaki and Haugland.
+ADDDATE     = 2017-09-12
+REFERENCES  = FouldsHauglandJoernsten1992 AlfakiHaugland2013

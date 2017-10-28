@@ -1,0 +1,12 @@
+[BARON]
+DUALBOUND      = 0.04199104858
+DATE           = 2015-03-08
+
+[LINDO]
+DUALBOUND      = 19.87217015
+DATE           = 2015-03-08
+
+[SCIP]
+DUALBOUND      = -5059.98957
+DATE           = 2014-08-16
+

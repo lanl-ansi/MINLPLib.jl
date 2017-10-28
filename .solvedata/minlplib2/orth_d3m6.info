@@ -1,0 +1,4 @@
+SOURCE = Matthias Schymura
+ADDDATE  =  2017-09-11
+APPLICATION  =  Geometry
+DESCR  =  computation of the minimal orthogonality measure of a 3x6 matrix with orthonormal rows

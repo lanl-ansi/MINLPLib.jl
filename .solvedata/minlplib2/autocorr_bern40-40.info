@@ -1,0 +1,10 @@
+SOURCE = POLIP(autocorrelated_sequences/bernasconi.40.40)
+ADDDATE  =  2014-02-26
+APPLICATION  =  Autocorrelated Sequences
+DESCR  =  degree-four model for low autocorrelated binary sequences
+   This instance arises in theoretical physics. Determining a ground
+   state in the so-called Bernasconi model amounts to minimizing a
+   degree-four energy function over variables taking values in
+   {+1,-1}. Here, the energy function is expressed in 0/1 variables. The
+   model contains symmetries, leading to multiple optimum solutions.
+REFERENCES  =  LiersMarinariPagaczEtal2010

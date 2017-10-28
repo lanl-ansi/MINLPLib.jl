@@ -1,0 +1,5 @@
+ADDDATE = 2014-08-18
+SOURCE = GAMSMODELLIB(gastrans), straight-forward NLP formulation
+APPLICATION = Gas Transmission
+REFERENCES = g00012
+DESCR = The problem of distributing gas through a network of pipelines is formulated as a cost minimization subject to nonlinear flow-pressure relations, material balances, and pressure bounds. The Belgian gas network is used as an example.

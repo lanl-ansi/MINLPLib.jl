@@ -1,0 +1,16 @@
+[BARON]
+DUALBOUND      = 143.65494
+DATE           = 2015-12-07
+
+[COUENNE]
+DUALBOUND      = 142.31412
+DATE           = 2014-06-01
+
+[LINDO]
+DUALBOUND      = 142.93773
+DATE           = 2014-06-01
+
+[SCIP]
+DUALBOUND      = 142.40187
+DATE           = 2014-06-01
+

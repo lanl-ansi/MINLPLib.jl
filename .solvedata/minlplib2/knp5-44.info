@@ -1,0 +1,6 @@
+ADDDATE = 2014-08-18
+SOURCE = GAMSMODELLIB(knp)
+APPLICATION = Kissing Number Problem
+REFERENCES = g00510
+DESCR = Determining whether 44 5-dimensional spheres of radius 1 can be adjacent to a central sphere of radius 1.
+                This is possible, iff the optimal value of this instance is >= 1.

@@ -1,0 +1,7 @@
+SOURCE =       GAMSMODELLIB
+APPLICATION =  Portfolio Optimization
+REFERENCES =   g00121
+ADDDATE =      2001-07-31
+REMOVEDATE =   2014-08-14
+REMOVEREASON = Instance is purely linear (approximation of qp4)
+

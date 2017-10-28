@@ -1,0 +1,4 @@
+SOURCE =       GAMSMODELLIB(camshape), COPS
+APPLICATION =  Shape Optimization
+REFERENCES =   g00314 g00320
+ADDDATE =      2001-07-31

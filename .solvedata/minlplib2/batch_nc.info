@@ -1,0 +1,5 @@
+SOURCE = MINLPORG(48,nonconvex1.gms)
+APPLICATION = Multi-Product Batch Plant Design
+DESCR =  Nonconvex variant of batch
+REFERENCES = MINLP48
+ADDDATE = 2013-09-24

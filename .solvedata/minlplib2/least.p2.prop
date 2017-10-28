@@ -1,0 +1,5 @@
+OBJVALUE          = 0
+INFEASIBILITY     = 0
+INFEASSCALED      = 0
+MAXOBJCOEF        = 0
+MAXOBJCOEFVAR     = x2

@@ -1,0 +1,15 @@
+DESCR =          Solution was obtained by a novel simplicial-approximation based algorithm (Goyal
+ and Ierapetritou, 2003a, 2003b) in 6.57 CPU seconds. The same solutions is also
+ obtained using GAMS/SBB with conopt2 as the nodesolver in 588.65 CPU sec.
+ 
+ Goyal, V., and M.G. Ierapetritou: (2003a),  MINLP Optimization using
+ simplicial approximation method for classes of nonconvex problems,
+ (Accepted for publication: Nonconvex Optimization and Its Applications),
+ Kluwer Academic Publishers
+ 
+ Goyal, V., and M.G. Ierapetritou: (2003b),  Computational Experiences
+ with a Simplicial-Approximation Based Algorithm for MINLP
+ Optimization,
+ (submitted for publication: Comp. &amp; Chem. Eng.)
+ 
+ADDDATE =      2003-07-17

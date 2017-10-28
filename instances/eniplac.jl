@@ -1,6 +1,11 @@
-function eniplac(;verbose=false, kwargs...)
+using JuMP
+function eniplac(;options=Dict())
 
-    m = Model(solver=fetch_solver(options=Dict(kwargs)))
+    haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
+    haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
+    haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
+
+    m = Model(solver=fetch_solver(solver_options))
 
     # ----- Variables ----- #
     @variable(m, objvar)
@@ -170,31 +175,6 @@ function eniplac(;verbose=false, kwargs...)
     @constraint(m, e31,x[17]+x[18]+x[19]+x[20]-x[103]+x[109]==600.0)
     @constraint(m, e32,x[21]+x[22]+x[23]+x[24]-x[104]+x[110]==250.0)
 
-    # @NLconstraint(m, e33,-(601.56+0.0131*(x[1])^2+1.0622*x[1])*x[25]+x[73]==0.0)
-    # @NLconstraint(m, e34,-(10.04286*x[2]-0.01048* (x[2])^2-92.8095)*x[26]+x[74]==0.0)
-    # @NLconstraint(m, e35,-(657.32+0.018317* (x[3])^2)*x[27]+x[75]==0.0)
-    # @NLconstraint(m, e36,-(222.2+0.0001* (x[4])^2+6.2749*x[4])*x[28]+x[76]==0.0)
-    # @NLconstraint(m, e37,-(601.56+0.0131* (x[5])^2+1.0622*x[5])*x[29]+x[77]==0.0)
-    # @NLconstraint(m, e38,-(10.04286*x[6]-0.01048* (x[6])^2-92.8095)*x[30]+x[78]==0.0)
-    # @NLconstraint(m, e39,-(657.32+0.018317* (x[7])^2)*x[31]+x[79]==0.0)
-    # @NLconstraint(m, e40,-(222.2+0.0001* (x[8])^2+6.2749*x[8])*x[32]+x[80]==0.0)
-    # @NLconstraint(m, e41,-(601.56+0.0131* (x[9])^2+1.0622*x[9])*x[33]+x[81]==0.0)
-    # @NLconstraint(m, e42,-(10.04286*x[10]-0.01048* (x[10])^2-92.8095)*x[34]+x[82]==0.0)
-    # @NLconstraint(m, e43,-(657.32+0.018317* (x[11])^2)*x[35]+x[83]==0.0)
-    # @NLconstraint(m, e44,-(222.2+0.0001* (x[12])^2+6.2749*x[12])*x[36]+x[84]==0.0)
-    # @NLconstraint(m, e45,-(601.56+0.0131* (x[13])^2+1.0622*x[13])*x[37]+x[85]==0.0)
-    # @NLconstraint(m, e46,-(10.04286*x[14]-0.01048* (x[14])^2-92.8095)*x[38]+x[86]==0.0)
-    # @NLconstraint(m, e47,-(657.32+0.018317* (x[15])^2)*x[39]+x[87]==0.0)
-    # @NLconstraint(m, e48,-(222.2+0.0001* (x[16])^2+6.2749*x[16])*x[40]+x[88]==0.0)
-    # @NLconstraint(m, e49,-(601.56+0.0131* (x[17])^2+1.0622*x[17])*x[41]+x[89]==0.0)
-    # @NLconstraint(m, e50,-(10.04286*x[18]-0.01048* (x[18])^2-92.8095)*x[42]+x[90]==0.0)
-    # @NLconstraint(m, e51,-(657.32+0.018317* (x[19])^2)*x[43]+x[91]==0.0)
-    # @NLconstraint(m, e52,-(222.2+0.0001* (x[20])^2+6.2749*x[20])*x[44]+x[92]==0.0)
-    # @NLconstraint(m, e53,-(601.56+0.0131* (x[21])^2+1.0622*x[21])*x[45]+x[93]==0.0)
-    # @NLconstraint(m, e54,-(10.04286*x[22]-0.01048* (x[22])^2-92.8095)*x[46]+x[94]==0.0)
-    # @NLconstraint(m, e55,-(657.32+0.018317* (x[23])^2)*x[47]+x[95]==0.0)
-    # @NLconstraint(m, e56,-(222.2+0.0001* (x[24])^2+6.2749*x[24])*x[48]+x[96]==0.0)
-
     # Expanded formulation
     if exprmode == 1
         @NLconstraint(m, e33,-(601.56*x[25]+0.0131*(x[1])^2*x[25]+1.0622*x[1]*x[25])+x[73]==0.0)
@@ -247,6 +227,31 @@ function eniplac(;verbose=false, kwargs...)
         @NLconstraint(m, e54,-(10.04286*x[22]*x[46]-0.01048*x[22]*x[22]*x[46]-92.8095*x[46])+x[94]==0.0)
         @NLconstraint(m, e55,-(657.32*x[47]+0.018317*x[23]*x[23]*x[47])+x[95]==0.0)
         @NLconstraint(m, e56,-(222.2*x[48]+0.0001*x[24]*x[24]*x[48]+6.2749*x[24]*x[48])+x[96]==0.0)
+    elseif exprmode == 3
+        @NLconstraint(m, e33,-(601.56+0.0131*(x[1])^2+1.0622*x[1])*x[25]+x[73]==0.0)
+        @NLconstraint(m, e34,-(10.04286*x[2]-0.01048* (x[2])^2-92.8095)*x[26]+x[74]==0.0)
+        @NLconstraint(m, e35,-(657.32+0.018317* (x[3])^2)*x[27]+x[75]==0.0)
+        @NLconstraint(m, e36,-(222.2+0.0001* (x[4])^2+6.2749*x[4])*x[28]+x[76]==0.0)
+        @NLconstraint(m, e37,-(601.56+0.0131* (x[5])^2+1.0622*x[5])*x[29]+x[77]==0.0)
+        @NLconstraint(m, e38,-(10.04286*x[6]-0.01048* (x[6])^2-92.8095)*x[30]+x[78]==0.0)
+        @NLconstraint(m, e39,-(657.32+0.018317* (x[7])^2)*x[31]+x[79]==0.0)
+        @NLconstraint(m, e40,-(222.2+0.0001* (x[8])^2+6.2749*x[8])*x[32]+x[80]==0.0)
+        @NLconstraint(m, e41,-(601.56+0.0131* (x[9])^2+1.0622*x[9])*x[33]+x[81]==0.0)
+        @NLconstraint(m, e42,-(10.04286*x[10]-0.01048* (x[10])^2-92.8095)*x[34]+x[82]==0.0)
+        @NLconstraint(m, e43,-(657.32+0.018317* (x[11])^2)*x[35]+x[83]==0.0)
+        @NLconstraint(m, e44,-(222.2+0.0001* (x[12])^2+6.2749*x[12])*x[36]+x[84]==0.0)
+        @NLconstraint(m, e45,-(601.56+0.0131* (x[13])^2+1.0622*x[13])*x[37]+x[85]==0.0)
+        @NLconstraint(m, e46,-(10.04286*x[14]-0.01048* (x[14])^2-92.8095)*x[38]+x[86]==0.0)
+        @NLconstraint(m, e47,-(657.32+0.018317* (x[15])^2)*x[39]+x[87]==0.0)
+        @NLconstraint(m, e48,-(222.2+0.0001* (x[16])^2+6.2749*x[16])*x[40]+x[88]==0.0)
+        @NLconstraint(m, e49,-(601.56+0.0131* (x[17])^2+1.0622*x[17])*x[41]+x[89]==0.0)
+        @NLconstraint(m, e50,-(10.04286*x[18]-0.01048* (x[18])^2-92.8095)*x[42]+x[90]==0.0)
+        @NLconstraint(m, e51,-(657.32+0.018317* (x[19])^2)*x[43]+x[91]==0.0)
+        @NLconstraint(m, e52,-(222.2+0.0001* (x[20])^2+6.2749*x[20])*x[44]+x[92]==0.0)
+        @NLconstraint(m, e53,-(601.56+0.0131* (x[21])^2+1.0622*x[21])*x[45]+x[93]==0.0)
+        @NLconstraint(m, e54,-(10.04286*x[22]-0.01048* (x[22])^2-92.8095)*x[46]+x[94]==0.0)
+        @NLconstraint(m, e55,-(657.32+0.018317* (x[23])^2)*x[47]+x[95]==0.0)
+        @NLconstraint(m, e56,-(222.2+0.0001* (x[24])^2+6.2749*x[24])*x[48]+x[96]==0.0)
     else
         error("Only support expression mode 1-2..")
     end

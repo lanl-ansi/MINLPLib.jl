@@ -1,0 +1,5 @@
+SOURCE =       modified MINOPTLIB(duran86-3.dat), VECCHIETTI, modified
+APPLICATION =  Process selection
+DESCR =        ex3 with added bounds to avoid evaluation errors
+REFERENCES =   g00032
+ADDDATE =      2007-06-14

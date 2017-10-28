@@ -1,0 +1,20 @@
+[ANTIGONE]
+DUALBOUND      = -65.00000006
+DATE           = 2014-02-28
+
+[BARON]
+DUALBOUND      = -65
+DATE           = 2015-03-08
+
+[COUENNE]
+DUALBOUND      = -69
+DATE           = 2014-02-28
+
+[LINDO]
+DUALBOUND      = -72
+DATE           = 2014-02-28
+
+[SCIP]
+DUALBOUND      = -87.21666667
+DATE           = 2015-03-08
+

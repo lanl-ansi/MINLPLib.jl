@@ -1,0 +1,4 @@
+SOURCE =       MacMINLP(trimlon.mod, trimlon4.dat)
+APPLICATION =  Trim loss minimization problem
+REFERENCES =   g00020
+ADDDATE =      2001-05-01

@@ -1,0 +1,6 @@
+SOURCE = instance <A href="http://wpweb2.tepper.cmu.edu/fmargot/AMPL/ccFacLoc.tar.gz">CCFACLOC/2B1C/M2_2/M2_2_1B2C_15_3_95_5000.nl</A> from Fran&#231;ois Margot <A href="http://wpweb2.tepper.cmu.edu/fmargot/stoch.html">stochastic instances collection</A>
+APPLICATION = Facility Location
+DESCR = Probabilistic Facility Location and Assignment with Random Demand (given by 5000 scenarios), where 3 facilities can be opened anywhere in the Euclidean plane (distances are measured with the Manhattan (or L1) metric), the facilities are capacitated and each customer is served by a single facility.
+    The objective is to minimize an upper-bound on the weighted total-distance (i.e., the sum of the product of the demand of each customer times the distance to the facility serving that customer) such that this bound is satisfied with a reliability level of 0.95.
+REFERENCES = LejeuneMargot2014
+ADDDATE = 2014-08-12

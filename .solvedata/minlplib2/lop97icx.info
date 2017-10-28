@@ -1,0 +1,5 @@
+SOURCE =
+APPLICATION =  Rail Line Optimization
+REFERENCES =   g00044 g00046
+ADDDATE =      2001-06-25
+DESCR =        Derived from lop97ic by fixing variables that were zero in the relaxed problem.

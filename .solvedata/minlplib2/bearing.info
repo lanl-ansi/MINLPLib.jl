@@ -1,0 +1,4 @@
+SOURCE =       GAMSMODELLIB
+APPLICATION =  Hydrostatic Thrust Bearing Design
+REFERENCES =   g00059 g00011 g00060
+ADDDATE =      2001-07-31

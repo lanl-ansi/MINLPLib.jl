@@ -1,0 +1,5 @@
+ADDDATE = 2014-08-18
+SOURCE = GAMSMODELLIB
+APPLICATION = Quantum Mechanics
+REFERENCES = g00491
+DESCR = Find energy eigenvalues of the anharmonic oscillator with g=1 in the Gaussian and Post-Gaussian variational methods.

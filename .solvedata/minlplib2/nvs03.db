@@ -1,0 +1,28 @@
+[ALPHAECP]
+DUALBOUND      = 16
+DATE           = 2013-09-24
+
+[ANTIGONE]
+DUALBOUND      = 16
+DATE           = 2013-09-17
+
+[BARON]
+DUALBOUND      = 16
+DATE           = 2013-09-17
+
+[BONMIN]
+DUALBOUND      = 16
+DATE           = 2013-09-24
+
+[COUENNE]
+DUALBOUND      = 16
+DATE           = 2013-09-17
+
+[LINDO]
+DUALBOUND      = 16
+DATE           = 2013-09-17
+
+[SCIP]
+DUALBOUND      = 16
+DATE           = 2013-09-17
+

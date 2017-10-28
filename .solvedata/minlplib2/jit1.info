@@ -1,0 +1,5 @@
+ADDDATE = 2014-02-28
+SOURCE = case1 in GAMSMODELLIB(jit)
+APPLICATION = Design of Just-in-Time Flowshops
+REFERENCES = g00404 g00405
+DESCR = This just-in-time flowshop problem involves P products and S stages. Each stage contains identical equipment performing the same type of operation on different products. The objective is to minimize the total equipment related cost.

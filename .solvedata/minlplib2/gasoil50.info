@@ -1,0 +1,4 @@
+SOURCE =       GAMSMODELLIB(gasoil), COPS
+APPLICATION =  Catalytic Cracking of Gas Oil
+REFERENCES =   g00297 g00298 g00304 g00320
+ADDDATE =      2001-07-31

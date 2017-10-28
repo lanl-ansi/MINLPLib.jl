@@ -1,0 +1,6 @@
+APPLICATION = Facility Location
+DESCR       = Separable quadratic uncapacitated facility location problem.
+   A set of customers, each having unit demand, has to be satisfied by open facilities. The objective is to minimize the sum of the fixed cost for operating facilities and the shipping cost which is proportional to the square of the quantity delivered to each customer.
+   Perspective reformulation of squfl025-030.
+REFERENCES  = GuenluekLeeWeismantel2007 GuenluekLinderoth2010 GuenluekLinderorth2012
+ADDDATE     = 2014-02-24

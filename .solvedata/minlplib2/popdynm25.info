@@ -1,0 +1,4 @@
+SOURCE =       GAMSMODELLIB(popdynm), COPS
+APPLICATION =  Marine Population Dynamics
+REFERENCES =   g00312 g00320
+ADDDATE =      2001-07-31
