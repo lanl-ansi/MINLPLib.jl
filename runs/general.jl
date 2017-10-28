@@ -19,10 +19,23 @@ end
 function run_one(instance::AbstractString, hpc_type, submit, expname, options, hpc_options)
 
     info("Start loading problem $(instance)", prefix="PODe: ")
-    p = eval(parse(instance))(fetch_solver, options=options)
-    info("Finish loading problem $(instance)", prefix="PODe: ")
-    solve(p)
-    jobname = hash(rand())
+    st = time()
+    if instance in special_instances
+        m = eval(parse(instance))(fetch_solver, options=options)
+    else
+        m = include("$(Pkg.dir())/POD_experiment/Instances/$(instance).jl")
+        haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
+        haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
+        verbose && print(m)
+        setsolver(m, fetch_solver(solver_options))
+    end
+    info("Finish loading problem $(instance) in $(time()-st) seconds", prefix="PODe: ")
 
-    return jobname, p
+    jobname = randstring(srand(Int(round(time()))), 10)
+    info("Job identification ID = $(jobname)", prefix="PODe: ")
+
+    solve(m)
+
+    info("Job $(jobname) Finished", prefix="PODe: ")
+    return jobname, m
 end

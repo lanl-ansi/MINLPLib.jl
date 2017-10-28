@@ -22,10 +22,10 @@ for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/runs/")
     include(i)
 end
 
-# # Compile all problem instances
-for i in glob("*.jl", "$(Pkg.dir())/POD_experiment/instances/")
-    include(i)
-    # include("$(Pkg.dir())/POD_experiment/instances/$(i)")
+# Compile all problem instances
+special_instances = ["multi3N", "multi4N", "multiKND", "eniplac", "simpleN", "circleN"]
+for i in special_instances
+    include("$(Pkg.dir())/POD_experiment/instances/$(i).jl")
 end
 
 !isdir("$(Pkg.dir())/POD_experiment/.jls") && mkdir("$(Pkg.dir())/POD_experiment/.jls")
