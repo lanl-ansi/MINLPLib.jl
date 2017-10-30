@@ -23,7 +23,7 @@ function run_one(instance::AbstractString, hpc_type, submit, expname, options, h
     if instance in special_instances
         m = eval(parse(instance))(fetch_solver, options=options)
     else
-        m = include("$(Pkg.dir())/POD_experiment/Instances/$(instance).jl")
+        m = include("$(Pkg.dir())/POD_experiment/instances/$(instance).jl")
         haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
         haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
         verbose && print(m)
