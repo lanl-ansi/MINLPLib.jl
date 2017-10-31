@@ -4,10 +4,8 @@ m = Model()
 
 
 @variable(m, x[1:279])
-binaryIdx = []
-for i in binaryIdx
-    setcategory(x[i], :Bin)
-end
+@variable(m, b[1:80])
+
 setlowerbound(x[146], 0.0)
 setlowerbound(x[62], 0.0)
 setlowerbound(x[114], 0.0)

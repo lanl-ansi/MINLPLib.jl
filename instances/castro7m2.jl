@@ -3,6 +3,7 @@ using JuMP
 m = Model()
 
 @variable(m, x[1:134])
+@variable(m, b[1:40])
 
 setlowerbound(x[117], 0.0)
 setlowerbound(x[85], 0.0)

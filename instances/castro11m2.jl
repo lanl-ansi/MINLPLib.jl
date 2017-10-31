@@ -4,6 +4,7 @@ m = Model()
 
 
 @variable(m, x[1:304])
+@variable(m, b[1:80])
 
 setlowerbound(x[146], 0.0)
 setlowerbound(x[62], 0.0)

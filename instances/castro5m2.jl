@@ -5,6 +5,7 @@ m = Model()
 
 @variable(m, x[1:134])
 
+
 setlowerbound(x[117], 0.0)
 setlowerbound(x[85], 0.0)
 setlowerbound(x[101], 0.0)
