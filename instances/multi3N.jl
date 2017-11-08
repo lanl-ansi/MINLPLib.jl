@@ -1,12 +1,10 @@
-function multi3N(fetch_solver::Function; options=Dict())
+function multi3N(options=Dict())
 
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
-	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :N) ? N=options[:N] : N=1
-	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 	haskey(options, :randomub) ? randomub=options[:randomub] : randomub=10
 
-	m = Model(solver=fetch_solver(solver_options))
+	m = Model()
 
 	M = 1+2*N
 	srand(100)
@@ -18,14 +16,10 @@ function multi3N(fetch_solver::Function; options=Dict())
 	elseif exprmode == 3
 		@NLobjective(m, Max, sum(x[i]*(x[i+1]*x[i+2]) for i in 1:2:(M-1)))
 	else
-		error("exprmode argument only taks from 1-7")
+		error("exprmode argument only taks from 1-3")
 	end
 
 	@constraint(m, [i in 1:2:(M-1)], x[i] + x[i+1] + x[i+2] <= 3)
-
-	if verbose
-		print(m)
-	end
 
 	return m
 end

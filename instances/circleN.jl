@@ -1,18 +1,12 @@
-function circleN(;verbose=false, N=2, kwargs...)
+function circleN(;options=Dict())
 
-	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
-	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 	haskey(options, :N) ? N=options[:N] : N=2
 
-    m = Model(solver=fetch_solver(solver_options))
+    m = Model()
 
     @variable(m, 0<=x[1:N]<=N)
     @NLconstraint(m, sum(x[i]^2 for i in 1:N) >= N)
     @objective(m, Min, sum(x))
-
-	if verbose
-		print(m)
-	end
-
+	
 	return m
 end
