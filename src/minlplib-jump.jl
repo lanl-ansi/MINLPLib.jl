@@ -1,6 +1,6 @@
 __precompile__()
 
-module POD_experiment
+module minlplib-jump
 
 using JuMP, POD
 using Compat, Glob, JSON
