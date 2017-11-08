@@ -1,5 +1,5 @@
 function load_prob(probname::AbstractString)
-    include("$(Pkg.dir())/POD_experiment/instances/$(probname).jl")
+    include("$(Pkg.dir())/MINLPLib_jump/instances/$(probname).jl")
 end
 
 load_prob(probname::Vector{AbstractString}) = for i in probname load_prob(i) end
@@ -37,7 +37,7 @@ function store_history(expname="default", hpc_type="slurm", instances::Any=[], s
                     "ext"=>ext,
                     "jobname"=>jobname)
 
-    history_json = open("$(Pkg.dir())/POD_experiment/.history/$(expname)_$(label).json", "w")
+    history_json = open("$(Pkg.dir())/MINLPLib_jump/.history/$(expname)_$(label).json", "w")
     JSON.print(history_json, exp_info)
     close(history_json)
 
@@ -46,8 +46,8 @@ end
 
 function clear_cache()
 
-    all_jls_dir = glob("*", "$(Pkg.dir())/POD_experiment/.jls/")
-    all_prob_dir = glob("*", "$(Pkg.dir())/POD_experiment/.prob/")
+    all_jls_dir = glob("*", "$(Pkg.dir())/MINLPLib_jump/.jls/")
+    all_prob_dir = glob("*", "$(Pkg.dir())/MINLPLib_jump/.prob/")
 
     if !isempty(all_jls_dir)
         for i in all_jls_dir
@@ -135,13 +135,13 @@ end
 function convert_equality(probname="")
 
     info("This function handles problem with too many equality constraints.", prefix="POD Experiment: ")
-    if !isfile("$(Pkg.dir())/POD_experiment/instances/$(probname).jl")
-        info("NO problem file detected in $(Pkg.dir())/POD_experiment/instances/$(probname).jl", prefix="POD Experiment: ")
+    if !isfile("$(Pkg.dir())/MINLPLib_jump/instances/$(probname).jl")
+        info("NO problem file detected in $(Pkg.dir())/MINLPLib_jump/instances/$(probname).jl", prefix="POD Experiment: ")
         return
     end
 
-    f = open("$(Pkg.dir())/POD_experiment/instances/$(probname).jl", "r")
-    outf = open("$(Pkg.dir())/POD_experiment/instances/$(probname)_gl.jl", "w")
+    f = open("$(Pkg.dir())/MINLPLib_jump/instances/$(probname).jl", "r")
+    outf = open("$(Pkg.dir())/MINLPLib_jump/instances/$(probname)_gl.jl", "w")
 
     for l in readlines(f)
         if ismatch(r"==", l)

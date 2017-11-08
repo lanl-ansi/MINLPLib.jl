@@ -1,11 +1,10 @@
-function fetch_model(instance::AbstractString, options)
+function fetch_model(instance::AbstractString, options=Dict();kwargs...)
 
-    info("Start loading problem $(instance)")
     st = time()
     if instance in special_instances
         m = eval(parse(instance))(fetch_solver, options=options)
     else
-        m = include("$(Pkg.dir())/POD_experiment/instances/$(instance).jl")
+        m = include("$(Pkg.dir())/MINLPLib_jump/instances/$(instance).jl")
     end
     info("Finish loading problem $(instance) in $(time()-st) seconds")
 
