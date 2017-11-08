@@ -19,7 +19,7 @@ m = fetch_model("blend029")
 For special built-in model that requires additional inputs,
 ```
 using MINLPLib_jump
-m = fetch_model("multiKND", options=Dict(:K=>3, :N=>3, :D=>1)
+m = fetch_model("multiKND", options=Dict(:K=>3, :N=>3, :D=>1))
 ```
 The above scrip initialize an optimization [JuMP](https://github.com/JuliaOpt/JuMP.jl) model `multiKND`. The
 formulation is controlled with parameter `:K`, `:N`, and `:D`, which yields the
