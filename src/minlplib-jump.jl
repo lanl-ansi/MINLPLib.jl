@@ -4,8 +4,9 @@ using JuMP, Compat, Glob, JSON
 
 include("consts.jl")
 include("types.jl")
+
 include("utility.jl")
-include("external.jl")
+include("convert.jl")
 include("writer.jl")
 
 # Compile all problem instances
@@ -15,10 +16,10 @@ for i in special_instances
 end
 
 !isdir("$(Pkg.dir())/POD_experiment/.jls") && mkdir("$(Pkg.dir())/POD_experiment/.jls")
-!isdir("$(Pkg.dir())/POD_experiment/.ext") && mkdir("$(Pkg.dir())/POD_experiment/.ext")
+!isdir("$(Pkg.dir())/POD_experiment/.prob") && mkdir("$(Pkg.dir())/POD_experiment/.prob")
 
 PODe = POD_experiment
 
-export PODe, fetch_solver
+export PODe
 
 end #module

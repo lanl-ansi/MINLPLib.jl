@@ -15,10 +15,6 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
 
     info("Writing headers...")
     write(f, "using JuMP\n\n")
-    # write(f, "function $(juliaName)(;options=Dict())\n\n")
-    # write(f, "\thaskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()\n")
-    # write(f, "\thaskey(options, :verbose) ? verbose=options[:verbose] : verbose=false\n\n")
-    # write(f, "\tm = Model(solver=fetch_solver(solver_options))\n")
     write(f, "\tm = Model()\n")
 
     write(f, "\n\t# ----- Variables ----- #\n")
@@ -135,12 +131,7 @@ function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="in
         end
     end
 
-    # write(f, "\tverbose && print(m)\n")
-    # write(f, "\treturn m\n")
-    # write(f, "end\n\n")
-    # write(f, "m = $(juliaName)()\n")
     write(f, "m = m\n")
-    # write(f, string("\n\n# ----- END ----- #"))
     info(" --------- Finish writing Julia script ---------")
     close(f)
 

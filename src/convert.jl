@@ -4,7 +4,7 @@ function minlplib2_download(pname::AbstractString; ptype="gms")
 
     download_fail = false
     try
-        filepath = joinpath(Pkg.dir("POD_experiment"),".gms","")
+        filepath = joinpath(Pkg.dir("POD_experiment"),".prob","")
         download(url, "$(filepath)$(pname).gms")
     catch e
         download_fail = true
