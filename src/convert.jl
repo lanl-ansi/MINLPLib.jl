@@ -1,153 +1,3 @@
-function minlplib2_download(pname::AbstractString; ptype="gms")
-
-    url = "http://www.gamsworld.org/minlp/minlplib2/data/$(ptype)/$(pname).$(ptype)"
-
-    download_fail = false
-    try
-        filepath = joinpath(Pkg.dir("POD_experiment"),".prob","")
-        download(url, "$(filepath)$(pname).gms")
-    catch e
-        download_fail = true
-        warn(e)
-    end
-
-    download_fail ? info("FAILED downloading $(pname).$(ptype)") : info("SUCCESSFULLY downloaded $(pname).$(ptype)")
-    return
-end
-
-function minlplib2_meta(pname::AbstractString, show=true)
-
-    if !isfile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).prop")
-        show && info("No $(pname).prop found")
-        return
-    end
-
-    prop_f = open("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).prop", "r")
-    prop_c = Dict()
-
-    for l in readlines(prop_f)
-        sl = split(l, "=")
-        identifier = split(sl[1])[1]
-        if length(sl) > 1
-            (identifier == "NVARS") && (prop_c[:NVARS] = parse(sl[2]))
-            (identifier == "NCONS") && (prop_c[:NCONS] = parse(sl[2]))
-            (identifier == "NBINVARS") && (prop_c[:NBINVARS] = parse(sl[2]))
-            (identifier == "NINTVARS") && (prop_c[:NINTVARS] = parse(sl[2]))
-            (identifier == "NNLVARS") && (prop_c[:NNLVARS] = parse(sl[2]))
-            (identifier == "OBJSENSE") && (prop_c[:OBJSENSE] = parse(sl[2]))
-            (identifier == "OBJTYPE") && (prop_c[:OBJTYPE] = parse(sl[2]))
-            (identifier == "NLOPERANDS") && (prop_c[:NLOPERANDS] = sl[2])
-        end
-    end
-    close(prop_f)
-
-    !haskey(prop_c, :OBJSENSE) && info("No detection of objective sense in $(pname).prop", prefix="MINLPLIB2: ")
-    !haskey(prop_c, :OBJSENSE) && return
-    obj_sense = prop_c[:OBJSENSE]
-
-    found = true
-    i = 1
-    if isfile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).p$(i).prop")
-        prop_f = open("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).p$(i).prop", "r")
-        for l in readlines(prop_f)
-            sl = split(l)
-            if length(sl) > 2
-                sl[1] == "OBJVALUE" && (prop_c[:OBJVALUE] = parse(sl[3]))
-                sl[1] == "INFEASIBILITY" && (prop_c[:INFEASIBILITY] = parse(sl[3]))
-            end
-        end
-        close(prop_f)
-    else
-        info("No detection of the solution p# file $(pname)", prefix="MINLPLIB2: ")
-    end
-
-    obj_sense == :min ? bound = -Inf : bound = +Inf
-    bound_solver = ""
-    if isfile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).db")
-        dbf = open("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).db", "r")
-        last_l = ""
-        for l in readlines(dbf)
-            sl = split(l)
-            if length(sl) > 2 && sl[1] == "DUALBOUND"
-                if obj_sense == :min
-                    bound_candidate = parse(sl[3])
-                    bound_candidate == :inf && (bound_candidate = Inf)
-                    if bound_candidate > bound
-                        bound = bound_candidate
-                        bound_solver = last_l
-                    end
-                elseif obj_sense == :max
-                    bound_candidate = parse(sl[3])
-                    if bound_candidate < bound
-                        bound = bound_candidate
-                        bound_solver = last_l
-                    end
-                end
-            end
-            last_l = l
-        end
-        close(dbf)
-    end
-
-    prop_c[:BOUND] = bound
-    prop_c[:SOLVER] = bound_solver
-
-    if show
-        println("======================================")
-        println("    PROBLEM: $(pname)")
-        println("======================================")
-        haskey(prop_c, :NVARS) ? println("NUM VARS     : $(prop_c[:NVARS])") : println("NUM VARS     : ?")
-        haskey(prop_c, :NCONS) ? println("NUM CONS     : $(prop_c[:NCONS])") : println("NUM CONS     : ?")
-        haskey(prop_c, :NBINVARS) ? println("NUM BIN VARS : $(prop_c[:NBINVARS])") : println("NUM BIN VARS : ?")
-        haskey(prop_c, :NINTVARS) ? println("NUM INT VARS : $(prop_c[:NINTVARS])") : println("NUM INT VARS : ?")
-        haskey(prop_c, :NNLVARS) ? println("NUM NL VARS  : $(prop_c[:NNLVARS])") : println("NUM NL VARS  : ?")
-        haskey(prop_c, :OBJSENSE) ? println("OBJ SENSE    : $(prop_c[:OBJSENSE])") : println("OBJ SENSE    : ?")
-        haskey(prop_c, :OBJTYPE) ? println("OBJ TYPE     : $(prop_c[:OBJTYPE])") : println("OBJ TYPE     : ?")
-        haskey(prop_c, :NLOPERANDS) ? println("SPE OPERATOR  : $(prop_c[:NLOPERANDS])") : println("SPE OPERATOR  : ?")
-        haskey(prop_c, :OBJVALUE) ? println("BEST OBEJCTIVE : $(prop_c[:OBJVALUE])") : println("BEST OBEJCTIVE : ?")
-        # println("INFEA TOLERANCE: $(prob_c]"INFEASIBILITY")\n")
-        haskey(prop_c, :BOUND) ? println("BEST BOUND   : $(prop_c[:BOUND])") : println("BEST BOUND   : ?")
-        haskey(prop_c, :SOLVER) ? println("SOLVER       : $(prop_c[:SOLVER])") : println("SOLVER       : ?")
-    end
-
-    return prop_c
-end
-
-function minlplib2_match(kword::Vector)
-
-    ml2 = JSON.parsefile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2.json")
-    @show keys(ml2)
-    nlist = ml2["names"]
-    tlist = Set()
-
-    info("Keyword target => $(kword)", prefix="MINLPLIB2: ")
-
-    for i in nlist
-        i_info = minlplib2_meta(i, false)
-        found_match = false
-        i_info == nothing && continue
-        for j in keys(i_info)
-            for k in kword
-                if ismatch(Regex(k), string(i_info[j]))
-                    minlplib2_meta(i)
-                    push!(tlist, i)
-                    found_match = true
-                end
-                found_match && break
-            end
-            found_match && break
-        end
-    end
-
-    return tlist
-end
-
-function gms2julia(gmsName::AbstractString, juliaName::AbstractString="", mode::AbstractString="index"; kwargs...)
-    isempty(juliaName) && (juliaName = gmsName)
-    gms = read_gms_file(gmsName)
-    write_julia_script(juliaName, gms, mode)
-end
-
 function read_gms_file(filename::AbstractString)
 
     info("Reading .gms file ...")
@@ -369,4 +219,331 @@ function read_solve(file::IOStream, gms::oneProblem, lInit::AbstractString; kwar
             gms.objVar = sl[i]
         end
     end
+end
+
+function write_julia_script(juliaName::AbstractString, gms::oneProblem, mode="index"; kwargs...)
+
+    if mode == "index"
+        parse_varname(gms)
+        replace_vars(gms)
+    end
+
+    options = Dict(kwargs)
+
+    info(" --------- Start writing Julia script ---------")
+    !isdir("$(Pkg.dir())/POD_experiment/.jls/fgms") && mkdir("$(Pkg.dir())/POD_experiment/.jls/fgms")
+    filepath = joinpath(Pkg.dir("POD_experiment"),".jls/fgms","")
+    filepath = string(filepath, juliaName,".jl")
+    f = open(filepath, "w")
+
+    info("Writing headers...")
+    write(f, "using JuMP\n\n")
+    write(f, "\tm = Model()\n")
+
+    write(f, "\n\t# ----- Variables ----- #\n")
+    info("Writing variables...")
+    if mode == "raw"
+        for var in gms.cols
+            if haskey(gms.colsType, var)
+                if gms.colsType[var] == "Positive"
+                    write(f, "\t@variable(m, $(var)>=0)\n")
+                elseif gms.colsType[var] == "Binary"
+                    write(f, "\t@variable(m, $(var), Bin)\n")
+                elseif gms.colsType[var] == "Integer"
+                    write(f, "\t@variable(m, $(var), Int)\n")
+                else
+                    error("ERROR|gms2julia.jl|write_julia_script()|Unsupported variable type.")
+                end
+            else
+                write(f, "\t@variable(m, $(var))\n")
+            end
+        end
+    elseif mode == "index"
+        for var in keys(gms.vars)
+            if gms.vars[var] != 0
+                write(f, "\t$(var)_Idx = $(gms.vars[var])\n")
+                write(f, "\t@variable(m, $(var)[$(var)_Idx])\n")
+                vs = "@variable(m_tester, $(var)[$(gms.vars[var])])"
+                eval(parse(vs))
+            else
+                write(f, "\t@variable(m, $(var))\n")
+                vs = "@variable(m_tester, $(var))"
+                eval(parse(vs))
+            end
+        end
+        for col in keys(gms.colsType)
+            if gms.colsType[col] == "Binary"
+                write(f, "\tsetcategory($(gms.cols2vars[col]), :Bin)\n")
+            elseif gms.colsType[col] == "Integer"
+                write(f, "\tsetcategory($(gms.cols2vars[col]), :Int)\n")
+            elseif gms.colsType[col] == "Positive"
+                write(f, "\tsetlowerbound($(gms.cols2vars[col]), 0.0)\n")
+            else
+                error("ERROR|gms2julia.jl|write_julia_script()|Unsupported variable type.")
+            end
+        end
+    end
+
+    info("Writing variables' bounds...")
+    for col in gms.cols
+        if mode == "raw"
+            colName = col
+        elseif mode == "index"
+            colName = gms.cols2vars[col]
+        end
+        if haskey(gms.lb, col)
+            write(f, "\tsetlowerbound($(colName), $(gms.lb[col]))\n")
+        end
+        if haskey(gms.ub, col)
+            write(f, "\tsetupperbound($(colName), $(gms.ub[col]))\n")
+        end
+        if haskey(gms.fx, col)
+            write(f, "\tsetlowerbound($(colName), $(gms.fx[col]))\n")
+            write(f, "\tsetupperbound($(colName), $(gms.fx[col]))\n")
+        end
+    end
+
+    write(f, string("\n\n\t# ----- Constraints ----- #\n"))
+
+    info("Writing Constraints...")
+    for row in gms.rows
+        if gms.rowsSense[row] == "E"
+            gms.rowsLHS[row] = replace_oprs(gms.rowsLHS[row])
+            if try_iflinear("\t@constraint(m_tester, $(row), $(gms.rowsLHS[row]) == $(gms.rowsRHS[row]))\n")
+                write(f, "\t@constraint(m, $(row), $(gms.rowsLHS[row]) == $(gms.rowsRHS[row]))\n")
+            else
+                write(f, "\t@NLconstraint(m, $(row), $(gms.rowsLHS[row]) == $(gms.rowsRHS[row]))\n")
+            end
+        elseif gms.rowsSense[row] == "L"
+            gms.rowsLHS[row] = replace_oprs(gms.rowsLHS[row])
+            if try_iflinear("\t@constraint(m_tester, $(row), $(gms.rowsLHS[row]) <= $(gms.rowsRHS[row]))\n")
+                write(f, "\t@constraint(m, $(row), $(gms.rowsLHS[row]) <= $(gms.rowsRHS[row]))\n")
+            else
+                write(f, "\t@NLconstraint(m, $(row), $(gms.rowsLHS[row]) <= $(gms.rowsRHS[row]))\n")
+            end
+        elseif gms.rowsSense[row] == "G"
+            gms.rowsLHS[row] = replace_oprs(gms.rowsLHS[row])
+            if try_iflinear("\t@constraint(m_tester, $(row), $(gms.rowsLHS[row]) >= $(gms.rowsRHS[row]))\n")
+                write(f, "\t@constraint(m, $(row), $(gms.rowsLHS[row]) >= $(gms.rowsRHS[row]))\n")
+            else
+                write(f, "\t@NLconstraint(m, $(row), $(gms.rowsLHS[row]) >= $(gms.rowsRHS[row]))\n")
+            end
+        else
+            error("ERROR|gms2julia.jl|write_julia_script()|Unkown sense type. (Unlikely)")
+        end
+    end
+
+    write(f, string("\n\n\t# ----- Objective ----- #\n"))
+    if mode == "raw"
+        info("Writing objective section...")
+        if gms.objSense == "maximizing"
+            write(f, "\t@objective(m, Max, $(gms.objVar))\n")
+        elseif gms.objSense == "minimizing"
+            write(f, "\t@objective(m, Min, $(gms.objVar))\n")
+        else
+            error("ERROR|gms2julia.jl|write_julia_script()|Unkown objective sense.")
+        end
+    else mode == "index"
+        info("Writing objective section...")
+        if gms.objSense == "maximizing"
+            write(f, "\t@objective(m, Max, $(gms.cols2vars[gms.objVar]))\n")
+        elseif gms.objSense == "minimizing"
+            write(f, "\t@objective(m, Min, $(gms.cols2vars[gms.objVar]))\n")
+        else
+            error("ERROR|gms2julia.jl|write_julia_script()|Unkown objective sense.")
+        end
+    end
+
+    write(f, "m = m\n")
+    info(" --------- Finish writing Julia script ---------")
+    close(f)
+
+    return 0
+end
+
+"""
+    Takes .gms variable name like "\w+\d+" and get the both part
+"""
+function parse_varname(gms::oneProblem)
+
+    if isempty(gms.vars)
+
+        for varString in gms.cols
+            varName = split(varString, r"\d+")[1]
+            if varName != varString
+                varSplit = split(varString, varName)
+                varIndex = parse(varSplit[2])
+                @assert isa(varIndex, Int)
+                if !haskey(gms.vars, varName)
+                    gms.vars[varName] = []
+                end
+                if varIndex in gms.vars[varName]
+                    error("ERROR|gms2julia.jl|parse_varname()|Conflicting indice variable names")
+                end
+                push!(gms.vars[varName], varIndex)
+                gms.cols2vars[varString] = parse(string(varName, "[",varIndex,"]"))
+                gms.vars2cols[parse(string(varName,"[",varIndex,"]"))] = varString
+            else
+                if !haskey(gms.vars, varName)
+                    gms.vars[varName] = 0
+                else
+                    error("ERROR|gms2julia.jl|parse_varname()|Conflicting symbolic variable names.")
+                end
+                gms.cols2vars[varString] = parse(varName)
+                gms.vars2cols[parse(varName)] = varString
+            end
+
+        end
+    else
+        return 0
+    end
+end
+
+function gms2julia(gmsName::AbstractString, juliaName::AbstractString="", mode::AbstractString="index"; kwargs...)
+    isempty(juliaName) && (juliaName = gmsName)
+    gms = read_gms_file(gmsName)
+    write_julia_script(juliaName, gms, mode)
+end
+
+function minlplib2_download(pname::AbstractString; ptype="gms")
+
+    url = "http://www.gamsworld.org/minlp/minlplib2/data/$(ptype)/$(pname).$(ptype)"
+
+    download_fail = false
+    try
+        filepath = joinpath(Pkg.dir("POD_experiment"),".prob","")
+        download(url, "$(filepath)$(pname).gms")
+    catch e
+        download_fail = true
+        warn(e)
+    end
+
+    download_fail ? info("FAILED downloading $(pname).$(ptype)") : info("SUCCESSFULLY downloaded $(pname).$(ptype)")
+    return
+end
+
+function minlplib2_meta(pname::AbstractString, show=true)
+
+    if !isfile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).prop")
+        show && info("No $(pname).prop found")
+        return
+    end
+
+    prop_f = open("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).prop", "r")
+    prop_c = Dict()
+
+    for l in readlines(prop_f)
+        sl = split(l, "=")
+        identifier = split(sl[1])[1]
+        if length(sl) > 1
+            (identifier == "NVARS") && (prop_c[:NVARS] = parse(sl[2]))
+            (identifier == "NCONS") && (prop_c[:NCONS] = parse(sl[2]))
+            (identifier == "NBINVARS") && (prop_c[:NBINVARS] = parse(sl[2]))
+            (identifier == "NINTVARS") && (prop_c[:NINTVARS] = parse(sl[2]))
+            (identifier == "NNLVARS") && (prop_c[:NNLVARS] = parse(sl[2]))
+            (identifier == "OBJSENSE") && (prop_c[:OBJSENSE] = parse(sl[2]))
+            (identifier == "OBJTYPE") && (prop_c[:OBJTYPE] = parse(sl[2]))
+            (identifier == "NLOPERANDS") && (prop_c[:NLOPERANDS] = sl[2])
+        end
+    end
+    close(prop_f)
+
+    !haskey(prop_c, :OBJSENSE) && info("No detection of objective sense in $(pname).prop", prefix="MINLPLIB2: ")
+    !haskey(prop_c, :OBJSENSE) && return
+    obj_sense = prop_c[:OBJSENSE]
+
+    found = true
+    i = 1
+    if isfile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).p$(i).prop")
+        prop_f = open("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).p$(i).prop", "r")
+        for l in readlines(prop_f)
+            sl = split(l)
+            if length(sl) > 2
+                sl[1] == "OBJVALUE" && (prop_c[:OBJVALUE] = parse(sl[3]))
+                sl[1] == "INFEASIBILITY" && (prop_c[:INFEASIBILITY] = parse(sl[3]))
+            end
+        end
+        close(prop_f)
+    else
+        info("No detection of the solution p# file $(pname)", prefix="MINLPLIB2: ")
+    end
+
+    obj_sense == :min ? bound = -Inf : bound = +Inf
+    bound_solver = ""
+    if isfile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).db")
+        dbf = open("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2/$(pname).db", "r")
+        last_l = ""
+        for l in readlines(dbf)
+            sl = split(l)
+            if length(sl) > 2 && sl[1] == "DUALBOUND"
+                if obj_sense == :min
+                    bound_candidate = parse(sl[3])
+                    bound_candidate == :inf && (bound_candidate = Inf)
+                    if bound_candidate > bound
+                        bound = bound_candidate
+                        bound_solver = last_l
+                    end
+                elseif obj_sense == :max
+                    bound_candidate = parse(sl[3])
+                    if bound_candidate < bound
+                        bound = bound_candidate
+                        bound_solver = last_l
+                    end
+                end
+            end
+            last_l = l
+        end
+        close(dbf)
+    end
+
+    prop_c[:BOUND] = bound
+    prop_c[:SOLVER] = bound_solver
+
+    if show
+        println("======================================")
+        println("    PROBLEM: $(pname)")
+        println("======================================")
+        haskey(prop_c, :NVARS) ? println("NUM VARS     : $(prop_c[:NVARS])") : println("NUM VARS     : ?")
+        haskey(prop_c, :NCONS) ? println("NUM CONS     : $(prop_c[:NCONS])") : println("NUM CONS     : ?")
+        haskey(prop_c, :NBINVARS) ? println("NUM BIN VARS : $(prop_c[:NBINVARS])") : println("NUM BIN VARS : ?")
+        haskey(prop_c, :NINTVARS) ? println("NUM INT VARS : $(prop_c[:NINTVARS])") : println("NUM INT VARS : ?")
+        haskey(prop_c, :NNLVARS) ? println("NUM NL VARS  : $(prop_c[:NNLVARS])") : println("NUM NL VARS  : ?")
+        haskey(prop_c, :OBJSENSE) ? println("OBJ SENSE    : $(prop_c[:OBJSENSE])") : println("OBJ SENSE    : ?")
+        haskey(prop_c, :OBJTYPE) ? println("OBJ TYPE     : $(prop_c[:OBJTYPE])") : println("OBJ TYPE     : ?")
+        haskey(prop_c, :NLOPERANDS) ? println("SPE OPERATOR  : $(prop_c[:NLOPERANDS])") : println("SPE OPERATOR  : ?")
+        haskey(prop_c, :OBJVALUE) ? println("BEST OBEJCTIVE : $(prop_c[:OBJVALUE])") : println("BEST OBEJCTIVE : ?")
+        # println("INFEA TOLERANCE: $(prob_c]"INFEASIBILITY")\n")
+        haskey(prop_c, :BOUND) ? println("BEST BOUND   : $(prop_c[:BOUND])") : println("BEST BOUND   : ?")
+        haskey(prop_c, :SOLVER) ? println("SOLVER       : $(prop_c[:SOLVER])") : println("SOLVER       : ?")
+    end
+
+    return prop_c
+end
+
+function minlplib2_match(kword::Vector)
+
+    ml2 = JSON.parsefile("$(Pkg.dir())/POD_experiment/.solvedata/minlplib2.json")
+    nlist = ml2["names"]
+    tlist = Set()
+
+    info("Keyword target => $(kword)", prefix="MINLPLIB2: ")
+
+    for i in nlist
+        i_info = minlplib2_meta(i, false)
+        found_match = false
+        i_info == nothing && continue
+        for j in keys(i_info)
+            for k in kword
+                if ismatch(Regex(k), string(i_info[j]))
+                    minlplib2_meta(i)
+                    push!(tlist, i)
+                    found_match = true
+                end
+                found_match && break
+            end
+            found_match && break
+        end
+    end
+
+    return tlist
 end

@@ -1,13 +1,11 @@
 module minlplib_jump
 
-using JuMP, Compat, Glob, JSON
+using JuMP, Glob, JSON
 
 include("consts.jl")
 include("types.jl")
-
 include("utility.jl")
 include("convert.jl")
-include("writer.jl")
 
 # Compile all problem instances
 special_instances = ["multi3N", "multi4N", "multiKND", "eniplac", "simpleN", "circleN"]
@@ -20,6 +18,6 @@ end
 
 PODe = POD_experiment
 
-export PODe
+export PODe, fetch_model
 
 end #module

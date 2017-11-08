@@ -1,12 +1,10 @@
-function multi4N(fetch_solver::Function; options=Dict())
+function multi4N(options=Dict())
 
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
-	haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
 	haskey(options, :N) ? N=options[:N] : N=1
-	haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
 	haskey(options, :randomub) ? randomub=options[:randomub] : randomub=10
 
-	m = Model(solver=fetch_solver(solver_options))
+	m = Model()
 	M = 1+3*N
 	srand(100)
 	isa(randomub, Bool) ? @variable(m, 0.1 <= x[1:M] <= 100*rand()) : @variable(m, 0.1 <= x[1:M] <= randomub)
@@ -38,10 +36,6 @@ function multi4N(fetch_solver::Function; options=Dict())
 	end
 
 	@constraint(m, [i in 1:3:(M-1)], x[i]+x[i+1]+x[i+2]+x[i+3]<=4)
-
-	if verbose
-		print(m)
-	end
 
 	return m
 end

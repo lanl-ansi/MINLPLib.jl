@@ -1,11 +1,8 @@
-using JuMP
 function eniplac(;options=Dict())
 
-    haskey(options, :solver_options) ? solver_options=options[:solver_options] : solver_options=Dict()
-    haskey(options, :verbose) ? verbose=options[:verbose] : verbose=false
     haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
 
-    m = Model(solver=fetch_solver(solver_options))
+    m = Model()
 
     # ----- Variables ----- #
     @variable(m, objvar)
@@ -393,10 +390,6 @@ function eniplac(;options=Dict())
 
     # ----- Objective ----- #
     @objective(m, Min, objvar)
-
-    if verbose
-        print(m)
-    end
 
     return m
 end
