@@ -1,4 +1,4 @@
-module minlplib_jump
+module MINLPLib_jump
 
 using JuMP, Glob, JSON
 
