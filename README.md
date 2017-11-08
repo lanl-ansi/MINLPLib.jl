@@ -6,7 +6,7 @@ to benchmark solvers and/or perform experiments easily.
 ## Installation
 To install, at your `Julia` command prompt,
 ```
-Pkg.clone("https://github.com/lanl-ansi/minlplib_jump.git")
+Pkg.clone("https://github.com/lanl-ansi/MINLPLib_jump.git")
 ```
 
 ## Usage
