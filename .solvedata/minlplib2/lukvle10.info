@@ -1,4 +1,0 @@
-SOURCE = CUTEr model <a href="ftp://ftp.numerical.rl.ac.uk/pub/cutest/sif/LUKVLE10.SIF">LUKVLE10</a>
-REFERENCES = LuksanVlcek1999
-DESCR = Problem 5.10, the generalized Brown function with Broyden tridiagonal constraints, from the cited paper of Luksan and Vlcek
-ADDDATE = 2017-02-06

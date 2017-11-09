@@ -1,7 +1,0 @@
-SOURCE = CMUIBMMINLP(Syn30M04H.gms)
-APPLICATION = Synthesis of processing system
-REFERENCES = g00032 TurkayGrossmann1996
-DESCR = Selection of optimal configuration and parameters for a processing system selected from a superstructure containing alternative processing units and interconnections.
-ADDDATE = 2013-09-28
-
-CONSCURVATURE = convex

@@ -1,3 +1,0 @@
-DESCR =          Solution found by SBB with CONOPT as subsolver.
- We used an SBB option: varsel 3 (pseudo cost variable selection)
-ADDDATE =      2001-05-01

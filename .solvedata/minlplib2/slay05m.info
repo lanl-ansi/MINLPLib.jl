@@ -1,5 +1,0 @@
-SOURCE = CMUIBMMINLP(SLay05M.gms)
-APPLICATION = Layout
-REFERENCES = Sawaya2006
-DESCR = Determine the optimal placement of a set of units with fixed width and length such that the Euclidean distance between their center point and a predefined "safety point" is minimized.
-ADDDATE = 2013-09-28

@@ -1,5 +1,0 @@
-SOURCE = MINLPORG(166,Formulation_MIQP.gms)
-DESCR =  Binary Quadratic Programming with cardinality constraints
- 0-1 Quadratic Programming Formulation
-REFERENCES = MINLP166
-ADDDATE = 2013-09-25

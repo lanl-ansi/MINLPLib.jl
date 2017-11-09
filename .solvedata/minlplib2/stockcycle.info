@@ -1,4 +1,0 @@
-SOURCE =       MacMINLP(stockcycle.mod), GAMSMODELLIB(stockcc)
-APPLICATION =  Minimizing Total Average Cycle Stock
-REFERENCES =   g00019
-ADDDATE =      2001-05-01

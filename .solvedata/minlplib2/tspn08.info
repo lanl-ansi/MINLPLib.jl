@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(124,tspn8Couenne.nl)
-APPLICATION = Traveling Salesman Problem with Neighborhoods
-REFERENCES = MINLP124
-ADDDATE = 2014-02-21

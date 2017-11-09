@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(34,STG_EX5.gms)
-APPLICATION = Periodic Scheduling of Continuous Multiproduct Plants
-REFERENCES = MINLP34
-ADDDATE = 2013-09-24

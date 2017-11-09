@@ -1,5 +1,0 @@
-ADDDATE = 2014-02-28
-SOURCE = GAMSMODELLIB
-APPLICATION = Tank Size Design
-REFERENCES = g00536
-DESCR = We discuss a tank design problem for a multi product plant, in which the optimal cycle time and the optimal campaign size are unknown. A mixed integer nonlinear programming formulation is presented, where non-convexities are due to the tank investment cost, storage cost, campaign setup cost and variable production rates. The objective of the optimization model is to minimize the sum of the production cost per ton per product produced. A continuous-time mathematical programming formulation for the problem is implemented with a fixed number of event points.

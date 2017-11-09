@@ -1,4 +1,0 @@
-SOURCE =       MacMINLP(c-sched.mod, c-sched2.dat), GAMSMODELLIB(csched)
-APPLICATION =  Cyclic Scheduling of Continuous Parallel Units
-REFERENCES =   g00021
-ADDDATE =      2001-05-01

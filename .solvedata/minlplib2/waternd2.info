@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(101,Ex_2__WaterNetwokProblem-B-Eps.gms)
-APPLICATION = Water Network Design
-REFERENCES = MINLP101
-ADDDATE = 2013-09-25

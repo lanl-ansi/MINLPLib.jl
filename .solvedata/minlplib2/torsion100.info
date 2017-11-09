@@ -1,4 +1,0 @@
-SOURCE =       GAMSMODELLIB(torsion), COPS
-APPLICATION =  Elastic-plastic torsion
-REFERENCES =   g00298 g00300 g00320
-ADDDATE =      2001-07-31

@@ -1,4 +1,0 @@
-SOURCE =       GAMSMODELLIB(catmix), COPS
-APPLICATION =  Catalyst Mixing
-REFERENCES =   g00318 g00320
-ADDDATE =      2001-07-31

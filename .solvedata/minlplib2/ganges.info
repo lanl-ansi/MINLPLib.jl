@@ -1,6 +1,0 @@
-SOURCE =       GAMSMODELLIB
-APPLICATION =  General Equilibrium
-REFERENCES =   g00186
-ADDDATE =      2001-07-31
-REMOVEDATE =   2014-08-14
-REMOVEREASON = Optimization variant of gancns, but having only one solution

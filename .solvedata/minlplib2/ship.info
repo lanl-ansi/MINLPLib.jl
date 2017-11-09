@@ -1,7 +1,0 @@
-SOURCE =       GAMSMODELLIB (modified version)
-APPLICATION =  Structural Optimization
-DESCR =        This version of ship corresponds to a earlier version of GAMS model library model ship, which had been "disimproved", so it became unbounded.
-REFERENCES =   g00185
-ADDDATE =      2001-07-31
-REMOVEDATE =   2014-08-15
-REMOVEREASON = Objective function is singular (division by variable that can be 0)

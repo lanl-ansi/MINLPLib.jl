@@ -1,5 +1,0 @@
-SOURCE = MINLPORG(63,Projected_Model.mod:ampl_Projected_data7.dat)
-APPLICATION = Telecommunication
-DESCR =  Delay Constrained Routing Problem
-REFERENCES = MINLP63
-ADDDATE = 2014-05-31

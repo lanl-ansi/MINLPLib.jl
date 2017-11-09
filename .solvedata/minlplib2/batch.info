@@ -1,4 +1,0 @@
-SOURCE =       modified MINOPTLIB(kocis88-4a.dat), MacMINLP(batch.mod)
-APPLICATION =  Batch processing
-REFERENCES =   g00030
-ADDDATE =      2001-05-01

@@ -1,6 +1,0 @@
-SOURCE = MINLPORG(270,DT_MINLP_EX1_12_7a20ad7.gms)
-APPLICATION = Pooling Problem
-DESCR =  Scheduling of the unloading crude of incoming marine vessels to a refinery and transfer of the crudes from storage to charging tanks to the crude oil distillation units.
- Discrete time formulation. Minimization of total costs.
-REFERENCES = MINLP270
-ADDDATE = 2017-09-12

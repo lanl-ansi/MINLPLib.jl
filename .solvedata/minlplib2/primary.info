@@ -1,4 +1,0 @@
-SOURCE = BARONBOOK(refrigerant/primary)
-REFERENCES = g00426 g00407
-ADDDATE = 2014-03-07
-APPLICATION = Molecular Design

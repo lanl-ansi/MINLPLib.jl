@@ -1,4 +1,0 @@
-ADDDATE = 2014-08-18
-SOURCE = GAMSMODELLIB(emfl) with 100 old facilities and 5x5 new facilities, VANDERBEI
-APPLICATION = Facility Location
-DESCR = Given a set of 100 existing facilities, we compute the coordinates of 25 new facilities on a rectangular grid subject to minimizing the weighted sum of the euclidian distances between facilities.

@@ -1,4 +1,0 @@
-SOURCE = GAMSCLIENT
-ADDDATE = 2015-02-13
-DESCR = A GAMS client model forwarded by M. Bussieck 12th Feb 2015 and replaced by an updated version on 26th March 2015.
-APPLICATION = Electricity Storage

@@ -1,5 +1,0 @@
-SOURCE = CMUIBMMINLP(Water0202R.nl)
-APPLICATION = Water Network Contamination
-REFERENCES = LairdBieglerBloemenWaanders2006
-DESCR = Inverse problem for the determination of contamination sources in municipal water networks. The constraints come from discretized dynamic models of the water network quality model. The objective is the least squares error between calculated and measured network concentrations with a regularization term to force a unique solution. Integer variables are added to restrict the allowable contamination scenarios.
-ADDDATE = 2014-02-21

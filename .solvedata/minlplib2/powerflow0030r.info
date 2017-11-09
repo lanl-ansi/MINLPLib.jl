@@ -1,4 +1,0 @@
-ADDDATE = 2014-08-18
-APPLICATION = Electricity Networks
-REFERENCES = HijaziCoffrinVanHentenryck2013
-DESCR = Optimal Power Flow problem modeled using quadratic functions (rectangular coordinates)

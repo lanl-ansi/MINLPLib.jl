@@ -1,4 +1,0 @@
-SOURCE =       MacMINLP(feedloc.mod)
-APPLICATION =  feed plate location
-REFERENCES =   g00028
-ADDDATE =      2001-05-01

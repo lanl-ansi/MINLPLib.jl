@@ -1,5 +1,0 @@
-ADDDATE = 2014-02-28
-SOURCE = second scenario of GAMSMODELLIB(kport)
-APPLICATION = Product Portfolio Optimization
-REFERENCES = g00457
-DESCR = This problem computes minimal cost solutions satisfying the demand of pre-given product portfolios. It determines the number and size of reactors and gives a schedule of how may batches of each product run on each reactor.

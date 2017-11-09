@@ -1,5 +1,0 @@
-SOURCE      = <A href="http://www.ii.uib.no/~mohammeda/spooling/Haverly2.gms">Haverly2.gms</A> from <A href="http://www.ii.uib.no/~mohammeda/spooling/">Standard Pooling Problem Instances</A>
-APPLICATION = Pooling problem
-DESCR       = PQ formulation of pooling problem. Explicitly added RLT constraints were removed from the original formulation of Alfaki and Haugland.
-ADDDATE     = 2017-09-12
-REFERENCES  = Haverly1978 AlfakiHaugland2013

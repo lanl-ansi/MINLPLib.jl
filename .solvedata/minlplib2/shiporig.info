@@ -1,8 +1,0 @@
-ADDDATE = 2014-08-15
-SOURCE = GAMSMODELLIB(ship)
-APPLICATION = Structural Optimization
-REFERENCES = g00185
-DESCR = This model designs a vertically corrugated transverse bulkhead of an oil tanker.
-   The objective is to design for minimum weight and meet stress, moment of inertia and plate thickness constraints.
-   This version of ship corresponds to the current version of ship from the GAMS model library.
-   It corresponds to the original version from the paper, plus an extra lower bound on variable x10.

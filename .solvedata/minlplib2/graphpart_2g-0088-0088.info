@@ -1,9 +1,0 @@
-SOURCE = POLIP(graphpart/data_2g_88_88.dimacs)
-ADDDATE  =  2014-02-26
-APPLICATION  =  Graph Partitioning
-DESCR  =  This is a quadratic model for the graph partitioning problem. The
-   graphs are taken from the publication of Ghaddar et al. We used 3
-   parts of the partition to generate the quadratic instances. The model
-   assigns each node to one of the three parts. Hence, the model is
-   symmetric, which should probably be used in a solution algorithm.
-REFERENCES  =  GhaddarAnjosLiers09

@@ -1,6 +1,0 @@
-SOURCE = MINLPORG(270,CT_MINLP_EX4_14_305b818.gms)
-APPLICATION = Pooling Problem
-DESCR =  Scheduling of the unloading crude of incoming marine vessels to a refinery and transfer of the crudes from storage to charging tanks to the crude oil distillation units.
- Continuous time formulation. Maximization of gross margin.
-REFERENCES = MINLP270
-ADDDATE = 2017-09-12

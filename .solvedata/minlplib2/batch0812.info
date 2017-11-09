@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(48,convex2.gms)
-APPLICATION = Multi-Product Batch Plant Design
-REFERENCES = MINLP48
-ADDDATE = 2013-09-24

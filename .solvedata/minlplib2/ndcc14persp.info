@@ -1,5 +1,0 @@
-APPLICATION = Network Design
-DESCR       = Multicommodity network design problem with congestion constraints and fixed costs for opening arcs.
-   Perspective reformulation of ndcc14.
-REFERENCES  = GuenluekLinderoth2010 GuenluekLinderorth2012 BoorstynFrank1977
-ADDDATE     = 2014-02-28

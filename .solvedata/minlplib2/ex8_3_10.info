@@ -1,5 +1,0 @@
-SOURCE =       FLOUDASBOOK(ex8.3.10)
-REFERENCES =   g00041
-ADDDATE =      2001-07-31
-REMOVEDATE =   2014-08-15
-REMOVEREASON = Objective function is singular (division by variable that can be 0)

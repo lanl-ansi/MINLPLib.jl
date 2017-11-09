@@ -1,4 +1,0 @@
-SOURCE =       GAMSCLIENT
-ADDDATE =      2002-07-25
-REMOVEDATE =   2014-05-31
-REMOVEREASON = Variant of risk2bpb with some variable bounds missing

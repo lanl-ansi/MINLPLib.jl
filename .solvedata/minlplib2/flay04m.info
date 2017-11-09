@@ -1,5 +1,0 @@
-SOURCE = CMUIBMMINLP(FLay04M.gms)
-APPLICATION = Layout
-REFERENCES = Sawaya2006
-DESCR = Determine the optimal length and width of a number of rectangular patches of land with fixed area, such that the perimeter of the set of patches is minimized.
-ADDDATE = 2013-09-28

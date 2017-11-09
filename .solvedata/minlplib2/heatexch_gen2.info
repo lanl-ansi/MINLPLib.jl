@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(93,General_Model_Case2.gms)
-APPLICATION = Heat Exchanger Network
-REFERENCES = MINLP93
-ADDDATE = 2013-09-25

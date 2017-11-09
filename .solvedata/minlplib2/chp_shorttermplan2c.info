@@ -1,5 +1,0 @@
-SOURCE      = <A href="https://github.com/OR-polimi/cchp-minlp/blob/v0.1/instances/inst_2c.gms">inst_2c</A> from OR-polimi/cchp-minlp GitHub repo
-APPLICATION = power plant operation
-DESCR       = Short-term planning of combined heat and power (CHP) systems
-ADDDATE     = 2017-09-11
-REFERENCES  = TaccariAmaldiBischiMartelli2017

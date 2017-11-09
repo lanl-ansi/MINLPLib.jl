@@ -1,4 +1,0 @@
-SOURCE =       MacMINLP(c-reload.mod, c-reload-14a.dat)
-APPLICATION =  Nuclear Reactor Core Reload Pattern
-REFERENCES =   g00022
-ADDDATE =      2001-05-01

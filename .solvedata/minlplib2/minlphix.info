@@ -1,4 +1,0 @@
-SOURCE =       GAMSMODELLIB(minlphi)
-APPLICATION =  Heat Integrated Distillation Sequences
-REFERENCES =   g00001
-ADDDATE =      2001-05-01

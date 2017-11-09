@@ -1,3 +1,0 @@
-SOURCE =       GAMSCLIENT
-DESCR =        risk2b with added bounds to avoid evaluation errors
-ADDDATE =      2007-06-14

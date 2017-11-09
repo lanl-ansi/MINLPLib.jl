@@ -1,5 +1,0 @@
-APPLICATION = Test Problem
-DESCR       = separable reformulation of convex MINLP test problem with non-separable signomial constraint function (cvxnonsep_nsig30)
-   see also <A href="../data/source/kronqvist/cvxnonsep.pdf">problem description (PDF)</A>.
-ADDDATE     = 2017-09-11
-REFERENCES  = KronqvistLundellWesterlund2017

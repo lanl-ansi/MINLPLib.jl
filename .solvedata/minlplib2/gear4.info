@@ -1,4 +1,0 @@
-SOURCE =       modified GAMSMODELLIB(gear), modified MacMINLP(geartrain.mod)
-APPLICATION =  Gear Train Design
-REFERENCES =   g00011
-ADDDATE =      2001-05-01

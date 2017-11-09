@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(45,MINLP.gms)
-DESCR =  Mixed-Integer Linear Fractional Programming
-REFERENCES = MINLP45
-ADDDATE = 2013-09-24

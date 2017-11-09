@@ -1,4 +1,0 @@
-ADDDATE = 2014-03-11
-APPLICATION = Electricity Networks
-REFERENCES = HijaziCoffrinVanHentenryck2013
-DESCR = Optimal Transmission Switching problem modeled using quadratic functions (rectangular coordinates)

@@ -1,4 +1,0 @@
-SOURCE =       MacMINLP(wind-fac.mod), GAMSMODELLIB
-APPLICATION =  Winding Factor of Electrical Machines
-ADDDATE =      2001-05-01
-REFERENCES =   g00079

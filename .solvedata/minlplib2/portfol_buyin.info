@@ -1,7 +1,0 @@
-ADDDATE = 2014-05-31
-APPLICATION = Portfolio Optimization
-REFERENCES = BonamiLejeune2009
-SOURCE = DREXEL(BuyInThreshold)
-
-# nonlinear constraints are upper limits on the 2-norm of certain vectors
-CONSCURVATURE = convex

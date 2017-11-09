@@ -1,4 +1,0 @@
-SOURCE =       GAMSMODELLIB(minsurf), COPS
-APPLICATION =  Minimal Surface
-REFERENCES =   g00301 g00320
-ADDDATE =      2001-07-31

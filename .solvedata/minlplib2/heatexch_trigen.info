@@ -1,5 +1,0 @@
-SOURCE = MINLPORG(176,Trigeneration-Max_Profit-Point_B.gms)
-APPLICATION = Heat Exchanger Network
-DESCR =  Sustainable Integration of Trigeneration Systems with Heat Exchanger Networks
-REFERENCES = MINLP176
-ADDDATE = 2014-02-21

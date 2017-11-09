@@ -1,4 +1,0 @@
-SOURCE = MINLPORG(69,TCD_MINLPorg.gms)
-APPLICATION = Separation Sequences Based on Distillation
-REFERENCES = MINLP69
-ADDDATE = 2014-03-19

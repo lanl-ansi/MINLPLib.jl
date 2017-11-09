@@ -1,4 +1,0 @@
-ADDDATE = 2015-02-09
-SOURCE = GAMSMODELLIB(flowchan) from GAMS 24.4 with --nh=200 discretization points
-APPLICATION = Flow in a Channel
-REFERENCES = g00304 g00320

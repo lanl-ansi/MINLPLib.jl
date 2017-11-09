@@ -1,5 +1,0 @@
-SOURCE =       GAMSCLIENT
-APPLICATION =  Asset Management
-ADDDATE =      2001-05-01
-REMOVEDATE =   2012-08-06
-REMOVEREASON = Duplicate of saa_2

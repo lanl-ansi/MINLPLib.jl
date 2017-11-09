@@ -1,5 +1,0 @@
-APPLICATION = Test Problem
-DESCR       = separable reformulation of convex MINLP test problem with non-separable power constraint (cvxnonsep_pcon40)
-   see also <A href="../data/source/kronqvist/cvxnonsep.pdf">problem description (PDF)</A>.
-ADDDATE     = 2017-09-11
-REFERENCES  = KronqvistLundellWesterlund2017

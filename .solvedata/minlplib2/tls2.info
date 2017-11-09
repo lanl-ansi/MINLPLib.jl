@@ -1,6 +1,0 @@
-SOURCE =       MacMINLP(trimlon.mod, trimloss2.dat)
-APPLICATION =  Trim loss minimization problem
-REFERENCES =   g00020
-ADDDATE =      2001-05-01
-
-CONSCURVATURE = convex
