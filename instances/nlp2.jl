@@ -1,6 +1,6 @@
 using JuMP
 
-m = Model(solver=fetch_solver(solver_options))
+m = Model()
 
 @variable(m, -500<=x[1:2]<=500)
 

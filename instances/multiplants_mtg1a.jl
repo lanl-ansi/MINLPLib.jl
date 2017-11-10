@@ -1,6 +1,6 @@
 using JuMP
 
-m = Model(solver=fetch_solver(solver_options))
+m = Model()
 
 # ----- Variables ----- #
 @variable(m, objvar)

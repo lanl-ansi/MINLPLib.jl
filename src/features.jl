@@ -2,13 +2,24 @@ function fetch_model(instance::AbstractString, options=Dict();kwargs...)
 
     st = time()
     if instance in special_instances
-        m = eval(parse(instance))(fetch_solver, options=options)
+        m = eval(parse(instance))(options=options)
     else
         m = include("$(Pkg.dir())/MINLPLib_jump/instances/$(instance).jl")
     end
     info("Finish loading problem $(instance) in $(time()-st) seconds")
 
     return m
+end
+
+function libsummary(showall=false)
+    allprob = readdir("$(Pkg.dir())/MINLPLib_jump/instance/")
+    if showall
+        for i in allprob
+            println("i")
+        end
+    end
+    println("Total collected instances :: $(length(allprob))")
+    return
 end
 
 function minlplib2_meta(pname::AbstractString, show=true)
