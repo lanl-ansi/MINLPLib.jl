@@ -19,7 +19,7 @@ setupperbound(x[2], 10.0)
 
 # ----- Constraints ----- #
 @constraint(m, e1, -2*x[1]-3*x[2]-1.5*b[3]-2*b[4]+0.5*b[5]+objvar == 0.0)
-@constraint(m, e2,  (x[1])^2+b[3] == 1.25)
+@NLconstraint(m, e2,  (x[1])^2+b[3] == 1.25)
 @NLconstraint(m, e3, x[2]^1.5+1.5*b[4] == 3.0)
 @constraint(m, e4, x[1]+b[3] <= 1.6)
 @constraint(m, e5, 1.333*x[2]+b[4] <= 3.0)
@@ -28,4 +28,5 @@ setupperbound(x[2], 10.0)
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)
+
 m = m 		 # model get returned when including this script. 

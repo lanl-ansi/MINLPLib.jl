@@ -36,7 +36,8 @@ Subject to
 ## List of Existing Libraries
 Most of the existing MINLP problems are stored in .gms/.nl/.mod format. Currently, the scope of this repo covers
 
-* [MINLPLIB2](http://www.gamsworld.org/minlp/minlplib2/html/)
+* [PODLib](http://www.gamsworld.org/minlp/minlplib2/html/)A small and growing library for POD benchmarking
+* [ibm]()Mixed-integer nonlinear optimization from CMU-IBM open-source MINLP project
 
 ## Problem Contribution
 TBD
