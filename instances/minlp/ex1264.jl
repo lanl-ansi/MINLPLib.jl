@@ -120,10 +120,10 @@ setupperbound(x[72], 6.0)
 
 # ----- Constraints ----- #
 @constraint(m, e1, -0.1*b[65]-0.2*b[66]-0.3*b[67]-0.4*b[68]-x[69]-x[70]-x[71]-x[72]+objvar == 0.0)
-@constraint(m, e2, x[69]*x[1]+x[70]*x[2]+x[71]*x[3]+x[72]*x[4] >= 9.0)
-@constraint(m, e3, x[69]*x[5]+x[70]*x[6]+x[71]*x[7]+x[72]*x[8] >= 7.0)
-@constraint(m, e4, x[69]*x[9]+x[70]*x[10]+x[71]*x[11]+x[72]*x[12] >= 12.0)
-@constraint(m, e5, x[69]*x[13]+x[70]*x[14]+x[71]*x[15]+x[72]*x[16] >= 11.0)
+@NLconstraint(m, e2, x[69]*x[1]+x[70]*x[2]+x[71]*x[3]+x[72]*x[4] >= 9.0)
+@NLconstraint(m, e3, x[69]*x[5]+x[70]*x[6]+x[71]*x[7]+x[72]*x[8] >= 7.0)
+@NLconstraint(m, e4, x[69]*x[9]+x[70]*x[10]+x[71]*x[11]+x[72]*x[12] >= 12.0)
+@NLconstraint(m, e5, x[69]*x[13]+x[70]*x[14]+x[71]*x[15]+x[72]*x[16] >= 11.0)
 @constraint(m, e6, -330*x[1]-360*x[5]-385*x[9]-415*x[13]+1700*b[65] <= 0.0)
 @constraint(m, e7, -330*x[2]-360*x[6]-385*x[10]-415*x[14]+1700*b[66] <= 0.0)
 @constraint(m, e8, -330*x[3]-360*x[7]-385*x[11]-415*x[15]+1700*b[67] <= 0.0)
@@ -179,4 +179,5 @@ setupperbound(x[72], 6.0)
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)
+
 m = m 		 # model get returned when including this script. 

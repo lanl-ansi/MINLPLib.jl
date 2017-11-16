@@ -29,7 +29,7 @@ setupperbound(x[15], 4000.0)
 
 
 # ----- Constraints ----- #
-@constraint(m, e1, -(0.0025* (x[7])^2+6*x[7]+0.0025* (x[8])^2+6*x[8]+0.0025* (x[9])^2+6*x[9])+objvar == 900.0)
+@NLconstraint(m, e1, -(0.0025* (x[7])^2+6*x[7]+0.0025* (x[8])^2+6*x[8]+0.0025* (x[9])^2+6*x[9])+objvar == 900.0)
 @constraint(m, e2, -100*b[1]+x[4] >= 0.0)
 @constraint(m, e3, -100*b[2]+x[5] >= 0.0)
 @constraint(m, e4, -100*b[3]+x[6] >= 0.0)
@@ -42,11 +42,12 @@ setupperbound(x[15], 4000.0)
 @constraint(m, e11, x[4]+x[7] >= 400.0)
 @constraint(m, e12, x[5]+x[8] >= 900.0)
 @constraint(m, e13, x[6]+x[9] >= 700.0)
-@constraint(m, e14, -(0.005* (x[4])^2+x[4])-50*b[1]+x[10] == 0.0)
-@constraint(m, e15, -(0.005* (x[5])^2+x[5])-50*b[2]+x[11] == 0.0)
-@constraint(m, e16, -(0.005* (x[6])^2+x[6])-50*b[3]+x[12] == 0.0)
+@NLconstraint(m, e14, -(0.005* (x[4])^2+x[4])-50*b[1]+x[10] == 0.0)
+@NLconstraint(m, e15, -(0.005* (x[5])^2+x[5])-50*b[2]+x[11] == 0.0)
+@NLconstraint(m, e16, -(0.005* (x[6])^2+x[6])-50*b[3]+x[12] == 0.0)
 
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)
+
 m = m 		 # model get returned when including this script. 

@@ -10,10 +10,10 @@ Pkg.clone("https://github.com/lanl-ansi/MINLPLib_jump.git")
 ```
 
 ## Usage
-Fetch a model by its name just like the following,
+Fetch a instance by its libname/name just like the following,
 ```
 using MINLPLib_jump
-m = fetch_model("blend029")
+m = fetch_model("PODLib/blend029")
 ```
 
 For special built-in model that requires additional inputs,
@@ -36,7 +36,22 @@ Subject to
 ## List of Existing Libraries
 Most of the existing MINLP problems are stored in .gms/.nl/.mod format. Currently, the scope of this repo covers
 
-* [MINLPLIB2](http://www.gamsworld.org/minlp/minlplib2/html/)
+* [PODLib](https://github.com/lanl-ansi/POD.jl) A small and growing library for POD benchmarking
+* [ibm](http://egon.cheme.cmu.edu/ibm/page.htm) A Mixed-integer nonlinear optimization from CMU-IBM open-source MINLP project
+* [bcp](https://link.springer.com/article/10.1007/s10898-016-0491-8) Some bound-constrained programs (partially finished)
+* [global](http://www.gamsworld.org/performance/) Nonlinear optimization problems
+* [minlp](http://www.gamsworld.org/performance/) Mixed-integer nonlinear optimization problems from
+* [minlplib2](http://www.gamsworld.org/minlp/minlplib2/html/) Upcoming ...
+* [morg](http://www.minlp.org/) Mixed-integer nonlinear optimization problems
+* [mpec](http://www.gamsworld.org/mpec/mpeclib.htm) Mathematical programs with complementarity constraints
+* [mult3](https://link.springer.com/article/10.1007/s12532-014-0073-z) Multilinear programs
+* [mult4](https://link.springer.com/article/10.1007/s12532-014-0073-z) Multilinear programs
+* [poly](https://link.springer.com/article/10.1007%2Fs10898-011-9757-3?LI=true) Polynomial optimization problems
+* [qcqp](http://www.tandfonline.com/doi/abs/10.1080/10556780902883184) Quadratically constrained quadratic programs
+* [qcqp2](https://link.springer.com/article/10.1007%2Fs10107-011-0462-2?LI=true) Quadratically constrained quadratic programs
+* [qcqp3](https://link.springer.com/article/10.1007/s12532-014-0073-z) Quadratically constrained quadratic programs
+* [prince](http://www.gamsworld.org/performance/) Nonlinear optimization problems
+* [inf](http://pubsonline.informs.org/doi/abs/10.1287/ijoc.2017.0761)Infeasible linear, nonlinear and mixed-integer nonlinear optimization problems
 
-## Problem Contribution
-TBD
+## Reference
+We thank the information provided from [BARON](http://www.minlp.com/nlp-and-minlp-test-problems) website.

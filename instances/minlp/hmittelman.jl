@@ -37,4 +37,5 @@ setcategory(b[1], :Bin)
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)
+
 m = m 		 # model get returned when including this script. 

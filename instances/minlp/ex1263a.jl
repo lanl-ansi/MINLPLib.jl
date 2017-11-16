@@ -56,10 +56,10 @@ setupperbound(i[24], 30.0)
 
 # ----- Constraints ----- #
 @constraint(m, e1, -0.1*b[17]-0.2*b[18]-0.3*b[19]-0.4*b[20]-i[21]-i[22]-i[23]-i[24]+objvar == 0.0)
-@constraint(m, e2, i[21]*i[1]+i[22]*i[2]+i[23]*i[3]+i[24]*i[4] >= 15.0)
-@constraint(m, e3, i[21]*i[5]+i[22]*i[6]+i[23]*i[7]+i[24]*i[8] >= 28.0)
-@constraint(m, e4, i[21]*i[9]+i[22]*i[10]+i[23]*i[11]+i[24]*i[12] >= 21.0)
-@constraint(m, e5, i[21]*i[13]+i[22]*i[14]+i[23]*i[15]+i[24]*i[16] >= 30.0)
+@NLconstraint(m, e2, i[21]*i[1]+i[22]*i[2]+i[23]*i[3]+i[24]*i[4] >= 15.0)
+@NLconstraint(m, e3, i[21]*i[5]+i[22]*i[6]+i[23]*i[7]+i[24]*i[8] >= 28.0)
+@NLconstraint(m, e4, i[21]*i[9]+i[22]*i[10]+i[23]*i[11]+i[24]*i[12] >= 21.0)
+@NLconstraint(m, e5, i[21]*i[13]+i[22]*i[14]+i[23]*i[15]+i[24]*i[16] >= 30.0)
 @constraint(m, e6, -290*i[1]-315*i[5]-350*i[9]-455*i[13]+1750*b[17] <= 0.0)
 @constraint(m, e7, -290*i[2]-315*i[6]-350*i[10]-455*i[14]+1750*b[18] <= 0.0)
 @constraint(m, e8, -290*i[3]-315*i[7]-350*i[11]-455*i[15]+1750*b[19] <= 0.0)
@@ -95,4 +95,5 @@ setupperbound(i[24], 30.0)
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)
+
 m = m 		 # model get returned when including this script. 

@@ -77,11 +77,11 @@ setupperbound(i[35], 6.0)
 
 # ----- Constraints ----- #
 @constraint(m, e1, -0.1*b[26]-0.2*b[27]-0.3*b[28]-0.4*b[29]-0.5*b[30]-i[31]-i[32]-i[33]-i[34]-i[35]+objvar == 0.0)
-@constraint(m, e2, i[31]*i[1]+i[32]*i[2]+i[33]*i[3]+i[34]*i[4]+i[35]*i[5] >= 12.0)
-@constraint(m, e3, i[31]*i[6]+i[32]*i[7]+i[33]*i[8]+i[34]*i[9]+i[35]*i[10] >= 6.0)
-@constraint(m, e4, i[31]*i[11]+i[32]*i[12]+i[33]*i[13]+i[34]*i[14]+i[35]*i[15] >= 15.0)
-@constraint(m, e5, i[31]*i[16]+i[32]*i[17]+i[33]*i[18]+i[34]*i[19]+i[35]*i[20] >= 6.0)
-@constraint(m, e6, i[31]*i[21]+i[32]*i[22]+i[33]*i[23]+i[34]*i[24]+i[35]*i[25] >= 9.0)
+@NLconstraint(m, e2, i[31]*i[1]+i[32]*i[2]+i[33]*i[3]+i[34]*i[4]+i[35]*i[5] >= 12.0)
+@NLconstraint(m, e3, i[31]*i[6]+i[32]*i[7]+i[33]*i[8]+i[34]*i[9]+i[35]*i[10] >= 6.0)
+@NLconstraint(m, e4, i[31]*i[11]+i[32]*i[12]+i[33]*i[13]+i[34]*i[14]+i[35]*i[15] >= 15.0)
+@NLconstraint(m, e5, i[31]*i[16]+i[32]*i[17]+i[33]*i[18]+i[34]*i[19]+i[35]*i[20] >= 6.0)
+@NLconstraint(m, e6, i[31]*i[21]+i[32]*i[22]+i[33]*i[23]+i[34]*i[24]+i[35]*i[25] >= 9.0)
 @constraint(m, e7, -330*i[1]-360*i[6]-370*i[11]-415*i[16]-435*i[21]+1800*b[26] <= 0.0)
 @constraint(m, e8, -330*i[2]-360*i[7]-370*i[12]-415*i[17]-435*i[22]+1800*b[27] <= 0.0)
 @constraint(m, e9, -330*i[3]-360*i[8]-370*i[13]-415*i[18]-435*i[23]+1800*b[28] <= 0.0)
@@ -125,4 +125,5 @@ setupperbound(i[35], 6.0)
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)
+
 m = m 		 # model get returned when including this script. 
