@@ -1,0 +1,72 @@
+using JuMP
+
+m = Model()
+
+# ----- Variables ----- #
+@variable(m, objvar)
+x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+@variable(m, x[x_Idx])
+setlowerbound(x[4], 0.0)
+setlowerbound(x[16], 0.0)
+setlowerbound(x[6], 0.0)
+setlowerbound(x[14], 0.0)
+setlowerbound(x[17], 0.0)
+setlowerbound(x[3], 0.0)
+setlowerbound(x[11], 0.0)
+setlowerbound(x[12], 0.0)
+setlowerbound(x[5], 0.0)
+setlowerbound(x[19], 0.0)
+setlowerbound(x[2], 0.0)
+setlowerbound(x[20], 0.0)
+setlowerbound(x[18], 0.0)
+setlowerbound(x[9], 0.0)
+setlowerbound(x[15], 0.0)
+setlowerbound(x[1], 0.0)
+setlowerbound(x[7], 0.0)
+setlowerbound(x[8], 0.0)
+setlowerbound(x[13], 0.0)
+setlowerbound(x[10], 0.0)
+setupperbound(x[1], 1.0)
+setupperbound(x[2], 1.0)
+setupperbound(x[3], 1.0)
+setupperbound(x[4], 1.0)
+setupperbound(x[5], 1.0)
+setupperbound(x[6], 1.0)
+setupperbound(x[7], 1.0)
+setupperbound(x[8], 1.0)
+setupperbound(x[9], 1.0)
+setupperbound(x[10], 1.0)
+setupperbound(x[11], 1.0)
+setupperbound(x[12], 1.0)
+setupperbound(x[13], 1.0)
+setupperbound(x[14], 1.0)
+setupperbound(x[15], 1.0)
+setupperbound(x[16], 1.0)
+setupperbound(x[17], 1.0)
+setupperbound(x[18], 1.0)
+setupperbound(x[19], 1.0)
+setupperbound(x[20], 1.0)
+
+
+# ----- Constraints ----- #
+@constraint(m, e1, x[1]+2*x[2]+2*x[3]+2*x[4]+x[5]+2*x[6]+2*x[7]+x[8]+2*x[9]+x[10] == 0.70785)
+@constraint(m, e2, 0.326*x[1]-101*x[2]+200*x[5]+0.06*x[6]+0.02*x[7] == 0.0)
+@constraint(m, e3, 0.0066667*x[1]-1.03*x[3]+200*x[6]+0.06*x[8]+0.02*x[9] == 0.0)
+@constraint(m, e4, 0.00066667*x[1]-1.01*x[4]+200*x[7]+0.06*x[9]+0.02*x[10] == 0.0)
+@constraint(m, e5, 0.978*x[2]-201*x[5]+100*x[11]+0.03*x[12]+0.01*x[13] == 0.0)
+@constraint(m, e6, 0.01*x[2]+0.489*x[3]-101.03*x[6]+100*x[12]+0.03*x[14]+0.01*x[15] == 0.0)
+@constraint(m, e7, 0.001*x[2]+0.489*x[4]-101.03*x[7]+100*x[13]+0.03*x[15]+0.01*x[16] == 0.0)
+@constraint(m, e8, 0.001*x[3]+0.01*x[4]-1.04*x[9]+100*x[15]+0.03*x[18]+0.01*x[19] == 0.0)
+@constraint(m, e9, 0.02*x[3]-1.06*x[8]+100*x[14]+0.03*x[17]+0.01*x[19] == 0.0)
+@constraint(m, e10, 0.002*x[4]-1.02*x[10]+100*x[16]+0.03*x[19]+0.01*x[20] == 0.0)
+@constraint(m, e11, -2.5742E-6*x[11]+0.00252*x[13]-0.61975*x[16]+1.03*x[20] == 0.0)
+@constraint(m, e12, -0.00257*x[11]+0.25221*x[12]-6.2*x[14]+1.09*x[17] == 0.0)
+@constraint(m, e13, 0.00629*x[11]-0.20555*x[12]-4.1106*x[13]+101.04*x[15]+505.1*x[16]-256.72*x[19] == 0.0)
+@constraint(m, e14, 0.00841*x[12]-0.08406*x[13]-0.20667*x[14]+20.658*x[16]+1.07*x[18]-10.5*x[19] == 0.0)
+@constraint(m, e15, -0.01*x[2]-33.333*x[3]-100*x[4]-0.01*x[5]-33.343*x[6]-100.01*x[7]-33.333*x[8]-133.33*x[9]-100*x[10]+objvar == 0.0)
+
+
+# ----- Objective ----- #
+@objective(m, Min, objvar)
+
+m = m 		 # model get returned when including this script. 
