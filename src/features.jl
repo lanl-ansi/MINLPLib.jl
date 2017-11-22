@@ -42,11 +42,43 @@ function fetch_names(libname::AbstractString; postfix=false)
     return nlist
 end
 
+function build_basic_meta(libname::AbstractString; websource="", kwargs...)
+
+    minlps = fetch_names(libname)
+    metas = []
+    for i in startidx:length(minlps)
+        info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
+        m = fetch_model("$(libname)/$(minlps[i])")
+        d = JuMP.NLPEvaluator(m)
+        MathProgBase.initialize(d, [:Grad, :Jac, :HessVec, :Hess, :ExprGraph])
+        push!(metas, Dict("OBJTYPE"=> d.has_nlobj ? "nonlinear" : "linear",
+                        "LIBRARY"=> libname,
+                        "OBJSENSE"=> m.objSense,
+                        "OBJVAL" => m.objSense == :Max ? -Inf : Inf,
+                        "OBJBOUND"=> m.objSense == :Max ? Inf : -Inf,
+                        "NLINCONS"=> m.length(linconstr),
+                        "NCONS"=> length(m.linconstr)+length(m.sosconstr)+length(m.sdpconstr)+length(m.quadconstr)+length(d.constraint),
+                        "NAME"=> i,
+                        "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
+                        "SOURCE"=> websource,
+                        "NLOPERANDS"=> null,
+                        "NVARS"=> m.numCols,
+                        "NBINVARS"=> length([i for i in m.colCat if i == :Bin])))
+    end
+
+    return metas
+end
+
 function test_load(libname::AbstractString; startidx::Int=1)
     minlps = fetch_names(libname)
     for i in startidx:length(minlps)
         info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
-        @time m = fetch_model("$(libname)/$(minlps[i])")
+        try
+            m = fetch_model("$(libname)/$(minlps[i])")
+        catch e
+            info("Error loading problem $(minlps[i])", prefix="MINLPLibJuMP: ")
+            info("$(e)", prefix="MINLPLibJuMP: ")
+        end
     end
     return
 end

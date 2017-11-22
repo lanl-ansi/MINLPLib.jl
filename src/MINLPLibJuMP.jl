@@ -1,6 +1,6 @@
 module MINLPLibJuMP
 
-using JuMP
+using JuMP, MathProgBase
 using JSON
 
 include("features.jl")
