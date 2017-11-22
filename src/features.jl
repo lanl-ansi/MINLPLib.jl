@@ -14,23 +14,41 @@ function fetch_model(instance::AbstractString, options=Dict(); showmodel=false, 
 end
 
 function fetch_meta(instance::AbstractString; showthem=false)
-
     if !isfile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
         warn("No meta information for $(instance) found")
         return false
     end
-
     m = JSON.parsefile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
 
     for i in METAATTRS
-        showmeta && info("$(i) => $(m[i])", prefix="MINLPLibJuMP: ")
+        showthem && info("$(i) => $(m[i])", prefix="MINLPLibJuMP: ")
     end
-
     return m
 end
 
-function fetch_names(libname::AbstractString; showthem=false)
+function fetch_names(libname::AbstractString; postfix=false)
+    !isdir("$(Pkg.dir())/MINLPLibJuMP/instances/$(libname)") && error("Library $(libname) does not exist.")
+    nraw = readdir("$(Pkg.dir())/MINLPLibJuMP/instances/$(libname)")
+    nlist = []
+    inactive = 0
+    postfix && return nlist
+    for i in 1:length(nraw)
+        if !(nraw[i][1] in ['_', '#'])
+            postfix ? push!(nlist, nraw[i]) : push!(nlist, replace(nraw[i], ".jl", ""))
+        else
+            inactive += 1
+        end
+    end
+    return nlist
+end
 
+function test_load(libname::AbstractString; startidx::Int=1)
+    minlps = fetch_names(libname)
+    for i in startidx:length(minlps)
+        info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
+        @time m = fetch_model("$(libname)/$(minlps[i])")
+    end
+    return
 end
 
 function convert_minlplib2_meta(pname::AbstractString)
