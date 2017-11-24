@@ -32,7 +32,7 @@ function fetch_names(libname::AbstractString; postfix=false)
     inactive = 0
     postfix && return nlist
     for i in 1:length(nraw)
-        if !(nraw[i][1] in ['_', '#'])
+        if !(nraw[i][1] in ['_', '#']) || !(nraw[i] == 'README.md')
             postfix ? push!(nlist, nraw[i]) : push!(nlist, replace(nraw[i], ".jl", ""))
         else
             inactive += 1
