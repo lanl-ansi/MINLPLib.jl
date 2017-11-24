@@ -1,0 +1,59 @@
+using JuMP
+
+m = Model()
+
+# ----- Variables ----- #
+@variable(m, objvar)
+i_Idx = Any[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+@variable(m, i[i_Idx])
+setcategory(i[8], :Int)
+setcategory(i[21], :Int)
+setcategory(i[12], :Int)
+setcategory(i[19], :Int)
+setcategory(i[5], :Int)
+setcategory(i[3], :Int)
+setcategory(i[2], :Int)
+setcategory(i[13], :Int)
+setcategory(i[6], :Int)
+setcategory(i[4], :Int)
+setcategory(i[9], :Int)
+setcategory(i[14], :Int)
+setcategory(i[16], :Int)
+setcategory(i[10], :Int)
+setcategory(i[15], :Int)
+setcategory(i[17], :Int)
+setcategory(i[7], :Int)
+setcategory(i[20], :Int)
+setcategory(i[11], :Int)
+setcategory(i[18], :Int)
+setlowerbound(i[2], -100.0)
+setlowerbound(i[3], -100.0)
+setlowerbound(i[4], -100.0)
+setlowerbound(i[5], -100.0)
+setlowerbound(i[6], -100.0)
+setlowerbound(i[7], -100.0)
+setlowerbound(i[8], -100.0)
+setlowerbound(i[9], -100.0)
+setlowerbound(i[10], -100.0)
+setlowerbound(i[11], -100.0)
+setlowerbound(i[12], -100.0)
+setlowerbound(i[13], -100.0)
+setlowerbound(i[14], -100.0)
+setlowerbound(i[15], -100.0)
+setlowerbound(i[16], -100.0)
+setlowerbound(i[17], -100.0)
+setlowerbound(i[18], -100.0)
+setlowerbound(i[19], -100.0)
+setlowerbound(i[20], -100.0)
+setlowerbound(i[21], -100.0)
+
+
+# ----- Constraints ----- #
+@constraint(m, e1, objvar-19*i[2]-18*i[3]-17*i[4]-16*i[5]-15*i[6]-14*i[7]-13*i[8]-12*i[9]-11*i[10]-10*i[11]-9*i[12]-8*i[13]-7*i[14]-6*i[15]-5*i[16]-4*i[17]-3*i[18]-2*i[19]-i[20]-20*i[21] == 0.0)
+@NLconstraint(m, e2, 100* (i[20])^2-98*i[20]+100* (i[19])^2-98*i[19]+100* (i[18])^2-98*i[18]+100* (i[17])^2-98*i[17]+100* (i[16])^2-98*i[16]+100* (i[15])^2-98*i[15]+100* (i[14])^2-98*i[14]+100* (i[13])^2-98*i[13]+100* (i[12])^2-98*i[12]+100* (i[11])^2-98*i[11]+100* (i[10])^2-98*i[10]+100* (i[9])^2-98*i[9]+100* (i[8])^2-98*i[8]+100* (i[7])^2-98*i[7]+100* (i[6])^2-98*i[6]+100* (i[5])^2-98*i[5]+100* (i[4])^2-98*i[4]+100* (i[3])^2-98*i[3]+100* (i[2])^2-98*i[2]+100* (i[21])^2-98*i[21]-2*i[20]*i[19]-2*i[20]*i[19]-2*i[18]*i[17]-2*i[18]*i[17]-2*i[16]*i[15]-2*i[16]*i[15]-2*i[14]*i[13]-2*i[14]*i[13]-2*i[12]*i[11]-2*i[12]*i[11]-2*i[10]*i[9]-2*i[10]*i[9]-2*i[8]*i[7]-2*i[8]*i[7]-2*i[6]*i[5]-2*i[6]*i[5]-2*i[4]*i[3]-2*i[4]*i[3]-2*i[2]*i[21]-2*i[2]*i[21] <= -1.0)
+
+
+# ----- Objective ----- #
+@objective(m, Min, objvar)
+
+m = m 		 # model get returned when including this script. 

@@ -1,0 +1,70 @@
+using JuMP
+
+m = Model()
+
+# ----- Variables ----- #
+@variable(m, objvar)
+x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+@variable(m, x[x_Idx])
+setlowerbound(x[4], 0.0)
+setlowerbound(x[16], 0.0)
+setlowerbound(x[6], 0.0)
+setlowerbound(x[14], 0.0)
+setlowerbound(x[17], 0.0)
+setlowerbound(x[3], 0.0)
+setlowerbound(x[11], 0.0)
+setlowerbound(x[12], 0.0)
+setlowerbound(x[5], 0.0)
+setlowerbound(x[19], 0.0)
+setlowerbound(x[2], 0.0)
+setlowerbound(x[18], 0.0)
+setlowerbound(x[9], 0.0)
+setlowerbound(x[15], 0.0)
+setlowerbound(x[1], 0.0)
+setlowerbound(x[7], 0.0)
+setlowerbound(x[8], 0.0)
+setlowerbound(x[13], 0.0)
+setlowerbound(x[10], 0.0)
+setupperbound(x[1], 1.0e6)
+setupperbound(x[2], 1.0e6)
+setupperbound(x[3], 1.0e6)
+setupperbound(x[4], 1.0e6)
+setupperbound(x[5], 1.0e6)
+setupperbound(x[6], 1.0e6)
+setupperbound(x[7], 1.0e6)
+setupperbound(x[8], 1.0e6)
+setupperbound(x[9], 1.0e6)
+setupperbound(x[10], 1.0e6)
+setupperbound(x[11], 1.0e6)
+setupperbound(x[12], 1.0e6)
+setupperbound(x[13], 1.0e6)
+setupperbound(x[14], 1.0e6)
+setupperbound(x[15], 1.0e6)
+setupperbound(x[16], 1.0e6)
+setupperbound(x[17], 1.0e6)
+setupperbound(x[18], 1.0e6)
+setupperbound(x[19], 1.0e6)
+
+
+# ----- Constraints ----- #
+@constraint(m, e1, -x[18]-x[19]+objvar == 0.0)
+@constraint(m, e2, -x[9]-x[13]-x[14] == -60.0)
+@constraint(m, e3, -x[10]-x[15]-x[16] == -20.0)
+@constraint(m, e4, -x[5]-x[7]-x[13]-x[15]+x[18] == 0.0)
+@constraint(m, e5, -x[6]-x[8]-x[14]-x[16]+x[19] == 0.0)
+@constraint(m, e6, -x[5]-x[6]-x[11]+x[18] == 0.0)
+@constraint(m, e7, -x[7]-x[8]-x[12]+x[19] == 0.0)
+@constraint(m, e8, -x[9]-x[10]-x[11]-x[12]+x[17] == 0.0)
+@NLconstraint(m, e9, x[5]*x[3]+x[7]*x[4]-x[18]*x[1]+400*x[13]+800*x[15] == 0.0)
+@NLconstraint(m, e10, x[6]*x[3]+x[8]*x[4]-x[19]*x[2]+400*x[14]+800*x[16] == 0.0)
+@constraint(m, e11, x[1] <= 200.0)
+@constraint(m, e12, x[2] <= 1000.0)
+@constraint(m, e13, -0.01*x[1]+x[3] == 0.0)
+@constraint(m, e14, -0.2*x[2]+x[4] == 0.0)
+@NLconstraint(m, e15, x[11]*x[3]+x[12]*x[4]+400*x[9]+800*x[10]-10*x[17] <= 0.0)
+
+
+# ----- Objective ----- #
+@objective(m, Min, objvar)
+
+m = m 		 # model get returned when including this script. 
