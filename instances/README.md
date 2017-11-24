@@ -3,7 +3,7 @@
 Sor far, MINLPLibJuMP includes `16` public libraries in `.jl` format converted from `.gms`.
 Here is a simple chart showing the status of each instance libraries.
 
-| Lib Name                                                                         | Converted  | Unconverted | % |
+| Lib Name                                                                         | Converted  | Unconverted | \% |
 |-----------------------------------------------------------------------------------------|--------|------|-------|
 | [PODLib](https://github.com/lanl-ansi/MINLPLibJuMP.jl/tree/master/instances/PODLib)     | 82     | -    | -     |
 | [bcp](https://github.com/lanl-ansi/MINLPLibJuMP.jl/tree/master/instances/bcp)           | 143    | 327  | 43.7% |
