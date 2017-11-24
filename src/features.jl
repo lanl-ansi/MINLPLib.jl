@@ -6,10 +6,8 @@ function fetch_model(instance::AbstractString, options=Dict(); showmodel=false, 
     else
         m = include("$(Pkg.dir())/MINLPLibJuMP/instances/$(instance).jl")
     end
-    info("Finish loading problem $(instance) in $(time()-st) seconds")
 
     showmodel && print(m)
-
     return m
 end
 
@@ -71,16 +69,23 @@ end
 
 function test_load(libname::AbstractString; startidx::Int=1)
     minlps = fetch_names(libname)
-    for i in startidx:length(minlps)
-        info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
-        try
-            m = fetch_model("$(libname)/$(minlps[i])")
-        catch e
-            info("Error loading problem $(minlps[i])", prefix="MINLPLibJuMP: ")
-            info("$(e)", prefix="MINLPLibJuMP: ")
-        end
-    end
+	for i in 1:length(minlps)
+		info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
+		try
+			m = fetch_model("$(libname)/$(minlps[i])")
+		catch e
+			info("Error loading problem $(minlps[i])", prefix="MINLPLibJuMP: ")
+			info("$(e)", prefix="MINLPLibJuMP: ")
+		end
+	end
     return
+end
+
+function benchmark_load(libname::AbstractString, pname::AbstractString)
+	st = time()
+	m = fetch_model("$(libname)/$(pname)")
+	println("Load time $(libname) / $(pname) $(time()-st)")
+	return
 end
 
 function convert_minlplib2_meta(pname::AbstractString)
