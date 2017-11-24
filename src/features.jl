@@ -1,4 +1,4 @@
-function fetch_model(instance::AbstractString, options=Dict(); showmodel=false, kwargs...)
+function fetch_model(instance::AbstractString, options::Dict=Dict())
 
     st = time()
     if instance in special_instances
@@ -7,9 +7,10 @@ function fetch_model(instance::AbstractString, options=Dict(); showmodel=false, 
         m = include("$(Pkg.dir())/MINLPLibJuMP/instances/$(instance).jl")
     end
 
-    showmodel && print(m)
     return m
 end
+
+fetch_model(libname::AbstractString, pname::AbstractString, options::Dict=Dict()) = fetch_model(joinpath(libname,pname), options)
 
 function fetch_meta(instance::AbstractString; showthem=false)
     if !isfile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
@@ -40,45 +41,53 @@ function fetch_names(libname::AbstractString; postfix=false)
     return nlist
 end
 
-function build_basic_meta(libname::AbstractString; websource="", kwargs...)
+function build_basic_meta(libname::AbstractString, pname::AbstractString; injection::Bool=false)
 
-    minlps = fetch_names(libname)
-    metas = []
-    for i in startidx:length(minlps)
-        info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
-        m = fetch_model("$(libname)/$(minlps[i])")
-        d = JuMP.NLPEvaluator(m)
-        MathProgBase.initialize(d, [:Grad, :Jac, :HessVec, :Hess, :ExprGraph])
-        push!(metas, Dict("OBJTYPE"=> d.has_nlobj ? "nonlinear" : "linear",
-                        "LIBRARY"=> libname,
-                        "OBJSENSE"=> m.objSense,
-                        "OBJVAL" => m.objSense == :Max ? -Inf : Inf,
-                        "OBJBOUND"=> m.objSense == :Max ? Inf : -Inf,
-                        "NLINCONS"=> m.length(linconstr),
-                        "NCONS"=> length(m.linconstr)+length(m.sosconstr)+length(m.sdpconstr)+length(m.quadconstr)+length(d.constraint),
-                        "NAME"=> i,
-                        "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
-                        "SOURCE"=> websource,
-                        "NLOPERANDS"=> null,
-                        "NVARS"=> m.numCols,
-                        "NBINVARS"=> length([i for i in m.colCat if i == :Bin])))
+    m = fetch_model(libname, pname)
+
+    d = JuMP.NLPEvaluator(m)
+    MathProgBase.initialize(d, [:Grad, :Jac, :HessVec, :Hess, :ExprGraph])
+
+    meta = Dict("OBJTYPE"=> d.has_nlobj ? "nonlinear" : "linear",
+                "LIBRARY"=> libname,
+                "OBJSENSE"=> m.objSense,
+                "OBJVAL" => m.objSense == :Max ? -Inf : Inf,
+                "OBJBOUND"=> m.objSense == :Max ? Inf : -Inf,
+                "NCONS"=> length(m.linconstr)+length(m.sosconstr)+length(m.sdpconstr)+length(m.quadconstr)+length(d.constraints),
+                "NLINCONS"=> length(m.linconstr),
+                "NSOSCONS"=> length(m.sosconstr),
+                "NSDPCONS"=> length(m.sdpconstr),
+                "NQUADCONS" => length(m.quadconstr),
+                "NNLCONS" => +length(d.constraints),
+                "NAME"=> pname,
+                "NLOPERANDS"=> nothing,
+                "NVARS"=> m.numCols,
+                "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
+                "NBINVARS"=> length([i for i in m.colCat if i == :Bin]))
+
+    if injection
+        warn("Meta injection is ON. Built-in meta info will be over-written!")
+        !isdir("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)") && mkdir("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)")
+        f = open("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json", "w")
+        JSON.print(f, meta)
+        close(f)
+        return
     end
 
-    return metas
+    return meta
 end
 
-function test_load(libname::AbstractString; startidx::Int=1)
-    minlps = fetch_names(libname)
-	for i in 1:length(minlps)
-		info("[$i] Loading $(minlps[i]) ...", prefix="MINLPLibJuMP: ")
-		try
-			m = fetch_model("$(libname)/$(minlps[i])")
-		catch e
-			info("Error loading problem $(minlps[i])", prefix="MINLPLibJuMP: ")
-			info("$(e)", prefix="MINLPLibJuMP: ")
-		end
-	end
-    return
+function add_to_meta(libname::AbstractString, pname::AbstractString, attributename::AbstractString, attributevalue::Any; injection::Bool=false)
+    meta = JSON.parsefile("$(Pkg.dir(MINLPLibJuMP))/meta/$(libname)/$(pname).json", "w")
+    meta[attributename] = attributevalue
+    if injection
+        warn("Meta injection is ON. Built-in meta info will be over-written!")
+        f = open("$(Pkg.dir(MINLPLibJuMP))/meta/$(libname)/$(pname).json", "w")
+        JSON.print(f, meta)
+        close(f)
+        return
+    end
+    return meta
 end
 
 function benchmark_load(libname::AbstractString, pname::AbstractString)
