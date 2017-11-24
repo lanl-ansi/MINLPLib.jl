@@ -77,12 +77,21 @@ function build_basic_meta(libname::AbstractString, pname::AbstractString; inject
     return meta
 end
 
+function show_basic_dimensions(libname::AbstractString, pname::AbstractString)
+    !isfile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json") && error("No meta file detected.")
+
+    m = JSON.parsefile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
+    println("$(libname) $(pname) $(m["OBJSENSE"]) $(m["NVARS"]) $(m["NBINVARS"]) $(m["NINTVARS"]) $(m["NCONS"]) $(m["NLINCONS"]) $(m["NNLCONS"]) $(m["NCONS"]-m["NLINCONS"]-m["NNLCONS"])")
+    return
+end
+
 function add_to_meta(libname::AbstractString, pname::AbstractString, attributename::AbstractString, attributevalue::Any; injection::Bool=false)
-    meta = JSON.parsefile("$(Pkg.dir(MINLPLibJuMP))/meta/$(libname)/$(pname).json", "w")
+    meta = JSON.parsefile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json", "w")
     meta[attributename] = attributevalue
     if injection
         warn("Meta injection is ON. Built-in meta info will be over-written!")
-        f = open("$(Pkg.dir(MINLPLibJuMP))/meta/$(libname)/$(pname).json", "w")
+        rm("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
+        f = open("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json", "w")
         JSON.print(f, meta)
         close(f)
         return
