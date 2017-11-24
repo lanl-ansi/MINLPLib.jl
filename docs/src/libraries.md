@@ -1,4 +1,4 @@
-# Instances
+# MINLPLibJuMP Libraries
 
 Sor far, MINLPLibJuMP includes `16` public libraries in `.jl` format converted from `.gms`.
 Here is a simple chart showing the status of each instance libraries.
