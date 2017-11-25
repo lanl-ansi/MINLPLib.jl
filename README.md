@@ -1,15 +1,19 @@
 # MINLPLibJuMP
-Dev: [![Build Status](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl.svg?branch=master)](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl)
+Dev: [![Build Status](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl.svg?branch=master)](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://lanl-ansi.github.io/MINLPLibJuMP.jl/latest)
+
 
 This is a library of Mixed-Integer Nonlinear Problems in the format of
 [JuMP](https://github.com/JuliaOpt/JuMP.jl) model. You can use the problems here
 to benchmark solvers and/or perform experiments easily. Most of the existing MINLP problems are stored in `.gms`,`.nl`,`.mod` format.
 Here instances are store in `.jl` format converted from these famous formats using [toJuMP.jl](https://github.com/jac0320/toJuMP.jl).
 
+## Included Libraries
+For more details of the libraries included in this package, please see [documentation](https://lanl-ansi.github.io/MINLPLibJuMP.jl/latest/)
+
 ## Installation
 To install, at your `Julia` command prompt,
 ```
-Pkg.clone("https://github.com/lanl-ansi/MINLPLibJuMP.git")
+Pkg.clone("https://github.com/lanl-ansi/MINLPLibJuMP.jl.git")
 ```
 
 ## Usage
