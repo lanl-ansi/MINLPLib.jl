@@ -31,9 +31,8 @@ makedocs(
 deploydocs(
     repo = "github.com/lanl-ansi/MINLPLibJuMP.git",
     target = "build",
-    branch = "docs",
     osname = "linux",
     julia  = "0.6",
-    deps   = Deps.pip("mkdocs", "python-markdown-math"),
+    deps   = nothing,
     make   = nothing
 )
