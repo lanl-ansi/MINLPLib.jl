@@ -1,4 +1,6 @@
 # MINLPLibJuMP
+Dev: [![Build Status](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl.svg?branch=master)](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl)
+
 This is a library of Mixed-Integer Nonlinear Problems in the format of
 [JuMP](https://github.com/JuliaOpt/JuMP.jl) model. You can use the problems here
 to benchmark solvers and/or perform experiments easily. Most of the existing MINLP problems are stored in `.gms`,`.nl`,`.mod` format.
