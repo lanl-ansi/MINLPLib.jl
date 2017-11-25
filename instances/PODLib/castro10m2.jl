@@ -314,7 +314,7 @@ setupperbound(x[153],1.0e6)
 setupperbound(x[154],1.0e6)
 setupperbound(x[155],1.0e6)
 
-@objective(m, Min, x[304])
+@objective(m, Min, x[156])
 
 # Non-Linear Constraints
 @NLconstraint(m, e73,x[103]*x[108]-x[55]==0.0)
