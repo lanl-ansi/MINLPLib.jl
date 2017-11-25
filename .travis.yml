@@ -30,4 +30,5 @@ script:  # core code tests
 
 after_success:  # post-processing, if the script passes with no errors
   - echo $TRAVIS_JULIA_VERSION  # just useful to know what version of Julia was used
+  - julia -e 'Pkg.add("Documenter")'
   - julia -e 'cd(Pkg.dir("MINLPLibJuMP")); include(joinpath("docs", "make.jl"))'
