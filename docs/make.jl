@@ -29,7 +29,7 @@ makedocs(
 
 
 deploydocs(
-    repo = "github.com/lanl-ansi/MINLPLibJuMP.git",
+    repo = "github.com/lanl-ansi/MINLPLibJuMP.jl.git",
     target = "build",
     osname = "linux",
     julia  = "0.6",
