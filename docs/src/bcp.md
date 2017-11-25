@@ -1,12 +1,157 @@
-# MINLP Instance Library `bcp`
+# bcp
 
 ## Description
-Bound-constrained Programs
+Bound-constrained Programs. There are total `142` instance listed here. `4` instances returns
+error during testing in Julia Environment.
 
 ## Source
-
+These intances are recorded in a paper: Puranik, Y. and N. V. Sahinidis,
+Bounds tightening on optimality conditions for nonconvex box-constrained optimization,
+Journal of Global Optimization, 67, 59-77, 2017. Here is the
+[Paper Link](https://link.springer.com/article/10.1007/s10898-016-0491-8)
 
 ## Instance Stats
-
-| Name  | `LT`  | <!---SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS |--->
-|-------|-------|
+| NAME | LT | SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS | OTHERCONS |
+|------|----|-------|------|---------|---------|------|---------|--------|-----------|
+| 3pk | 1.18 | Min | 31 | 0 | 0 | 1 | 0 | 1 | 0 |
+| aircrftb | 1.05 | Min | 9 | 0 | 0 | 1 | 0 | 1 | 0 |
+| AluffiPentini | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| arglina | 221.79 | Min | 101 | 0 | 0 | 1 | 0 | 1 | 0 |
+| arglinb | 1.14 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| arglinc | 1.11 | Min | 9 | 0 | 0 | 1 | 0 | 1 | 0 |
+| arwhead | - | - | - | - | - | - | - | - | - |
+| bard | 1.04 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| bdexp | 65.66 | Min | 5001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| bdqrtic | 17.67 | Min | 1001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| beale | 1.0 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| BeckerLago | 1.04 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| biggs3 | 1.05 | Min | 7 | 0 | 0 | 1 | 0 | 1 | 0 |
+| biggs5 | 1.03 | Min | 7 | 0 | 0 | 1 | 0 | 1 | 0 |
+| biggs6 | 1.05 | Min | 7 | 0 | 0 | 1 | 0 | 1 | 0 |
+| biggsb1 | 2.24 | Min | 1001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| box2 | 1.01 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| box3 | 0.99 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| bqp1var | 1.0 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| bratu1d | 266.18 | Min | 1004 | 0 | 0 | 1 | 0 | 1 | 0 |
+| brownal | 0.99 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| brownbs | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| brownden | 1.05 | Min | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
+| brybnd | 699.13 | Min | 5001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| camel1 | 1.0 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| Camel3 | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| camel6 | 0.98 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| chainwoo | 5.35 | Min | 1000 | 0 | 0 | 1 | 0 | 1 | 0 |
+| chenhark | 4.89 | Min | 1001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| chnrosnb | 1.08 | Min | 51 | 0 | 0 | 1 | 0 | 1 | 0 |
+| cliff | 1.0 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| clplateb | 572.22 | Min | 5041 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha1 | 1.14 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha10 | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha11 | 1.11 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha12 | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha2 | 1.06 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha3 | 1.12 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha4 | 1.05 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha5 | 1.09 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha5a | 1.05 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha8 | 1.04 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| concha9 | 1.03 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| cube | 1.03 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| cvxbqp1 | 74.02 | Min | 10001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| DekkersAarts | 1.14 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| denschna | 0.97 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| denschnb | 1.0 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| denschnc | 1.07 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| denschnd | 1.01 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| denschne | 1.08 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| denschnf | 1.03 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaana | 11.13 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaanb | 45.91 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaanc | 46.71 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaand | 46.68 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaane | 16.39 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaanf | 59.51 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaang | 60.06 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaanh | 60.91 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaani | 16.04 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaanj | 60.88 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaank | 59.87 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixmaanl | 61.26 | Min | 3001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dixon3dq | 1.01 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dqdrtic | 51.11 | Min | 5001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| dqrtic | 20.05 | Min | 5001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| draper1 | 1.09 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| draperg | 0.99 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| draperj | 1.03 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| drapero | 1.02 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| eigena | 1.67 | Min | 111 | 0 | 0 | 1 | 0 | 1 | 0 |
+| eigenals | 2.67 | Min | 111 | 0 | 0 | 1 | 0 | 1 | 0 |
+| eigenb | 1.67 | Min | 111 | 0 | 0 | 1 | 0 | 1 | 0 |
+| eigenbls | 2.66 | Min | 111 | 0 | 0 | 1 | 0 | 1 | 0 |
+| emfl_eps | 5.87 | Min | 51 | 0 | 0 | 1 | 0 | 1 | 0 |
+| emfl_vareps | 6.69 | Min | 52 | 0 | 0 | 1 | 0 | 1 | 0 |
+| engval1 | - | - | - | - | - | - | - | - | - |
+| engval2 | 1.04 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| errinros | 1.15 | Min | 51 | 0 | 0 | 1 | 0 | 1 | 0 |
+| esfl | 5.98 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex005 | 1.03 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_1 | 1.0 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_2 | 1.05 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_3 | 1.0 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_4 | 1.0 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_5 | 0.99 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_6 | 1.0 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex4_1_7 | 1.08 | Min | 2 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex8_1_3 | 1.04 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex8_1_4 | 1.03 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex8_1_5 | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| ex8_1_6 | 0.97 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| explin | 1.07 | Min | 121 | 0 | 0 | 1 | 0 | 1 | 0 |
+| explin2 | 1.08 | Min | 121 | 0 | 0 | 1 | 0 | 1 | 0 |
+| Expo | 1.03 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| expquad | 2.16 | Min | 121 | 0 | 0 | 1 | 0 | 1 | 0 |
+| extrosnb | 0.97 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fermat2_eps | 1.0 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fermat2_vareps | 1.06 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fermat_eps | 1.04 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fermat_vareps | 1.05 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fletchcr | 1.26 | Min | 101 | 0 | 0 | 1 | 0 | 1 | 0 |
+| flosp2hm | 22.64 | Min | 692 | 0 | 0 | 1 | 0 | 1 | 0 |
+| flosp2tl | 22.63 | Min | 692 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fminsrf2 | 8.33 | Min | 1025 | 0 | 0 | 1 | 0 | 1 | 0 |
+| fminsurf | 8.53 | Min | 1025 | 0 | 0 | 1 | 0 | 1 | 0 |
+| genrose | 2.64 | Min | 501 | 0 | 0 | 1 | 0 | 1 | 0 |
+| gold | 0.99 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| GoldPrice | 1.05 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| gridneta | 1.2 | Min | 73 | 0 | 0 | 1 | 0 | 1 | 0 |
+| harkerp2 | 2.43 | Min | 101 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hart6 | 1.03 | Min | 7 | 0 | 0 | 1 | 0 | 1 | 0 |
+| Hartman3 | 1.11 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hatflda | 1.02 | Min | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hatfldb | 1.03 | Min | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hatfldc | 0.98 | Min | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hatfldd | 1.01 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hatflde | 1.06 | Min | 4 | 0 | 0 | 1 | 0 | 1 | 0 |
+| heart8ls | 1.06 | Min | 9 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hilberta | 1.0 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hilbertb | 1.82 | Min | 51 | 0 | 0 | 1 | 0 | 1 | 0 |
+| himmelbb | 1.02 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| himmelbg | 0.99 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| himmelbh | 1.06 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| himmelp1 | 1.03 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| Hosaki | 1.14 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs001 | 0.98 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs002 | 1.02 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs003 | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs004 | 1.0 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs038 | 1.09 | Min | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs045 | 1.01 | Min | 6 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs110 | 1.0 | Min | 11 | 0 | 0 | 1 | 0 | 1 | 0 |
+| hs3mod | 0.98 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| jbearing100 | - | - | - | - | - | - | - | - | - |
+| jbearing25 | 1433.46 | Min | 1405 | 0 | 0 | 1 | 0 | 1 | 0 |
+| jbearing75 | - | - | - | - | - | - | - | - | - |
+| jensmp | 1.01 | Min | 3 | 0 | 0 | 1 | 0 | 1 | 0 |
+| kowalik | 1.04 | Min | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
+| liarwhd | 247.55 | Min | 10001 | 0 | 0 | 1 | 0 | 1 | 0 |
+| lminsurf | 1160.08 | Min | 15626 | 0 | 0 | 1 | 0 | 1 | 0 |

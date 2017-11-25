@@ -1,6 +1,6 @@
 using MINLPLibJuMP
 
-LIBS = ["global", "ibm", "inf", "minlp","minlp2", "morg", "mpec", "mult3", "mult4","PODLib", "poly", "prince", "qcqp", "qcqp2","qcqp3"]
+LIBS = ["bcp","global", "ibm", "inf", "minlp","minlp2", "morg", "mpec", "mult3", "mult4","PODLib", "poly", "prince", "qcqp", "qcqp2","qcqp3"]
 
 function collect_loading(libname::AbstractString, dat::Dict)
     f = open(joinpath(Pkg.dir("MINLPLibJuMP"), "benchmark", "loading", "$(libname).dat"), "r")
@@ -8,7 +8,7 @@ function collect_loading(libname::AbstractString, dat::Dict)
         sl = split(l)
         d_idx = findfirst(sl, "/")
         i = sl[d_idx+1]
-        t = sl[d_idx+2]
+        t = parse(sl[d_idx+2])
         @assert sl[d_idx-1] == libname
         dat[i]["lt"] = t
     end
@@ -43,16 +43,19 @@ function generate_lib_page(libname::AbstractString)
     DAT = Dict(i => Dict() for i in names)
     DAT = collect_loading(libname, DAT)
     DAT = collect_dimension(libname, DAT)
-    write(f, "$(N)\n")
-    write(f, "|NAME|LT|SENSE|VARS|BINVARS|INTVARS|CONS|LINCONS|NLCONS|OTHERCONS|\n")
-    write(f, "|----|--|-----|----|-------|-------|----|-------|------|---------|\n")
+    write(f, "$(N)\n\n")
+    write(f, "| NAME | LT | SENSE | VAR | BINVAR | INTVAR | CON | LINCON | NLCONS | OTHERCONS |\n")
+    write(f, "|------|----|-------|-----|--------|--------|-----|--------|--------|-----------|\n")
+    err = 0
     for i in names
         try
-            write(f,"|i|$(DAT[i]["lt"])|$(DAT[i]["sense"])|$(DAT[i]["nvars"])|$(DAT[i]["nbinvars"])|$(DAT[i]["nintvars"])|$(DAT[i]["ncons"])|$(DAT[i]["nlincons"])|$(DAT[i]["nnlcons"])|$(DAT[i]["nothercons"])|\n")
+            write(f,"| $i | $(round(DAT[i]["lt"],2)) | $(DAT[i]["sense"]) | $(DAT[i]["nvars"]) | $(DAT[i]["nbinvars"]) | $(DAT[i]["nintvars"]) | $(DAT[i]["ncons"]) | $(DAT[i]["nlincons"]) | $(DAT[i]["nnlcons"]) | $(DAT[i]["nothercons"]) |\n")
         catch e
-            warn("Issue writing row entry of problem $i in $(libname)")
+            err += 1
+            write(f,"| $i | - | - | - | - | - | - | - | - | - |\n")
         end
     end
+    write(f, "\nERROR $(err)\n")
     close(f)
 end
 

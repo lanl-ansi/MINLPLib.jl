@@ -3,7 +3,6 @@ This is a library of Mixed-Integer Nonlinear Problems in the format of
 [JuMP](https://github.com/JuliaOpt/JuMP.jl) model. You can use the problems here
 to benchmark solvers and/or perform experiments easily. Most of the existing MINLP problems are stored in `.gms`,`.nl`,`.mod` format.
 Here instances are store in `.jl` format converted from these famous formats using [toJuMP.jl](https://github.com/jac0320/toJuMP.jl).
-Please see [this page](https://github.com/lanl-ansi/MINLPLibJuMP.jl/tree/master/instances) for more details of the instances included in this repo.
 
 ## Installation
 To install, at your `Julia` command prompt,
