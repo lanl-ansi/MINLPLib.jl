@@ -5,7 +5,6 @@ using JSON
 
 include("features.jl")
 
-# Compile all problem instances
 special_instances = ["multi3N", "multi4N", "multiKND", "eniplac", "simpleN", "circleN"]
 METAATTRS = ["LIBRARY", "NAME",
             "NVARS",

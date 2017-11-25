@@ -1,0 +1,33 @@
+language: julia
+os:
+  - linux
+julia:
+  - 0.6
+
+# this will save build time, once it is working
+cache:
+  directories:
+    - /home/travis/.julia
+sudo: false
+
+addons:
+  apt_packages:
+    - gfortran
+    - liblapack-dev
+    - libgmp-dev
+    - libglpk-dev
+
+before_install:
+    # don't keep an old version of the code in the cache
+  - julia -e 'if "MINLPLibJuMP" in keys(Pkg.installed()) Pkg.rm("MINLPLibJuMP"); Pkg.rm("MINLPLibJuMP") end'
+  - julia -e 'Pkg.update()' #make sure we get the latest version of METADATA
+  - julia -e 'if !("Documenter" in keys(Pkg.installed())) Pkg.add("Documenter") end'
+
+script:  # core code tests
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'Pkg.clone(pwd())'
+  - julia -e 'Pkg.test("MINLPLibJuMP")'
+
+after_success:  # post-processing, if the script passes with no errors
+  - echo $TRAVIS_JULIA_VERSION  # just useful to know what version of Julia was used
+  - julia -e 'cd(Pkg.dir("MINLPLibJuMP")); include(joinpath("docs", "make.jl"))'
