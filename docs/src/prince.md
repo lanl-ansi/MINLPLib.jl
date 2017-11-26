@@ -6,7 +6,7 @@ There are in total `889` instances.
 `20` instances returns error when loading.
 
 ## Source
-These instances are recorded in (PrincetonLib)[http://www.gamsworld.org/performance/princetonlib/princetonlib.htm]
+These instances are recorded in [PrincetonLib](http://www.gamsworld.org/performance/princetonlib/princetonlib.htm)
 
 ## Instance Stats
 | NAME | LT | SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS | OTHERCONS |

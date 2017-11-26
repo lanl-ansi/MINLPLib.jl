@@ -3,7 +3,7 @@
 Sor far, MINLPLibJuMP includes `16` libraries in `.jl` format converted from `.gms` format.
 Here is a simple chart showing the status of each instance libraries.
 
-| Lib Name   | Converted  | Unconverted | % |
+| Lib Name   | Converted  | All | % |
 |--------------------|--------|------|-------|
 | [PODLib](@ref)     | 82     | -    | -     |
 | [bcp](@ref)        | 143    | 327  | 43.7% |

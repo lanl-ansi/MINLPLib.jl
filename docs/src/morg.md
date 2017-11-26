@@ -6,7 +6,7 @@ There are `64` instances listed here.
 `1` instances return error when loading.
 
 ## Source
-These instances are recorded in (MINLP Cyber-Infrastructure)[http://www.minlp.org/].
+These instances are recorded in [MINLP Cyber-Infrastructure](http://www.minlp.org/).
 
 ## Instance Stats
 | NAME | LT | SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS | OTHERCONS |

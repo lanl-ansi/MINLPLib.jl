@@ -4,7 +4,7 @@
 Mathematical programs with complementarity constraints. There are in total `92` instances included here.
 
 ## Source
-These instances are recorded in (MPEC Library)[http://www.gamsworld.org/mpec/mpeclib.htm].
+These instances are recorded in [MPEC Library](http://www.gamsworld.org/mpec/mpeclib.htm).
 
 ## Instance Stats
 | NAME | LT | SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS | OTHERCONS |

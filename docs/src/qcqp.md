@@ -5,7 +5,7 @@ Quadratically constrained quadratic programs. There are in total `135` instances
 `9` instances returns error during loading.
 
 ## Source
-These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the (paper link)[https://link.springer.com/article/10.1007%2Fs10107-011-0462-2?LI=true].
+These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the [paper link](https://link.springer.com/article/10.1007%2Fs10107-011-0462-2?LI=true).
 
 ## Instance Stats
 | NAME | LT | SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS | OTHERCONS |
