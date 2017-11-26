@@ -6,7 +6,7 @@ There are in total `98` instances listed here.
 `5` instances return error during loading.
 
 ## Source
-There instances are repsorted in a paper: Reduced RLT representations for nonconvex polynomial programming problems. Here is the (paper link)[https://link.springer.com/article/10.1007%2Fs10898-011-9757-3?LI=true].
+There instances are repsorted in a paper: Reduced RLT representations for nonconvex polynomial programming problems. Here is the [paper link](https://link.springer.com/article/10.1007%2Fs10898-011-9757-3?LI=true).
 
 ## Instance Stats
 | NAME | LT | SENSE | VARS | BINVARS | INTVARS | CONS | LINCONS | NLCONS | OTHERCONS |
