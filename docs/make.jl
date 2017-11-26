@@ -4,7 +4,7 @@ makedocs(
     format = :html,
     sitename = "MINLPLibJuMP",
     pages = [
-        "Libraries Summary" => "libraries.md",
+        "Libraries Summary" => "index.md",
         "Libraries" => [
             "bcp" => "bcp.md",
             "global" => "global.md",
