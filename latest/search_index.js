@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Libraries Summary",
     "title": "MINLPLibJuMP Libraries",
     "category": "section",
-    "text": "Sor far, MINLPLibJuMP includes 16 libraries in .jl format converted from .gms format. Here is a simple chart showing the status of each instance libraries.Lib Name Converted Unconverted %\nPODLib 82 - -\nbcp 143 327 43.7%\nglobal 356 369 96.5%\nibm 142 142 100%\ninf 607 608 100%\nminlp 110 250 44.0%\nminlp2 1513 1527 99.1%\nmorg 66 67 98.5%\nmpec 92 92 100%\nmult3 120 120 100%\nmult4 100 100 100%\npoly 98 98 100%\nprince 893 980 91.1%\nqcqp 135 135 100%\nqcqp2 700 700 100%\nqcqp3 320 320 100%It important to obtain fair benchmark results that is justifiable for projects in academia or industry. Therefore, MINLPLibJuMP.jl values validation of the instances and record detail issues that causes unconverted instances, loading errors, or inaccurate results in the Issues page."
+    "text": "Sor far, MINLPLibJuMP includes 16 libraries in .jl format converted from .gms format. Here is a simple chart showing the status of each instance libraries.Lib Name Converted All %\nPODLib 82 - -\nbcp 143 327 43.7%\nglobal 356 369 96.5%\nibm 142 142 100%\ninf 607 608 100%\nminlp 110 250 44.0%\nminlp2 1513 1527 99.1%\nmorg 66 67 98.5%\nmpec 92 92 100%\nmult3 120 120 100%\nmult4 100 100 100%\npoly 98 98 100%\nprince 893 980 91.1%\nqcqp 135 135 100%\nqcqp2 700 700 100%\nqcqp3 320 320 100%It important to obtain fair benchmark results that is justifiable for projects in academia or industry. Therefore, MINLPLibJuMP.jl values validation of the instances and record detail issues that causes unconverted instances, loading errors, or inaccurate results in the Issues page."
 },
 
 {
@@ -285,7 +285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "morg",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in (MINLP Cyber-Infrastructure)[http://www.minlp.org/]."
+    "text": "These instances are recorded in MINLP Cyber-Infrastructure."
 },
 
 {
@@ -325,7 +325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "mpec",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in (MPEC Library)[http://www.gamsworld.org/mpec/mpeclib.htm]."
+    "text": "These instances are recorded in MPEC Library."
 },
 
 {
@@ -445,7 +445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "poly",
     "title": "Source",
     "category": "section",
-    "text": "There instances are repsorted in a paper: Reduced RLT representations for nonconvex polynomial programming problems. Here is the (paper link)[https://link.springer.com/article/10.1007%2Fs10898-011-9757-3?LI=true]."
+    "text": "There instances are repsorted in a paper: Reduced RLT representations for nonconvex polynomial programming problems. Here is the paper link."
 },
 
 {
@@ -485,7 +485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "pirnce",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in (PrincetonLib)[http://www.gamsworld.org/performance/princetonlib/princetonlib.htm]"
+    "text": "These instances are recorded in PrincetonLib"
 },
 
 {
@@ -525,7 +525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "qcqp",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the (paper link)[https://link.springer.com/article/10.1007%2Fs10107-011-0462-2?LI=true]."
+    "text": "These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the paper link."
 },
 
 {
@@ -565,7 +565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "qcqp2",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the (paper link)[https://link.springer.com/article/10.1007%2Fs10107-011-0462-2?LI=true]."
+    "text": "These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the paper link."
 },
 
 {
@@ -605,7 +605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "qcqp3",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the (paper link)[https://link.springer.com/article/10.1007%2Fs10107-011-0462-2?LI=true]."
+    "text": "These instances are recorded in a paper: Bao, X., N. V. Sahinidis and M. Tawarmalani, Semidefinite relaxations for quadratically constrained quadratic programming: A review and comparisons, Mathematical Programming, 129:129-157, 2011. Here is the paper link."
 },
 
 {
