@@ -405,7 +405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "mult4",
     "title": "Source",
     "category": "section",
-    "text": "These instances are recorded in a paper: Bao, X., A. Khajavirad, N. V. Sahinidis, and M. Tawarmalani, Global optimization of nonconvex problems with multilinear intermediates, Mathematical Programming Computation, 7, 1-37, 2015. Here is the (paper link)[https://link.springer.com/article/10.1007/s12532-014-0073-z]."
+    "text": "These instances are recorded in a paper: Bao, X., A. Khajavirad, N. V. Sahinidis, and M. Tawarmalani, Global optimization of nonconvex problems with multilinear intermediates, Mathematical Programming Computation, 7, 1-37, 2015. Here is the paper link."
 },
 
 {
