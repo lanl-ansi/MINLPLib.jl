@@ -42,8 +42,10 @@ function fetch_names(libname::AbstractString; postfix=false)
 end
 
 function build_basic_meta(libname::AbstractString, pname::AbstractString; injection::Bool=false)
-
+	
+	st = time()
     m = fetch_model(libname, pname)
+	lt = time() - st
 
     d = JuMP.NLPEvaluator(m)
     MathProgBase.initialize(d, [:Grad, :Jac, :HessVec, :Hess, :ExprGraph])
@@ -63,7 +65,8 @@ function build_basic_meta(libname::AbstractString, pname::AbstractString; inject
                 "NLOPERANDS"=> nothing,
                 "NVARS"=> m.numCols,
                 "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
-                "NBINVARS"=> length([i for i in m.colCat if i == :Bin]))
+                "NBINVARS"=> length([i for i in m.colCat if i == :Bin]),
+				"LOAD"=>lt)
 
     if injection
         warn("Meta injection is ON. Built-in meta info will be over-written!")
@@ -81,7 +84,7 @@ function show_basic_dimensions(libname::AbstractString, pname::AbstractString)
     !isfile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json") && error("No meta file detected.")
 
     m = JSON.parsefile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
-    println("$(libname) $(pname) $(m["OBJSENSE"]) $(m["NVARS"]) $(m["NBINVARS"]) $(m["NINTVARS"]) $(m["NCONS"]) $(m["NLINCONS"]) $(m["NNLCONS"]) $(m["NCONS"]-m["NLINCONS"]-m["NNLCONS"])")
+	println("$(libname) $(pname) $(m["LOAD"]) $(m["OBJSENSE"]) $(m["NVARS"]) $(m["NBINVARS"]) $(m["NINTVARS"]) $(m["NCONS"]) $(m["NLINCONS"]) $(m["NNLCONS"]) $(m["NCONS"]-m["NLINCONS"]-m["NNLCONS"])")
     return
 end
 
