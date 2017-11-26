@@ -8,6 +8,8 @@ x_Idx = Any[1, 3]
 i_Idx = Any[2]
 @variable(m, i[i_Idx])
 setcategory(i[2], :Int)
+setlowerbound(i[2], 0.0)
+setupperbound(i[2], 100.0)
 setlowerbound(i[2], 1.0)
 setupperbound(i[2], 100.0)
 setlowerbound(x[3], 0.135335283236612)
