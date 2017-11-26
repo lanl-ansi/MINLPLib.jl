@@ -1,7 +1,7 @@
 var documenterSearchIndex = {"docs": [
 
 {
-    "location": "libraries.html#",
+    "location": "index.html#",
     "page": "Libraries Summary",
     "title": "Libraries Summary",
     "category": "page",
@@ -9,7 +9,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "libraries.html#MINLPLibJuMP-Libraries-1",
+    "location": "index.html#MINLPLibJuMP-Libraries-1",
     "page": "Libraries Summary",
     "title": "MINLPLibJuMP Libraries",
     "category": "section",
