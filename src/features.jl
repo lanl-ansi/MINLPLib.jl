@@ -12,18 +12,17 @@ end
 
 fetch_model(libname::AbstractString, pname::AbstractString, options::Dict=Dict()) = fetch_model(joinpath(libname,pname), options)
 
-function fetch_meta(instance::AbstractString; showthem=false)
+function fetch_meta(instance::AbstractString)
     if !isfile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
         warn("No meta information for $(instance) found")
-        return false
+        return Dict()
     end
     m = JSON.parsefile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
 
-    for i in METAATTRS
-        showthem && info("$(i) => $(m[i])", prefix="MINLPLibJuMP: ")
-    end
     return m
 end
+
+fetch_meta(libname::AbstractString, pname::AbstractString) = fetch_meta(joinpath(libname,pname))
 
 function fetch_names(libname::AbstractString; postfix=false)
     !isdir("$(Pkg.dir())/MINLPLibJuMP/instances/$(libname)") && error("Library $(libname) does not exist.")

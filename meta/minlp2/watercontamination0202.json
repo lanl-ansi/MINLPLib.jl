@@ -1,1 +1,19 @@
-{"NINTVARS":0,"NLINCONS":107209,"OBJBOUND":null,"NAME":"watercontamination0202","OBJVAL":null,"LIBRARY":"minlp2","NCONS":107210,"NVARS":106712,"OBJTYPE":"linear","NLOPERANDS":null,"OBJSENSE":"Min","NSDPCONS":0,"NNLCONS":1,"NBINVARS":7,"NQUADCONS":0,"NSOSCONS":0}
+{
+    "NINTVARS": 0,
+    "NLINCONS": 107209,
+    "OBJBOUND": null,
+    "NAME": "watercontamination0202",
+    "OBJVAL": null,
+    "LIBRARY": "minlp2",
+    "NCONS": 107210,
+    "NVARS": 106712,
+    "OBJTYPE": "linear",
+    "NLOPERANDS": null,
+    "LOAD": 11.33859896659851,
+    "OBJSENSE": "Min",
+    "NSDPCONS": 0,
+    "NNLCONS": 1,
+    "NBINVARS": 7,
+    "NQUADCONS": 0,
+    "NSOSCONS": 0
+}

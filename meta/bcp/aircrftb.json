@@ -1,1 +1,22 @@
-{"NINTVARS":0,"NLINCONS":0,"OBJBOUND":null,"NAME":"aircrftb","OBJVAL":null,"LIBRARY":"bcp","NCONS":1,"NVARS":9,"OBJTYPE":"linear","NLOPERATOR":["mul"],"LOAD":1.0887808799743652,"NLOPERANDS":null,"OBJSENSE":"Min","NSDPCONS":0,"NNLCONS":1,"NBINVARS":0,"NQUADCONS":0,"NSOSCONS":0}
+{
+    "NINTVARS": 0,
+    "NLINCONS": 0,
+    "OBJBOUND": null,
+    "NAME": "aircrftb",
+    "OBJVAL": null,
+    "LIBRARY": "bcp",
+    "NCONS": 1,
+    "NVARS": 9,
+    "OBJTYPE": "linear",
+    "NLOPERATOR": [
+        "mul"
+    ],
+    "LOAD": 1.0887808799743652,
+    "NLOPERANDS": null,
+    "OBJSENSE": "Min",
+    "NSDPCONS": 0,
+    "NNLCONS": 1,
+    "NBINVARS": 0,
+    "NQUADCONS": 0,
+    "NSOSCONS": 0
+}
