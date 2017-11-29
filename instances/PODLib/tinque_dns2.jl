@@ -1,0 +1,1 @@
+include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","mpec", "tinque_dns2.jl"))

@@ -1,0 +1,1 @@
+include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","prince", "maxmineig1.jl"))

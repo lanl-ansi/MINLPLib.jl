@@ -1,0 +1,1 @@
+include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","morg", "generalizedpooling_meyer10.jl"))

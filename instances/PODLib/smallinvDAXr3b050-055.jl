@@ -1,0 +1,1 @@
+include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","minlp2", "smallinvDAXr3b050-055.jl"))

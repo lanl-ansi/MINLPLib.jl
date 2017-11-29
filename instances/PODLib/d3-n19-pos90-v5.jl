@@ -1,0 +1,1 @@
+include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","poly", "d3-n19-pos90-v5.jl"))
