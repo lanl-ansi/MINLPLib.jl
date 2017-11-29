@@ -63,3 +63,13 @@
     @test length(m.colVal) == 21
     @test length(m.linconstr) == 0
 end
+
+@testset "Basic Loading and Basic Dimension Measurement :: Special instances" begin
+    m = fetch_model("special", "multiKND")
+    @test length(m.colVal) == 5
+    @test length(m.linconstr) == 2
+
+    m = fetch_model("special", "multiKND", options=Dict(:K=>4, :N=>10))
+    @test length(m.colVal) == 31
+    @test length(m.linconstr) == 10
+end

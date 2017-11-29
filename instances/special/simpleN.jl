@@ -1,4 +1,4 @@
-function simpleN(options=Dict())
+function simpleN(;options=Dict())
 
     haskey(options, :N) ? N=options[:N] : N=2
 

@@ -1,3 +1,4 @@
+__precompile__()
 module MINLPLibJuMP
 
 using JuMP, MathProgBase
@@ -5,7 +6,6 @@ using JSON
 
 include("features.jl")
 
-special_instances = ["multi3N", "multi4N", "multiKND", "eniplac", "simpleN", "circleN"]
 METAATTRS = ["LIBRARY", "NAME",
             "NVARS",
             "NBINVARS", "NINTVARS", "NNLVARS",
@@ -16,9 +16,12 @@ METAATTRS = ["LIBRARY", "NAME",
             "OBJVAL", "OBJBOUND",
             "SOURCE"]
 
-for i in special_instances
-    include("$(Pkg.dir())/MINLPLibJuMP/instances/PODLib/$(i).jl")
-end
+PROTECTED_LIBS = ["bcp", "global", "ibm", "inf", "minlp",
+                  "minlp2", "morg", "mpec", "mult3", "mult4",
+                  "poly", "prince", "qcqp", "qcqp2", "qcqp3"]
+
+special_instances = readdir("$(Pkg.dir("MINLPLibJuMP"))/instances/special")
+for i in special_instances include("$(Pkg.dir("MINLPLibJuMP"))/instances/special/$(i)") end
 
 export fetch_model
 

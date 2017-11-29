@@ -1,8 +1,8 @@
-function multiKND(options=Dict())
+function multiKND(;options=Dict())
 
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
-	haskey(options, :N) ? N=options[:N] : N=1
-	haskey(options, :K) ? K=options[:K] : K=1
+	haskey(options, :N) ? N=options[:N] : N=2
+	haskey(options, :K) ? K=options[:K] : K=3
 	haskey(options, :D) ? D=options[:D] : D=1
 	haskey(options, :randomub) ? randomub=options[:randomub] : randomub=10
 

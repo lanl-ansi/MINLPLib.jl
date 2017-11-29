@@ -1,4 +1,4 @@
-function multi3N(options=Dict())
+function multi3N(;options=Dict())
 
 	haskey(options, :exprmode) ? exprmode=options[:exprmode] : exprmode=1
 	haskey(options, :N) ? N=options[:N] : N=1
