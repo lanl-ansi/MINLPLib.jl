@@ -71,7 +71,7 @@ function build_basic_meta(libname::AbstractString, pname::AbstractString; inject
                 "NQUADCONS" => length(m.quadconstr),
                 "NNLCONS" => length(d.constraints),
                 "NAME"=> pname,
-                "NLOPERANDS"=> ["mul"],
+                "NLOPERANDS"=> [],  # TODO: introduce the expression sweeper here
                 "NVARS"=> m.numCols,
                 "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
                 "NBINVARS"=> length([i for i in m.colCat if i == :Bin]),
