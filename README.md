@@ -53,7 +53,8 @@ Subject to
 ```
 
 ## Viewing instance's meta info
-To know the instance better,
+To know a instance better, you can do the following to get a dictionary of meta info.
+Note that as we continue to develop and test. More verified attributes will be added to the meta.
 ```
 julia> meta = MINLPLibJuMP.fetch_meta("minlp2", "blend029")
 Dict{String,Any} with 18 entries:
@@ -76,17 +77,14 @@ Dict{String,Any} with 18 entries:
   "NSOSCONS"   => 0
 ```
 
-## Build your own reference library
+
+## Build your own instance library
 Currently, MINLPLibJuMP.jl contains over 6000 instances. Experimenting with all
-these instances can be computationally heavy and risky given the uncertain conditions
-might happen due to a variety of issues. For research projects, the scope is usually
-limited on a specific type of problems rather than all of them. Hence, it is necessary
-to construct you very own library for your very own experiments. The existing libraries
-can often be a mixture of different category problems and the characteristics of one library
-is very broad. Below, we write a small `.jl` script that will generate a reference library (
-without actually copying the problem) called `USERLib` that collect all instances with
-`exp` function in the constraints. The directory will be created with name `USERLib` under
-`instances`.
+of them can be computationally heavy and risky. For research projects, the scope is usually
+limited to a specific type of problems. Hence, it is necessary to construct you very own
+library for your very own experiments. Below, we write a small `.jl` script that will generate a
+user instance library (without actually copying the problem) called `USERLib` that collect all instances with
+`exp` function. The directory will be created with name `instance/USERLib`.
 
 ```
 using MINLPLibJuMP
