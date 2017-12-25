@@ -1,1 +1,0 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","qcqp2", "g2_020_020_002_75_3.jl"))

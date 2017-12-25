@@ -168,6 +168,27 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
     return
 end
 
+function remove_from_lib(libname::AbstractString, pname::AbstractString)
+
+    # Library protection
+    if libname in PROTECTED_LIBS
+        error("Cannot remote instances from protected libraries $(libname)")
+        return
+    end
+
+    # Finding instance
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "instances",libname, "$(pname).jl"))
+        warn("No instances detected to remote.")
+        return
+    end
+
+    # Removing instance
+    warn("Removing instance $(pname) from library $(libname)")
+    rm(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", libname, "$(pname).jl"))
+
+    return
+end
+
 function convert_minlplib2_meta(pname::AbstractString; outputpath="")
 
     if !isfile("$(Pkg.dir())/MINLPLibJuMP/.solvedata/minlplib2/$(pname).prop")
