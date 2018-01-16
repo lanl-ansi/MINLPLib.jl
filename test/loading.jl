@@ -39,10 +39,6 @@
     @test length(m.colVal) == 11
     @test length(m.linconstr) == 0
 
-    m = fetch_model("PODLib", "blend029")
-    @test length(m.colVal) == 102
-    @test length(m.linconstr) == 201
-
     m = fetch_model("poly/d2-n30-pos10-v1")
     @test length(m.colVal) == 31
     @test length(m.linconstr) == 8
