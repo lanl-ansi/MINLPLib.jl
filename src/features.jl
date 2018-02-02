@@ -143,7 +143,7 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
 
     # First check if there is actually the library
     if !isdir(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", tolib))
-        warn("Building user-library $(tolib)...")
+        info("Initializing user-library $(tolib)...")
         mkdir(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", tolib))
     end
 
@@ -155,8 +155,15 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
 
     # Check if the source instance exist or not
     if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", fromlib, "$(pname).jl"))
-        warn("Instance $(pname) not detected in library $(fromlib). Not doing anything...")
+        warn("Instance $(pname) is not detected in library $(fromlib). Not doing anything...")
         return
+    end
+
+    # Check if the source meta exist or not
+    nometa = false
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", fromlib, "$(pname).json"))
+        warn("Instance $(pname) meta info missing in library $(fromlib). Carry on without meta info...")
+        nometa = true
     end
 
     # Adding the instance
@@ -164,6 +171,12 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
     write(f, "include(joinpath(Pkg.dir(\"MINLPLibJuMP\"),\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
     close(f)
     println("Successfully added instance $(fromlib)/$(pname) to library $(tolib)...")
+
+    if !nometa
+        srcjson = joinpath(Pkg.dir("MINLPLibJuMP"), "meta", fromlib, "$(pname).json")
+        desjson = joinpath(Pkg.dir("MINLPLibJuMP"), "meta", tolib, "$(pname).json")
+        cp(srcjson, desjson)
+    end
 
     return
 end
@@ -182,9 +195,30 @@ function remove_from_lib(libname::AbstractString, pname::AbstractString)
         return
     end
 
+    nometa = false
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(pname).json"))
+        warn("No meta detected to remote.")
+        nometa = true
+    end
+
     # Removing instance
     warn("Removing instance $(pname) from library $(libname)")
     rm(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", libname, "$(pname).jl"))
+    nometa || rm(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(pname).json"))
+
+    return
+end
+
+function clean_lib_meta(libname::AbstractString)
+
+    names = fetch_names("PODLib")
+    metas = Glob.glob("*.json", joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname))
+
+    for i in metas
+        n = replace(splitdir(i)[end], ".json", "")
+        n in names || rm(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(n).json",))
+        info("Cleaning $(n).json meta from library $(libname)")
+    end
 
     return
 end
