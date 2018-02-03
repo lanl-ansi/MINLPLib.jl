@@ -73,3 +73,21 @@ end
     @test length(m.colVal) == 31
     @test length(m.linconstr) == 10
 end
+
+@testset "Built-in functions testing" begin
+
+    @test length(MINLPLibJuMP.fetch_names("ibm")) == 142
+
+    MINLPLibJuMP.add_to_lib("testlib", "minlp2", "blend029")
+
+    @test isdir(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","testlib"))
+
+    m = fetch_model("testlib", "blend029")
+
+    @test length(m.colVal) == 103
+    @test length(m.linconstr) == 202
+
+    f = MINLPLibJuMP.fetch_meta("testlib", "blend029")
+    @test !haskey(f, "INTERNALLINK")
+
+end
