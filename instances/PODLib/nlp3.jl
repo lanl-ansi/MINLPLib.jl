@@ -29,6 +29,6 @@ setupperbound(x[8], 1000)
 @NLconstraint(m, x[2]*x[4] - x[2]*x[7] - 1250*x[4] + 1250*x[5] <= 0)
 @NLconstraint(m, x[3]*x[5] - x[3]*x[8] - 2500*x[5] + 1250000 <= 0)
 
-@objective(m, Min, x[1]+x[2]+x[3])
+@objective(m, Min, x[1]+x[2]+x[3] - 50)
 
 m = m
