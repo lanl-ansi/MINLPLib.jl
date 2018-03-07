@@ -129,7 +129,7 @@ setupperbound(x[61], 100000.0)
 
 
 # ----- Constraints ----- #
-@constraint(m, e1, objvar-x[2]-x[3]-x[4]-x[5]-x[6]-x[7]-x[8]-x[9]-x[10]-x[11]-x[12]-x[13] == 0.0)
+@NLconstraint(m, e1, objvar-x[2]-x[3]-x[4]-x[5]-x[6]-x[7]-x[8]-x[9]-x[10]-x[11]-x[12]-x[13] == 0.0)
 @constraint(m, e2, -x[2]-x[6]-x[10]+x[14]-x[22]-x[26]-x[30]-x[34] == 0.0)
 @constraint(m, e3, -x[3]-x[7]-x[11]+x[15]-x[23]-x[27]-x[31]-x[35] == 0.0)
 @constraint(m, e4, -x[4]-x[8]-x[12]+x[16]-x[24]-x[28]-x[32]-x[36] == 0.0)
