@@ -1,20 +1,20 @@
 using JuMP
 
-m = Model()
+m = Model();srand(12283919);
 
 # ----- Variables ----- #
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 @variable(m, x[x_Idx])
-setlowerbound(x[5], 0.1)
-setlowerbound(x[9], 0.1)
-setlowerbound(x[1], 0.1)
-setlowerbound(x[7], 0.1)
-setlowerbound(x[8], 0.1)
-setlowerbound(x[4], 0.1)
-setlowerbound(x[2], 0.1)
-setlowerbound(x[6], 0.1)
-setlowerbound(x[10], 0.1)
-setlowerbound(x[3], 0.1)
+setlowerbound(x[5], 0.1 + 0.1*rand())
+setlowerbound(x[9], 0.1 + 0.1*rand())
+setlowerbound(x[1], 0.1 + 0.1*rand())
+setlowerbound(x[7], 0.1 + 0.1*rand())
+setlowerbound(x[8], 0.1 + 0.1*rand())
+setlowerbound(x[4], 0.1 + 0.1*rand())
+setlowerbound(x[2], 0.1 + 0.1*rand())
+setlowerbound(x[6], 0.1 + 0.1*rand())
+setlowerbound(x[10], 0.1 + 0.1*rand())
+setlowerbound(x[3], 0.1 + 0.1*rand())
 setupperbound(x[1], 1.0)
 setupperbound(x[2], 1.0)
 setupperbound(x[3], 1.0)
@@ -34,4 +34,4 @@ setupperbound(x[10], 1.0)
 # ----- Objective ----- #
 @objective(m, Min, x[11])
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.
