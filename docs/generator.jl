@@ -4,7 +4,7 @@ LIBS = ["bcp","global", "ibm", "inf", "minlp",
         "minlp2", "morg", "mpec", "mult3", "mult4",
         "PODLib", "poly", "prince", "qcqp", "qcqp2",
         "qcqp3"]
-
+LIBS = ["PODLib"]
 function collect_dimension(libname::AbstractString, dat::Dict)
 
     names = MINLPLibJuMP.fetch_names(libname)

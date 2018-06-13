@@ -81,7 +81,7 @@ setupperbound(x[36], 2.0)
 
 
 # ----- Constraints ----- #
-@constraint(m, e1,  (x[1])^2+ (x[2])^2+ (x[3])^2 == 4.0)
+@NLconstraint(m, e1,  (x[1])^2+ (x[2])^2+ (x[3])^2 == 4.0)
 @constraint(m, e2,  (x[4])^2+ (x[5])^2+ (x[6])^2 == 4.0)
 @constraint(m, e3,  (x[7])^2+ (x[8])^2+ (x[9])^2 == 4.0)
 @constraint(m, e4,  (x[10])^2+ (x[11])^2+ (x[12])^2 == 4.0)
@@ -164,4 +164,4 @@ setupperbound(x[36], 2.0)
 # ----- Objective ----- #
 @objective(m, Max, objvar)
 
-m = m
+m = m 		 # model get returned when including this script.

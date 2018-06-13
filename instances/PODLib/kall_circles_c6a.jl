@@ -6,6 +6,26 @@ m = Model()
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 @variable(m, x[x_Idx])
+
+# setvalue(x[1], 8.36348)
+# setvalue(x[2], 0.5)
+# setvalue(x[3], 0.5)
+# setvalue(x[4], 0.5)
+# setvalue(x[5], 1.5)
+# setvalue(x[6], 2.68174)
+# setvalue(x[7], 1.5)
+# setvalue(x[8], 2.68174)
+# setvalue(x[9], 0.5)
+# setvalue(x[10], 3.68174)
+# setvalue(x[11], 1.5)
+# setvalue(x[12], 3.68174)
+# setvalue(x[13], 0.5)
+# setvalue(x[14], 1.59087)
+# setvalue(x[15], 1.0)
+# setvalue(x[16], 4.18174)
+# setvalue(x[17], 2.0)
+
+
 setlowerbound(x[16], 0.0)
 setlowerbound(x[17], 0.0)
 setlowerbound(x[1], 0.49)
@@ -40,13 +60,13 @@ setlowerbound(x[15], 0.7)
 setupperbound(x[15], 2.2)
 setupperbound(x[16], 8.0)
 setupperbound(x[17], 2.9)
-setlowerbound(objvar, 0.0)
+setlowerbound(objvar, 1.0)
 setupperbound(objvar, 23.2)
 
 
 # ----- Constraints ----- #
 @constraint(m, e1, -x[1]+objvar == -6.25176938064369)
-@constraint(m, e2, -x[16]*x[17]+x[1] == 0.0)
+@NLconstraint(m, e2, -x[16]*x[17]+x[1] == 0.0)
 @constraint(m, e3, (x[2]-x[4])*(x[2]-x[4])+(x[3]-x[5])*(x[3]-x[5]) >= 1.0)
 @constraint(m, e4, (x[2]-x[6])*(x[2]-x[6])+(x[3]-x[7])*(x[3]-x[7]) >= 1.0)
 @constraint(m, e5, (x[2]-x[8])*(x[2]-x[8])+(x[3]-x[9])*(x[3]-x[9]) >= 1.0)
@@ -104,4 +124,4 @@ setupperbound(objvar, 23.2)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m
+m = m 		 # model get returned when including this script.

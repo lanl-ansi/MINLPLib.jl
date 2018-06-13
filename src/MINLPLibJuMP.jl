@@ -2,7 +2,7 @@ __precompile__()
 module MINLPLibJuMP
 
 using JuMP, MathProgBase
-using JSON
+using JSON, Glob
 
 include("features.jl")
 
