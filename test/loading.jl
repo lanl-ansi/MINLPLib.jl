@@ -90,4 +90,7 @@ end
     f = MINLPLibJuMP.fetch_meta("testlib", "blend029")
     @test !haskey(f, "INTERNALLINK")
 
+    rm(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","testlib"),recursive=true)
+    rm(joinpath(Pkg.dir("MINLPLibJuMP"),"meta","testlib"),recursive=true)
+
 end
