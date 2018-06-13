@@ -28,6 +28,7 @@ function fetch_meta(instance::AbstractString)
 
     if haskey(m, "INTERNALLINK")
         sourcelib = m["INTERNALLINK"]
+        isempty(sourcelib) && return Dict()
         pname = splitdir(instance)[end]
         return JSON.parsefile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", sourcelib, "$(pname).json"))
     end
@@ -89,9 +90,8 @@ function build_basic_meta(libname::AbstractString, pname::AbstractString; inject
 
     if injection
         warn("Meta injection is ON. Built-in meta info will be over-written!")
-
         !isdir(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname)) && mkdir(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname))
-        f = open(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", "$(pname).json"), "w")
+        f = open(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(pname).json"), "w")
         JSON.print(f, meta)
         close(f)
         return
@@ -111,10 +111,9 @@ end
 
 function add_to_meta(libname::AbstractString, pname::AbstractString, attributename::AbstractString, attributevalue::Any; injection::Bool=false)
 
-    tarf_path = "$(Pkg.dir("MINLPLibJuMP"))/instances/$(libname)/$(pname).tar.gz"
     jlf_path = "$(Pkg.dir("MINLPLibJuMP"))/instances/$(libname)/$(pname).jl"
 
-    if !isfile(tarf_path) && !isfile(jlf_path)
+    if !isfile(jlf_path)
         error("No problem $(libname)/$(pname) detected...")
     end
 
