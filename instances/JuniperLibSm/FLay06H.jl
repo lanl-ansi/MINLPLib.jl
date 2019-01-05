@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","ibm", "FLay06H.jl"))
+using MINLPLibJuMP; include(joinpath(dirname(pathof(MINLPLibJuMP)),"..","instances","ibm", "FLay06H.jl"))

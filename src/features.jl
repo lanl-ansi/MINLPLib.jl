@@ -5,8 +5,8 @@ function fetch_model(instance::AbstractString;options::Dict=Dict())
 
     if "$(pname).jl" in special_instances
         m = eval(parse(pname))(options=options)
-    elseif isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", "$(nakeinstance).jl"))
-        m = include(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", "$(nakeinstance).jl"))
+    elseif isfile(joinpath(minlp_dir, "instances", "$(nakeinstance).jl"))
+        m = include(joinpath(minlp_dir, "instances", "$(nakeinstance).jl"))
     else
         warn("No instances detected...")
         return nothing
@@ -46,7 +46,7 @@ function fetch_names(libname::AbstractString; postfix=false)
 end
 
 function fetch_lib_names()
-    libs = readdir("$(Pkg.dir("MINLPLibJuMP"))/instances")
+    libs = readdir("$(minlp_dir)/instances")
     return [i for i in libs if i != "special"]
 end
 
@@ -79,8 +79,8 @@ function build_basic_meta(libname::AbstractString, pname::AbstractString; inject
 
     if injection
         warn("Meta injection is ON. Built-in meta info will be over-written!")
-        !isdir("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)") && mkdir("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)")
-        f = open("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json", "w")
+        !isdir("$(minlp_dir)/meta/$(libname)") && mkdir("$(minlp_dir)/meta/$(libname)")
+        f = open("$(minlp_dir)/meta/$(libname)/$(pname).json", "w")
         JSON.print(f, meta)
         close(f)
         return
@@ -91,33 +91,33 @@ end
 
 function show_basic_dimensions(libname::AbstractString, pname::AbstractString)
 
-    !isfile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json") && error("No meta file detected...")
+    !isfile("$(minlp_dir)/meta/$(libname)/$(pname).json") && error("No meta file detected...")
 
-    m = JSON.parsefile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
+    m = JSON.parsefile("$(minlp_dir)/meta/$(libname)/$(pname).json")
 	println("$(libname) $(pname) $(m["LOAD"]) $(m["OBJSENSE"]) $(m["NVARS"]) $(m["NBINVARS"]) $(m["NINTVARS"]) $(m["NCONS"]) $(m["NLINCONS"]) $(m["NNLCONS"]) $(m["NCONS"]-m["NLINCONS"]-m["NNLCONS"])")
     return
 end
 
 function add_to_meta(libname::AbstractString, pname::AbstractString, attributename::AbstractString, attributevalue::Any; injection::Bool=false)
 
-    tarf_path = "$(Pkg.dir("MINLPLibJuMP"))/instances/$(libname)/$(pname).tar.gz"
-    jlf_path = "$(Pkg.dir("MINLPLibJuMP"))/instances/$(libname)/$(pname).jl"
+    tarf_path = "$(minlp_dir)/instances/$(libname)/$(pname).tar.gz"
+    jlf_path = "$(minlp_dir)/instances/$(libname)/$(pname).jl"
 
     if !isfile(tarf_path) && !isfile(jlf_path)
         error("No problem $(libname)/$(pname) detected...")
     end
 
     # Even with the instance file, meta file can still be missing
-    if !isfile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
+    if !isfile("$(minlp_dir)/meta/$(libname)/$(pname).json")
         meta = Dict()
     else
-        meta = JSON.parsefile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
+        meta = JSON.parsefile("$(minlp_dir)/meta/$(libname)/$(pname).json")
     end
     meta[attributename] = attributevalue
     if injection
         warn("Meta injection is ON. Built-in meta info will be over-written!")
-        isfile("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json") && rm("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json")
-        f = open("$(Pkg.dir("MINLPLibJuMP"))/meta/$(libname)/$(pname).json", "w")
+        isfile("$(minlp_dir)/meta/$(libname)/$(pname).json") && rm("$(minlp_dir)/meta/$(libname)/$(pname).json")
+        f = open("$(minlp_dir)/meta/$(libname)/$(pname).json", "w")
         JSON.print(f, meta)
         close(f)
         return
@@ -142,25 +142,25 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
     isempty(pname) && error("Issue recognizing instance name from string $(instance)...")
 
     # First check if there is actually the library
-    if !isdir(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", tolib))
+    if !isdir(joinpath(minlp_dir, "instances", tolib))
         warn("Building user-library $(tolib)...")
-        mkdir(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", tolib))
+        mkdir(joinpath(minlp_dir, "instances", tolib))
     end
 
     # Then check is the intaking lib is already there.
-    if isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", tolib, "$(pname).jl"))
+    if isfile(joinpath(minlp_dir, "instances", tolib, "$(pname).jl"))
         warn("Instance $(pname) already exist in in-take library $(tolib). Not doing anything...")
         return
     end
 
     # Check if the source instance exist or not
-    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", fromlib, "$(pname).jl"))
+    if !isfile(joinpath(minlp_dir, "instances", fromlib, "$(pname).jl"))
         warn("Instance $(pname) not detected in library $(fromlib). Not doing anything...")
         return
     end
 
     # Adding the instance
-    f = open(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", tolib, "$(pname).jl"), "w")
+    f = open(joinpath(minlp_dir, "instances", tolib, "$(pname).jl"), "w")
     write(f, "include(joinpath(Pkg.dir(\"MINLPLibJuMP\"),\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
     close(f)
     println("Successfully added instance $(fromlib)/$(pname) to library $(tolib)...")

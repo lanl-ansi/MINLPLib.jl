@@ -4,6 +4,8 @@ module MINLPLibJuMP
 using JuMP, MathProgBase
 using JSON
 
+minlp_dir = joinpath(dirname(pathof(MINLPLibJuMP)),"..")
+
 include("features.jl")
 
 METAATTRS = ["LIBRARY", "NAME",
@@ -20,8 +22,8 @@ PROTECTED_LIBS = ["bcp", "global", "ibm", "inf", "minlp",
                   "minlp2", "morg", "mpec", "mult3", "mult4",
                   "poly", "prince", "qcqp", "qcqp2", "qcqp3"]
 
-special_instances = readdir("$(Pkg.dir("MINLPLibJuMP"))/instances/special")
-for i in special_instances include("$(Pkg.dir("MINLPLibJuMP"))/instances/special/$(i)") end
+special_instances = readdir("$(minlp_dir)/instances/special")
+for i in special_instances include("$(minlp_dir)/instances/special/$(i)") end
 
 export fetch_model
 
