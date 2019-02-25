@@ -8,20 +8,20 @@ x_Idx = Any[3, 4, 5, 6, 7, 8]
 @variable(m, x[x_Idx])
 i_Idx = Any[1, 2]
 @variable(m, i[i_Idx])
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
-setlowerbound(i[1], 1.0)
-setupperbound(i[1], 200.0)
-setlowerbound(i[2], 1.0)
-setupperbound(i[2], 200.0)
-setlowerbound(x[3], 0.01)
-setupperbound(x[3], 200.0)
-setlowerbound(x[4], 0.01)
-setupperbound(x[4], 200.0)
+set_integer(i[1])
+set_lower_bound(i[1], 0.0)
+set_upper_bound(i[1], 100.0)
+set_integer(i[2])
+set_lower_bound(i[2], 0.0)
+set_upper_bound(i[2], 100.0)
+set_lower_bound(i[1], 1.0)
+set_upper_bound(i[1], 200.0)
+set_lower_bound(i[2], 1.0)
+set_upper_bound(i[2], 200.0)
+set_lower_bound(x[3], 0.01)
+set_upper_bound(x[3], 200.0)
+set_lower_bound(x[4], 0.01)
+set_upper_bound(x[4], 200.0)
 
 
 # ----- Constraints ----- #
@@ -40,4 +40,4 @@ setupperbound(x[4], 200.0)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

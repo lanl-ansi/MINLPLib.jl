@@ -5,22 +5,22 @@ m = Model()
 # ----- Variables ----- #
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9]
 @variable(m, x[x_Idx])
-setlowerbound(x[1], 0.399278843605)
-setupperbound(x[1], 0.399278843605)
-setlowerbound(x[2], 1.407367982504)
-setupperbound(x[2], 1.407367982504)
-setlowerbound(x[3], 5.282312418082)
-setupperbound(x[3], 5.282312418082)
-setlowerbound(x[4], 0.164150759132)
-setupperbound(x[4], 0.164150759132)
-setlowerbound(x[5], 0.288709195158)
-setupperbound(x[5], 0.288709195158)
-setlowerbound(x[6], 0.23411814164)
-setupperbound(x[6], 0.23411814164)
-setlowerbound(x[7], 0.274781680514)
-setupperbound(x[7], 0.274781680514)
-setlowerbound(x[8], 0.388708555666)
-setupperbound(x[8], 0.388708555666)
+set_lower_bound(x[1], 0.399278843605)
+set_upper_bound(x[1], 0.399278843605)
+set_lower_bound(x[2], 1.407367982504)
+set_upper_bound(x[2], 1.407367982504)
+set_lower_bound(x[3], 5.282312418082)
+set_upper_bound(x[3], 5.282312418082)
+set_lower_bound(x[4], 0.164150759132)
+set_upper_bound(x[4], 0.164150759132)
+set_lower_bound(x[5], 0.288709195158)
+set_upper_bound(x[5], 0.288709195158)
+set_lower_bound(x[6], 0.23411814164)
+set_upper_bound(x[6], 0.23411814164)
+set_lower_bound(x[7], 0.274781680514)
+set_upper_bound(x[7], 0.274781680514)
+set_lower_bound(x[8], 0.388708555666)
+set_upper_bound(x[8], 0.388708555666)
 
 
 # ----- Constraints ----- #
@@ -36,4 +36,4 @@ setupperbound(x[8], 0.388708555666)
 # ----- Objective ----- #
 @objective(m, Min, x[9])
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

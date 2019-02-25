@@ -8,15 +8,15 @@ x_Idx = Any[1, 2, 3]
 @variable(m, x[x_Idx])
 b_Idx = Any[4, 5, 6]
 @variable(m, b[b_Idx])
-setlowerbound(x[1], 0.0)
-setcategory(b[4], :Bin)
-setlowerbound(x[2], 0.0)
-setcategory(b[6], :Bin)
-setlowerbound(x[3], 0.0)
-setcategory(b[5], :Bin)
-setupperbound(x[1], 2.0)
-setupperbound(x[2], 2.0)
-setupperbound(x[3], 1.0)
+set_lower_bound(x[1], 0.0)
+set_binary(b[4])
+set_lower_bound(x[2], 0.0)
+set_binary(b[6])
+set_lower_bound(x[3], 0.0)
+set_binary(b[5])
+set_upper_bound(x[1], 2.0)
+set_upper_bound(x[2], 2.0)
+set_upper_bound(x[3], 1.0)
 
 
 # ----- Constraints ----- #
@@ -32,4 +32,4 @@ setupperbound(x[3], 1.0)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

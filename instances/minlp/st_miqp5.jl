@@ -8,24 +8,24 @@ x_Idx = Any[3, 4, 5, 6, 7]
 @variable(m, x[x_Idx])
 i_Idx = Any[1, 2]
 @variable(m, i[i_Idx])
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
-setupperbound(i[1], 1.0)
-setupperbound(i[2], 1.0)
-setlowerbound(x[3], -7.24380468458)
-setupperbound(x[3], 22.6826188429)
-setlowerbound(x[4], -6.0023781122)
-setupperbound(x[4], 3.80464419615)
-setlowerbound(x[5], -0.797166188733)
-setupperbound(x[5], 11.5189336042)
-setlowerbound(x[6], -8.75189948987)
-setupperbound(x[6], 14.5864991498)
-setlowerbound(x[7], 8.98296319621e-17)
-setupperbound(x[7], 19.4187214575)
+set_integer(i[1])
+set_lower_bound(i[1], 0.0)
+set_upper_bound(i[1], 100.0)
+set_integer(i[2])
+set_lower_bound(i[2], 0.0)
+set_upper_bound(i[2], 100.0)
+set_upper_bound(i[1], 1.0)
+set_upper_bound(i[2], 1.0)
+set_lower_bound(x[3], -7.24380468458)
+set_upper_bound(x[3], 22.6826188429)
+set_lower_bound(x[4], -6.0023781122)
+set_upper_bound(x[4], 3.80464419615)
+set_lower_bound(x[5], -0.797166188733)
+set_upper_bound(x[5], 11.5189336042)
+set_lower_bound(x[6], -8.75189948987)
+set_upper_bound(x[6], 14.5864991498)
+set_lower_bound(x[7], 8.98296319621e-17)
+set_upper_bound(x[7], 19.4187214575)
 
 
 # ----- Constraints ----- #
@@ -48,4 +48,4 @@ setupperbound(x[7], 19.4187214575)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.
