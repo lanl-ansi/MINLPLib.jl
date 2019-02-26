@@ -6,18 +6,18 @@ m = Model()
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4, 5, 6]
 @variable(m, x[x_Idx])
-setlowerbound(x[5], 0.0)
-setlowerbound(x[1], 0.0)
-setlowerbound(x[4], 0.0)
-setlowerbound(x[2], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[3], 0.0)
-setupperbound(x[1], 0.31)
-setupperbound(x[2], 0.046)
-setupperbound(x[3], 0.068)
-setupperbound(x[4], 0.042)
-setupperbound(x[5], 0.028)
-setupperbound(x[6], 0.0134)
+set_lower_bound(x[5], 0.0)
+set_lower_bound(x[1], 0.0)
+set_lower_bound(x[4], 0.0)
+set_lower_bound(x[2], 0.0)
+set_lower_bound(x[6], 0.0)
+set_lower_bound(x[3], 0.0)
+set_upper_bound(x[1], 0.31)
+set_upper_bound(x[2], 0.046)
+set_upper_bound(x[3], 0.068)
+set_upper_bound(x[4], 0.042)
+set_upper_bound(x[5], 0.028)
+set_upper_bound(x[6], 0.0134)
 
 
 # ----- Constraints ----- #
@@ -31,4 +31,4 @@ setupperbound(x[6], 0.0134)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

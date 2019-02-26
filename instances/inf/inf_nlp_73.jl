@@ -5,21 +5,21 @@ m = Model()
 # ----- Variables ----- #
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 @variable(m, x[x_Idx])
-setlowerbound(x[16], 0.0)
-setlowerbound(x[14], 0.0)
-setlowerbound(x[17], 0.0)
-setlowerbound(x[11], 0.0)
-setlowerbound(x[12], 0.0)
-setlowerbound(x[19], 0.0)
-setlowerbound(x[20], 0.0)
-setlowerbound(x[18], 0.0)
-setlowerbound(x[9], 0.0)
-setlowerbound(x[15], 0.0)
-setlowerbound(x[8], 0.0)
-setlowerbound(x[7], 0.0)
-setlowerbound(x[13], 0.0)
-setlowerbound(x[21], 0.0)
-setlowerbound(x[10], 0.0)
+set_lower_bound(x[16], 0.0)
+set_lower_bound(x[14], 0.0)
+set_lower_bound(x[17], 0.0)
+set_lower_bound(x[11], 0.0)
+set_lower_bound(x[12], 0.0)
+set_lower_bound(x[19], 0.0)
+set_lower_bound(x[20], 0.0)
+set_lower_bound(x[18], 0.0)
+set_lower_bound(x[9], 0.0)
+set_lower_bound(x[15], 0.0)
+set_lower_bound(x[8], 0.0)
+set_lower_bound(x[7], 0.0)
+set_lower_bound(x[13], 0.0)
+set_lower_bound(x[21], 0.0)
+set_lower_bound(x[10], 0.0)
 
 
 # ----- Constraints ----- #
@@ -60,4 +60,4 @@ setlowerbound(x[10], 0.0)
 # ----- Objective ----- #
 @objective(m, Min, x[1])
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

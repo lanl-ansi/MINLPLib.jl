@@ -8,13 +8,13 @@ x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 @variable(m, x[x_Idx])
 b_Idx = Any[189, 190, 191, 192, 193, 194, 195]
 @variable(m, b[b_Idx])
-setcategory(b[191], :Bin)
-setcategory(b[194], :Bin)
-setcategory(b[190], :Bin)
-setcategory(b[195], :Bin)
-setcategory(b[192], :Bin)
-setcategory(b[193], :Bin)
-setcategory(b[189], :Bin)
+set_binary(b[191])
+set_binary(b[194])
+set_binary(b[190])
+set_binary(b[195])
+set_binary(b[192])
+set_binary(b[193])
+set_binary(b[189])
 
 
 # ----- Constraints ----- #
@@ -307,4 +307,4 @@ setcategory(b[189], :Bin)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

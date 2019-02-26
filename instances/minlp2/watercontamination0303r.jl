@@ -8,20 +8,20 @@ x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 @variable(m, x[x_Idx])
 b_Idx = Any[371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384]
 @variable(m, b[b_Idx])
-setcategory(b[375], :Bin)
-setcategory(b[379], :Bin)
-setcategory(b[381], :Bin)
-setcategory(b[377], :Bin)
-setcategory(b[374], :Bin)
-setcategory(b[371], :Bin)
-setcategory(b[376], :Bin)
-setcategory(b[373], :Bin)
-setcategory(b[383], :Bin)
-setcategory(b[372], :Bin)
-setcategory(b[382], :Bin)
-setcategory(b[380], :Bin)
-setcategory(b[384], :Bin)
-setcategory(b[378], :Bin)
+set_binary(b[375])
+set_binary(b[379])
+set_binary(b[381])
+set_binary(b[377])
+set_binary(b[374])
+set_binary(b[371])
+set_binary(b[376])
+set_binary(b[373])
+set_binary(b[383])
+set_binary(b[372])
+set_binary(b[382])
+set_binary(b[380])
+set_binary(b[384])
+set_binary(b[378])
 
 
 # ----- Constraints ----- #
@@ -587,4 +587,4 @@ setcategory(b[378], :Bin)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.

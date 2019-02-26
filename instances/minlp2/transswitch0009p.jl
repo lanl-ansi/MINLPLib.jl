@@ -8,15 +8,15 @@ x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 @variable(m, x[x_Idx])
 b_Idx = Any[55, 56, 57, 58, 59, 60, 61, 62, 63]
 @variable(m, b[b_Idx])
-setcategory(b[61], :Bin)
-setcategory(b[58], :Bin)
-setcategory(b[56], :Bin)
-setcategory(b[57], :Bin)
-setcategory(b[60], :Bin)
-setcategory(b[63], :Bin)
-setcategory(b[55], :Bin)
-setcategory(b[59], :Bin)
-setcategory(b[62], :Bin)
+set_binary(b[61])
+set_binary(b[58])
+set_binary(b[56])
+set_binary(b[57])
+set_binary(b[60])
+set_binary(b[63])
+set_binary(b[55])
+set_binary(b[59])
+set_binary(b[62])
 
 
 # ----- Constraints ----- #
@@ -165,4 +165,4 @@ setcategory(b[62], :Bin)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+m = m 		 # model get returned when including this script.
