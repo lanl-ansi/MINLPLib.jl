@@ -1,1 +1,0 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","minlp2", "kall_circlespolygons_c1p11.jl"))

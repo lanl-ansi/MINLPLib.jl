@@ -1,1 +1,0 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","morg", "DICOPTnonconvexUC_ZondervanE.jl"))

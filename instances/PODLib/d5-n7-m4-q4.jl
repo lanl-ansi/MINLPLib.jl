@@ -1,1 +1,0 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","poly", "d5-n7-m4-q4.jl"))

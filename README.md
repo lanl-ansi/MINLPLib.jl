@@ -1,10 +1,8 @@
 # MINLPLibJuMP
 Dev: [![Build Status](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl.svg?branch=master)](https://travis-ci.org/lanl-ansi/MINLPLibJuMP.jl) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://lanl-ansi.github.io/MINLPLibJuMP.jl/latest)
 
-We notice that most of the existing MINLP problems are stored in `.gms`,`.nl`,`.mod` format for different commercial modeling languages.
-The `Julia` optimization community lacks the support of parsing these inputs.
-This is an instance library of Mixed-Integer Nonlinear and Nonlinear Programs in [JuMP](https://github.com/JuliaOpt/JuMP.jl) model format.
-With MINLPLibJuMP.jl, you can use
+Most of the existing Mixed-Integer Nonlinear and Nonlinear Programs(MINLP) problems are stored in `.gms`,`.nl`,`.mod` formats designed for commercial modeling languages. The Julia optimization community lacks the support of parsing these inputs into [`JuMP.jl`](https://github.com/JuliaOpt/JuMP.jl) friendly formats. This is an instance library of MINLP in [JuMP](https://github.com/JuliaOpt/JuMP.jl) model format.
+With this package, you can have
 
 * Use instances to benchmark solvers and/or perform experiments easily
 
@@ -22,7 +20,7 @@ Pkg.clone("https://github.com/lanl-ansi/MINLPLibJuMP.jl.git")
 ```
 
 ## Fetching a model
-Fetch a instance by its `libname/name` just like the following,
+Fetch an instance by its `libname/name` just like the following,
 ```
 using MINLPLibJuMP
 m = fetch_model("minlp2/blend029")
@@ -39,9 +37,7 @@ using MINLPLibJuMP
 m = fetch_model("special", "multiKND", options=Dict(:K=>3, :N=>3, :D=>1))
 ```
 
-The above scrip initialize an optimization [JuMP](https://github.com/JuliaOpt/JuMP.jl) model `multiKND`. The
-formulation is controlled with parameter `:K`, `:N`, and `:D`, which yields the
-following problem:
+The above scrip initializes an optimization [JuMP](https://github.com/JuliaOpt/JuMP.jl) model `multiKND`. The formulation is controlled with parameter `:K`, `:N`, and `:D`, which yields the following problem:
 
 ```
 Max x[1] * x[2] * x[3] + x[3] * x[4] * x[5] + x[5] * x[6] * x[7]
@@ -53,7 +49,8 @@ Subject to
 ```
 
 ## Viewing instance's meta info
-To know the instance better,
+To know a instance better, you can do the following to get a dictionary of meta info.
+Note that as we continue to develop and test. More verified attributes will be added to the meta.
 ```
 julia> meta = MINLPLibJuMP.fetch_meta("minlp2", "blend029")
 Dict{String,Any} with 18 entries:
@@ -76,17 +73,20 @@ Dict{String,Any} with 18 entries:
   "NSOSCONS"   => 0
 ```
 
-## Build your own reference library
+
+## Customize your own instance library
+
 Currently, MINLPLibJuMP.jl contains over 6000 instances. Experimenting with all
-these instances can be computationally heavy and risky given the uncertain conditions
-might happen due to a variety of issues. For research projects, the scope is usually
-limited on a specific type of problems rather than all of them. Hence, it is necessary
-to construct you very own library for your very own experiments. The existing libraries
-can often be a mixture of different category problems and the characteristics of one library
-is very broad. Below, we write a small `.jl` script that will generate a reference library (
-without actually copying the problem) called `USERLib` that collect all instances with
-`exp` function in the constraints. The directory will be created with name `USERLib` under
-`instances`.
+of them can be computationally heavy and risky. For your research projects, the scope may be
+limited to a specific type of problems. Hence, it is necessary to construct you very own
+library for research experiments. Below, we write a small `.jl` script that will generate a
+user instance library (without actually copying the problem) called `USERLib` that collect all instances with
+`exp` function. The directory will be created with name `instance/USERLib`. Please see our
+[PODLib](https://lanl-ansi.github.io/MINLPLibJuMP.jl/latest/PODLib.html#PODLib-1) designed for
+testing [POD.jl](https://github.com/lanl-ansi/POD.jl) solver. This customized library contains instances reference
+as well as full instances. Note that each instance can be drastically different with different formulations and
+implementations (peak into the library called `special` and you will see some examples).
+It is up to you to select and construct your own instance library for more exciting and convenient experiments.
 
 ```
 using MINLPLibJuMP

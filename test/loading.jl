@@ -39,6 +39,10 @@
     @test length(m.colVal) == 11
     @test length(m.linconstr) == 0
 
+    m = fetch_model("minlp2", "blend029")
+    @test length(m.colVal) == 103
+    @test length(m.linconstr) == 202
+
     m = fetch_model("poly/d2-n30-pos10-v1")
     @test length(m.colVal) == 31
     @test length(m.linconstr) == 8
@@ -68,4 +72,25 @@ end
     m = fetch_model("special", "multiKND", options=Dict(:K=>4, :N=>10))
     @test length(m.colVal) == 31
     @test length(m.linconstr) == 10
+end
+
+@testset "Built-in functions testing" begin
+
+    @test length(MINLPLibJuMP.fetch_names("ibm")) == 142
+
+    MINLPLibJuMP.add_to_lib("testlib", "minlp2", "blend029")
+
+    @test isdir(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","testlib"))
+
+    m = fetch_model("testlib", "blend029")
+
+    @test length(m.colVal) == 103
+    @test length(m.linconstr) == 202
+
+    f = MINLPLibJuMP.fetch_meta("testlib", "blend029")
+    @test !haskey(f, "INTERNALLINK")
+
+    rm(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","testlib"),recursive=true)
+    rm(joinpath(Pkg.dir("MINLPLibJuMP"),"meta","testlib"),recursive=true)
+
 end

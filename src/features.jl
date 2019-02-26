@@ -18,11 +18,20 @@ end
 fetch_model(libname::AbstractString, pname::AbstractString; options::Dict=Dict()) = fetch_model(joinpath(libname,pname); options=options)
 
 function fetch_meta(instance::AbstractString)
-    if !isfile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
+
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", "$(instance).json"))
         warn("No meta information for $(instance) found")
         return Dict()
     end
-    m = JSON.parsefile("$(Pkg.dir())/MINLPLibJuMP/meta/$(instance).json")
+
+    m = JSON.parsefile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", "$(instance).json"))
+
+    if haskey(m, "INTERNALLINK")
+        sourcelib = m["INTERNALLINK"]
+        isempty(sourcelib) && return Dict()
+        pname = splitdir(instance)[end]
+        return JSON.parsefile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", sourcelib, "$(pname).json"))
+    end
 
     return m
 end
@@ -30,8 +39,10 @@ end
 fetch_meta(libname::AbstractString, pname::AbstractString) = fetch_meta(joinpath(libname,pname))
 
 function fetch_names(libname::AbstractString; postfix=false)
-    !isdir("$(Pkg.dir())/MINLPLibJuMP/instances/$(libname)") && error("Library $(libname) does not exist.")
-    nraw = readdir("$(Pkg.dir())/MINLPLibJuMP/instances/$(libname)")
+
+    !isdir(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", libname)) && error("Library $(libname) does not exist.")
+
+    nraw = readdir(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", libname))
     nlist = []
     inactive = 0
     postfix && return nlist
@@ -103,7 +114,7 @@ function add_to_meta(libname::AbstractString, pname::AbstractString, attributena
     tarf_path = "$(minlp_dir)/instances/$(libname)/$(pname).tar.gz"
     jlf_path = "$(minlp_dir)/instances/$(libname)/$(pname).jl"
 
-    if !isfile(tarf_path) && !isfile(jlf_path)
+    if !isfile(jlf_path)
         error("No problem $(libname)/$(pname) detected...")
     end
 
@@ -145,6 +156,7 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
     if !isdir(joinpath(minlp_dir, "instances", tolib))
         warn("Building user-library $(tolib)...")
         mkdir(joinpath(minlp_dir, "instances", tolib))
+        mkdir(joinpath(minlp_dir, "meta", tolib))
     end
 
     # Then check is the intaking lib is already there.
@@ -159,11 +171,95 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
         return
     end
 
+    # Check if the source meta exist or not
+    nometa = false
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", fromlib, "$(pname).json"))
+        warn("Instance $(pname) meta info missing in library $(fromlib). Carry on without meta info...")
+        nometa = true
+    end
+
     # Adding the instance
     f = open(joinpath(minlp_dir, "instances", tolib, "$(pname).jl"), "w")
     write(f, "include(joinpath(Pkg.dir(\"MINLPLibJuMP\"),\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
     close(f)
     println("Successfully added instance $(fromlib)/$(pname) to library $(tolib)...")
+
+    if !nometa
+        desjson = joinpath(Pkg.dir("MINLPLibJuMP"), "meta", tolib, "$(pname).json")
+        df = open(desjson, "w")
+        md = Dict("INTERNALLINK"=>fromlib)
+        JSON.print(df, md)
+        close(df)
+    end
+
+    return
+end
+
+function remove_from_lib(libname::AbstractString, pname::AbstractString)
+
+    # Library protection
+    if libname in PROTECTED_LIBS
+        error("Cannot remote instances from protected libraries $(libname)")
+        return
+    end
+
+    # Finding instance
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "instances",libname, "$(pname).jl"))
+        warn("No instances detected to remote.")
+        return
+    end
+
+    nometa = false
+    if !isfile(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(pname).json"))
+        warn("No meta detected to remote.")
+        nometa = true
+    end
+
+    # Removing instance
+    warn("Removing instance $(pname) from library $(libname)")
+    rm(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", libname, "$(pname).jl"))
+    nometa || rm(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(pname).json"))
+
+    return
+end
+
+function clean_lib_meta(libname::AbstractString)
+
+    names = fetch_names(libname)
+    metas = Glob.glob("*.json", joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname))
+
+    for i in metas
+        n = replace(splitdir(i)[end], ".json", "")
+        n in names || rm(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(n).json",))
+        info("Cleaning $(n).json meta from library $(libname)")
+    end
+
+    return
+end
+
+function reconstruct_link_meta(libname::AbstractString)
+
+    if libname in PROTECTED_LIBS
+        warn("Meta info cannot be reconstructed in this library since it is protected. Finishing...")
+        return
+    end
+
+    names = fetch_names(libname)
+    for i in names
+        pf = open(joinpath(Pkg.dir("MINLPLibJuMP"), "instances", libname, "$(i).jl"), "r")
+        content = readline(pf)
+        sourcelib = ""
+        for j in PROTECTED_LIBS
+            if contains(content, j)
+                sourcelib = j
+            end
+        end
+        close(pf)
+        meta = Dict("INTERNALLINK"=>sourcelib)
+        pf = open(joinpath(Pkg.dir("MINLPLibJuMP"), "meta", libname, "$(i).json"), "w")
+        JSON.print(pf, meta)
+        close(pf)
+    end
 
     return
 end
