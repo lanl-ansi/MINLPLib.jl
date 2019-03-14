@@ -2,25 +2,10 @@ using JuMP
 
 m = Model()
 
-@variable(m, x[1:8])
+LB = [100, 1000, 1000, 10, 10, 10, 10, 10]
+UB = [10000, 10000, 10000,  1000, 1000, 1000, 1000, 1000]
 
-setlowerbound(x[1], 100)
-setlowerbound(x[2], 1000)
-setlowerbound(x[3], 1000)
-setlowerbound(x[4], 10)
-setlowerbound(x[5], 10)
-setlowerbound(x[6], 10)
-setlowerbound(x[7], 10)
-setlowerbound(x[8], 10)
-
-setupperbound(x[1], 10000)
-setupperbound(x[2], 10000)
-setupperbound(x[3], 10000)
-setupperbound(x[4], 1000)
-setupperbound(x[5], 1000)
-setupperbound(x[6], 1000)
-setupperbound(x[7], 1000)
-setupperbound(x[8], 1000)
+@variable(m, LB[i] <= x[i=1:8] <= UB[i])
 
 @constraint(m, 0.0025*(x[4] + x[6]) <= 1)
 @constraint(m, 0.0025*(x[5] - x[4] + x[7]) <= 1)
