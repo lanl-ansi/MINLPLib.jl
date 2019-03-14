@@ -83,7 +83,7 @@ library for research experiments. Below, we write a small `.jl` script that will
 user instance library (without actually copying the problem) called `USERLib` that collect all instances with
 `exp` function. The directory will be created with name `instance/USERLib`. Please see our
 [PODLib](https://lanl-ansi.github.io/MINLPLibJuMP.jl/latest/PODLib.html#PODLib-1) designed for
-testing [POD.jl](https://github.com/lanl-ansi/POD.jl) solver. This customized library contains instances reference
+testing [Alpine.jl](https://github.com/lanl-ansi/Alpine.jl) solver. This customized library contains instances reference
 as well as full instances. Note that each instance can be drastically different with different formulations and
 implementations (peak into the library called `special` and you will see some examples).
 It is up to you to select and construct your own instance library for more exciting and convenient experiments.
