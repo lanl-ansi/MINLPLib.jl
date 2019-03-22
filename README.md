@@ -1,7 +1,7 @@
 # MINLPLib
 Dev: [![Build Status](https://travis-ci.org/lanl-ansi/MINLPLib.jl.svg?branch=master)](https://travis-ci.org/lanl-ansi/MINLPLib.jl) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://lanl-ansi.github.io/MINLPLib.jl/latest)
 
-MINLPLib.jl is an extensive collection of Mixed-Integer and Continuous Nonlinear Programming Instances in the native [`JuMP.jl`](https://github.com/JuliaOpt/JuMP.jl) format. Numerous instances in this library are based on the standard [MINLPLib.org](http://www.minlplib.org) instances in addition to hundreds of Global Optimization instances which appear in the litearature. This library can be useful for: 
+MINLPLib.jl is an extensive collection of Mixed-Integer and Continuous Nonlinear Programming Instances in the native [`JuMP.jl`](https://github.com/JuliaOpt/JuMP.jl) format. Numerous instances in this library are based on the standard [MINLPLib.org](http://www.minlplib.org) instances in addition to hundreds of global optimization instances which appear in the litearature. This library can be useful for: 
 
 * Benchmarking your MINLP-based solvers by performing numerical experiments
 
