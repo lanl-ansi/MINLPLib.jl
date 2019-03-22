@@ -1,4 +1,4 @@
-# MINLPLib - Instances Statistics
+# MINLPLib - Instance Statistics
 
 ## Description
 This is a library with selected instances from a various existing libraries. It also includes some customized instances with various formulations. There are in total `3062` instances listed here. `31` instances return error when loading.
