@@ -5,23 +5,10 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3]
-@variable(m, x[x_Idx])
+UB = [0.997, 0.9985, 0.9988]
+@variable(m, 0 <= x[i in x_Idx] <= UB[i])
 b_Idx = Any[4, 5, 6, 7, 8, 9, 10, 11]
-@variable(m, b[b_Idx])
-setlowerbound(x[3], 0.0)
-setcategory(b[8], :Bin)
-setcategory(b[11], :Bin)
-setcategory(b[7], :Bin)
-setcategory(b[9], :Bin)
-setlowerbound(x[2], 0.0)
-setcategory(b[5], :Bin)
-setcategory(b[10], :Bin)
-setlowerbound(x[1], 0.0)
-setcategory(b[4], :Bin)
-setcategory(b[6], :Bin)
-setupperbound(x[1], 0.997)
-setupperbound(x[2], 0.9985)
-setupperbound(x[3], 0.9988)
+@variable(m, b[b_Idx], Bin)
 
 
 # ----- Constraints ----- #
@@ -32,7 +19,7 @@ setupperbound(x[3], 0.9988)
 @constraint(m, e5, -b[4]-b[5]-b[6] <= -1.0)
 @constraint(m, e6, -b[7]-b[8]-b[9] <= -1.0)
 @constraint(m, e7, -b[10]-b[11] <= -1.0)
-@constraint(m, e8, 3*b[4]+b[5]+2*b[6]+3*b[7]+2*b[8]+b[9]+3*b[10]+2*b[11] <= 10.0)
+@constraint(m, e8, 3*b[4] + b[5] + 2*b[6] + 3*b[7] + 2*b[8] + b[9] + 3*b[10] + 2*b[11] <= 10.0)
 
 
 # ----- Objective ----- #
