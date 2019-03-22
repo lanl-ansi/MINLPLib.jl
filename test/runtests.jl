@@ -1,5 +1,5 @@
 using Base.Test
-using MINLPLibJuMP
+using MINLPLib
 
 # Performe Tests
-include("$(Pkg.dir("MINLPLibJuMP"))/test/loading.jl")
+include("$(Pkg.dir("MINLPLib"))/test/loading.jl")
