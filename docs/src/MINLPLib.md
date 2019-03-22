@@ -1,10 +1,7 @@
-# PODLib
+# MINLPLib - Instances Statistics
 
 ## Description
-This library is a special library with selected instances from a variety of libraries.
-It also includes some customized instances with various formulations.
-There are in total `3062` instances listed here.
-`31` instances return error when loading.
+This is a library with selected instances from a various existing libraries. It also includes some customized instances with various formulations. There are in total `3062` instances listed here. `31` instances return error when loading.
 
 ## Instance Stats
 LT is the JuMP model loading time.
