@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","prince", "airport.jl"))
+include(joinpath(Pkg.dir("MINLPLib"),"instances","prince", "airport.jl"))

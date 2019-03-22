@@ -1,6 +1,6 @@
 # MINLPLib Libraries
 
-Sor far, MINLPLibJuMP includes `16` libraries in `.jl` format converted from `.gms` format.
+Sor far, MINLPLib includes `16` libraries in `.jl` format converted from `.gms` format.
 Here is a simple chart showing the status of each instance libraries.
 
 | Lib Name           | Converted   | All | % |
