@@ -2,7 +2,7 @@ function simpleN(;options=Dict())
 
     haskey(options, :N) ? N=options[:N] : N=2
 
-    N == 1 && error("Why are you solving this problems ? The answer is 100 !!!!!!")
+    N == 1 && error("Provide appropriate value for N")
 
     m = Model()
 
