@@ -5,23 +5,13 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2]
-@variable(m, x[x_Idx])
+@variable(m, 1 <= x[x_Idx] <= 5)
 b_Idx = Any[3, 4, 5, 6, 7, 8]
-@variable(m, b[b_Idx])
-setcategory(b[8], :Bin)
-setcategory(b[3], :Bin)
-setcategory(b[4], :Bin)
-setcategory(b[6], :Bin)
-setcategory(b[5], :Bin)
-setcategory(b[7], :Bin)
-setlowerbound(x[1], 1.0)
-setupperbound(x[1], 5.0)
-setlowerbound(x[2], 1.0)
-setupperbound(x[2], 5.0)
+@variable(m, b[b_Idx], Bin)
 
 
 # ----- Constraints ----- #
-@constraint(m, e1, -7*x[1]-10*x[2]+objvar == 0.0)
+@constraint(m, e1, -7*x[1] - 10*x[2] + objvar == 0.0)
 @NLconstraint(m, e2, x[1]^1.2*x[2]^1.7-7*x[1]-9*x[2] <= -24.0)
 @constraint(m, e3, -x[1]-2*x[2] <= -5.0)
 @constraint(m, e4, -3*x[1]+x[2] <= 1.0)
