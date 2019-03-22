@@ -23,5 +23,5 @@ Here is a simple chart showing the status of each instance libraries.
 | [qcqp3](@ref)      | 320    | 320  | 100%  |
 
 It important to obtain fair benchmark results that is justifiable for projects in academia or industry.
-Therefore, MINLPLibJuMP.jl values validation of the instances and record detail issues that causes
+Therefore, MINLPLib.jl values validation of the instances and record detail issues that causes
 unconverted instances, loading errors, or inaccurate results in the [Issues](@ref) page.
