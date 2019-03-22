@@ -1,14 +1,11 @@
 # MINLPLib
 Dev: [![Build Status](https://travis-ci.org/lanl-ansi/MINLPLib.jl.svg?branch=master)](https://travis-ci.org/lanl-ansi/MINLPLib.jl) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://lanl-ansi.github.io/MINLPLib.jl/latest)
 
-Most of the existing Mixed-Integer Nonlinear and Nonlinear Programs(MINLP) problems are stored in `.gms`,`.nl`,`.mod` formats designed for commercial modeling languages. The Julia optimization community lacks the support of parsing these inputs into [`JuMP.jl`](https://github.com/JuliaOpt/JuMP.jl) friendly formats. This is an instance library of MINLP in [JuMP](https://github.com/JuliaOpt/JuMP.jl) model format.
-With this package, you can have
+MINLPLib.jl is an extensive collection of Mixed-Integer and Continuous Nonlinear Programming Instances in the native [`JuMP.jl`](https://github.com/JuliaOpt/JuMP.jl) format. Numerous instances in this library are based on the standard [MINLPLib.org](http://www.minlplib.org) instances in addition to hundreds of Global Optimization instances which appear in the litearature. This library can be useful for: 
 
-* Use instances to benchmark solvers and/or perform experiments easily
+* Benchmarking your MINLP-based solvers by performing numerical experiments
 
-* View rich meta information of each instance to assist your analyses and experiments
-
-* Build and publish your own reference libraries with target characteristics
+* Viewing meta information of each instance to assist your analyses and experiments
 
 ## Included Libraries
 For more details of the libraries included in this package, please see [documentation](https://lanl-ansi.github.io/MINLPLib.jl/latest/).
