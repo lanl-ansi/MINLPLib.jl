@@ -5,16 +5,10 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2]
-@variable(m, x[x_Idx])
+UB = [10, 6]
+@variable(m, 1 <= x[i in x_Idx] <= UB[i])
 b_Idx = Any[3, 4, 5]
-@variable(m, b[b_Idx])
-setcategory(b[3], :Bin)
-setcategory(b[4], :Bin)
-setcategory(b[5], :Bin)
-setlowerbound(x[1], 1.0)
-setupperbound(x[1], 10.0)
-setlowerbound(x[2], 1.0)
-setupperbound(x[2], 6.0)
+@variable(m, b[b_Idx], Bin)
 
 
 # ----- Constraints ----- #
@@ -23,7 +17,7 @@ setupperbound(x[2], 6.0)
 @constraint(m, e3, 3*x[1]+2*x[2] <= 24.0)
 @constraint(m, e4, x[2]-b[3]-2*b[4]-4*b[5] == 1.0)
 @constraint(m, e5, b[4]+b[5] <= 1.0)
-@constraint(m, e6, 5*x[1]-3*x[2]+objvar == 0.0)
+@constraint(m, e6, 5*x[1] - 3*x[2] + objvar == 0.0)
 
 
 # ----- Objective ----- #
