@@ -5,15 +5,9 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 b_Idx = Any[1, 2, 3, 4, 5, 6]
-@variable(m, b[b_Idx])
+@variable(m, b[b_Idx], Bin)
 x_Idx = Any[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
 @variable(m, x[x_Idx])
-setcategory(b[3], :Bin)
-setcategory(b[4], :Bin)
-setcategory(b[6], :Bin)
-setcategory(b[2], :Bin)
-setcategory(b[5], :Bin)
-setcategory(b[1], :Bin)
 setlowerbound(x[14], 2.0)
 setupperbound(x[14], 5.4772)
 setlowerbound(x[15], 3.0)

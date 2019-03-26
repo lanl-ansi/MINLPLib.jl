@@ -5,21 +5,12 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 b_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9]
-@variable(m, b[b_Idx])
+@variable(m, b[b_Idx], Bin)
 x_Idx = Any[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 @variable(m, x[x_Idx])
-setcategory(b[2], :Bin)
 setlowerbound(x[17], 0.0)
-setcategory(b[8], :Bin)
-setcategory(b[7], :Bin)
-setcategory(b[9], :Bin)
 setlowerbound(x[19], 0.0)
-setcategory(b[3], :Bin)
-setcategory(b[5], :Bin)
 setlowerbound(x[18], 0.0)
-setcategory(b[4], :Bin)
-setcategory(b[6], :Bin)
-setcategory(b[1], :Bin)
 setlowerbound(x[10], 5.52146091786225)
 setupperbound(x[10], 7.82404601085629)
 setlowerbound(x[11], 5.52146091786225)
@@ -60,7 +51,7 @@ setlowerbound(objvar, 0.0)
 @constraint(m, e17, b[1]+b[4]+b[7] == 1.0)
 @constraint(m, e18, b[2]+b[5]+b[8] == 1.0)
 @constraint(m, e19, b[3]+b[6]+b[9] == 1.0)
-@NLconstraint(m, e20, -(250*exp(0.6*x[10]+x[17])+500*exp(0.6*x[11]+x[18])+340*exp(0.6*x[12]+x[19]))+objvar == 0.0)
+@NLconstraint(m, e20, -(250*exp(0.6*x[10]+x[17])+500*exp(0.6*x[11]+x[18])+340*exp(0.6*x[12]+x[19])) + objvar == 0.0)
 
 
 # ----- Objective ----- #
