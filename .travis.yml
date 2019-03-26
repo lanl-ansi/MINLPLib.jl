@@ -19,9 +19,11 @@ addons:
 
 before_install:
     # don't keep an old version of the code in the cache
-  - julia -e 'if "MINLPLib" in keys(Pkg.installed()) Pkg.rm("MINLPLib"); Pkg.rm("MINLPLib") end'
-  - julia -e 'Pkg.update()' #make sure we get the latest version of METADATA
-  - julia -e 'if !("Documenter" in keys(Pkg.installed())) Pkg.add("Documenter") end'
+  #- julia -e 'if "MINLPLib" in keys(Pkg.installed()) Pkg.rm("MINLPLib"); Pkg.rm("MINLPLib") end'
+  #- julia -e 'Pkg.update()' #make sure we get the latest version of METADATA
+  #- julia -e 'if !("Documenter" in keys(Pkg.installed())) Pkg.add("Documenter") end'
+  - julia -e '(VERSION >= v"0.7" && using Pkg); Pkg.rm("Alpine"); Pkg.rm("Alpine")'
+  - julia -e '(VERSION >= v"0.7" && using Pkg); Pkg.update()'
 
 script:  # core code tests
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
