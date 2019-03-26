@@ -5,29 +5,13 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-@variable(m, x[x_Idx])
-setlowerbound(x[5], 0.0)
-setlowerbound(x[9], 0.0)
-setlowerbound(x[1], 0.0)
-setlowerbound(x[7], 0.0)
-setlowerbound(x[8], 0.0)
-setlowerbound(x[4], 0.0)
-setlowerbound(x[2], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[3], 0.0)
-setupperbound(x[1], 10.0)
-setupperbound(x[2], 10.0)
-setupperbound(x[3], 10.0)
-setupperbound(x[4], 10.0)
-setupperbound(x[5], 10.0)
-setupperbound(x[6], 10.0)
-setupperbound(x[7], 10.0)
-setupperbound(x[8], 10.0)
-setupperbound(x[9], 10.0)
+LB = [0, 0, 0, 0, 0, 0, 0, 0, 0, -Inf]
+UB = [10, 10, 10, 10, 10, 10, 10, 10, 10, Inf]
+@variable(m, LB[i] <= x[i in x_Idx] <= UB[i])
 
 
 # ----- Constraints ----- #
-@constraint(m, e1, -x[10]+objvar == 0.0)
+@constraint(m, e1, -x[10] + objvar == 0.0)
 @NLconstraint(m, e2, (1-x[1]*x[2])*x[3]*(exp(x[5]*(0.485+(-0.0052095*x[7])-0.0285132*x[8]))-1)+23.3037*x[2]-x[10] <= 28.5132)
 @NLconstraint(m, e3, (1-x[1]*x[2])*x[3]*(exp(x[5]*(0.752+(-0.0100677*x[7])-0.1118467*x[8]))-1)+101.779*x[2]-x[10] <= 111.8467)
 @NLconstraint(m, e4, (1-x[1]*x[2])*x[3]*(exp(x[5]*(0.869+(-0.0229274*x[7])-0.1343884*x[8]))-1)+111.461*x[2]-x[10] <= 134.3884)

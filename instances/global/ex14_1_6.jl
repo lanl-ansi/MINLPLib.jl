@@ -5,27 +5,13 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9]
-@variable(m, x[x_Idx])
-setlowerbound(x[1], -1.0)
-setupperbound(x[1], 1.0)
-setlowerbound(x[2], -1.0)
-setupperbound(x[2], 1.0)
-setlowerbound(x[3], -1.0)
-setupperbound(x[3], 1.0)
-setlowerbound(x[4], -1.0)
-setupperbound(x[4], 1.0)
-setlowerbound(x[5], -1.0)
-setupperbound(x[5], 1.0)
-setlowerbound(x[6], -1.0)
-setupperbound(x[6], 1.0)
-setlowerbound(x[7], -1.0)
-setupperbound(x[7], 1.0)
-setlowerbound(x[8], -1.0)
-setupperbound(x[8], 1.0)
+LB = [-1, -1, -1, -1, -1, -1, -1, -1, -Inf]
+UB = [1, 1, 1, 1, 1, 1, 1, 1, Inf]
+@variable(m, LB[i] <= x[i in x_Idx] <= UB[i])
 
 
 # ----- Constraints ----- #
-@constraint(m, e1, -x[9]+objvar == 0.0)
+@constraint(m, e1, -x[9] + objvar == 0.0)
 @NLconstraint(m, e2, 0.004731*x[1]*x[3]-0.1238*x[1]-0.3578*x[2]*x[3]-0.001637*x[2]-0.9338*x[4]+x[7]-x[9] <= 0.3571)
 @NLconstraint(m, e3, 0.1238*x[1]-0.004731*x[1]*x[3]+0.3578*x[2]*x[3]+0.001637*x[2]+0.9338*x[4]-x[7]-x[9] <= -0.3571)
 @NLconstraint(m, e4, 0.2238*x[1]*x[3]+0.2638*x[1]+0.7623*x[2]*x[3]-0.07745*x[2]-0.6734*x[4]-x[7]-x[9] <= 0.6022)

@@ -4,10 +4,10 @@ m = Model()
 
 # ----- Variables ----- #
 @variable(m, objvar)
+LB = [100, -Inf]
+UB = [1000, Inf]
 x_Idx = Any[1, 2]
-@variable(m, x[x_Idx])
-setlowerbound(x[1], 100.0)
-setupperbound(x[1], 1000.0)
+@variable(m, LB[i] <= x[i in x_Idx] <= UB[i])
 
 
 # ----- Constraints ----- #

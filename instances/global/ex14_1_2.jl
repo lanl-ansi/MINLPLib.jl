@@ -5,21 +5,13 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4, 5, 6]
-@variable(m, x[x_Idx])
-setlowerbound(x[1], 0.0001)
-setupperbound(x[1], 100.0)
-setlowerbound(x[2], 0.0001)
-setupperbound(x[2], 100.0)
-setlowerbound(x[3], 0.0001)
-setupperbound(x[3], 100.0)
-setlowerbound(x[4], 0.0001)
-setupperbound(x[4], 100.0)
-setlowerbound(x[5], 0.0001)
-setupperbound(x[5], 100.0)
+LB = [0.0001, 0.0001, 0.0001, 0.0001, 0.0001, -Inf]
+UB = [100, 100, 100, 100, 100, Inf]
+@variable(m, LB[i] <= x[i in x_Idx] <= UB[i])
 
 
 # ----- Constraints ----- #
-@constraint(m, e1, -x[6]+objvar == 0.0)
+@constraint(m, e1, -x[6] + objvar == 0.0)
 @NLconstraint(m, e2, x[1]*x[2]+x[1]-3*x[5] == 0.0)
 @NLconstraint(m, e3, 2.8845e-6* (x[2])^2+4.4975e-7*x[2]+2*x[1]*x[2]+x[1]+0.000545176668613029*x[2]*x[3]+3.40735417883143e-5*x[2]*x[4]+x[2]* (x[3])^2-10*x[5]-x[6] <= 0.0)
 @NLconstraint(m, e4, (-2.8845e-6* (x[2])^2)-4.4975e-7*x[2]-2*x[1]*x[2]-x[1]-0.000545176668613029*x[2]*x[3]-3.40735417883143e-5*x[2]*x[4]-x[2]* (x[3])^2+10*x[5]-x[6] <= 0.0)
