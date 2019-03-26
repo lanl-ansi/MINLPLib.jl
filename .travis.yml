@@ -22,7 +22,7 @@ before_install:
   #- julia -e 'if "MINLPLib" in keys(Pkg.installed()) Pkg.rm("MINLPLib"); Pkg.rm("MINLPLib") end'
   #- julia -e 'Pkg.update()' #make sure we get the latest version of METADATA
   #- julia -e 'if !("Documenter" in keys(Pkg.installed())) Pkg.add("Documenter") end'
-  - julia -e '(VERSION >= v"0.7" && using Pkg); Pkg.rm("Alpine"); Pkg.rm("Alpine")'
+  - julia -e '(VERSION >= v"0.7" && using Pkg); Pkg.rm("MINLPLib"); Pkg.rm("MINLPLib")'
   - julia -e '(VERSION >= v"0.7" && using Pkg); Pkg.update()'
 
 script:  # core code tests
