@@ -3,6 +3,8 @@ os:
   - linux
 julia:
   - 0.6
+  - 0.7
+  - 1.0
 
 # this will save build time, once it is working
 cache:
