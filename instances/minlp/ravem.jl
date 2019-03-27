@@ -114,11 +114,10 @@ setlowerbound(x[53], 4.60517018598809)
 setupperbound(x[53], 9.61580548008435)
 setlowerbound(x[54], 4.60517018598809)
 setupperbound(x[54], 9.61580548008435)
-setlowerbound(b[113], 0.0)
-setupperbound(b[113], 0.0)
 
 
 # ----- Constraints ----- #
+@constraint(m, b[113] == 0)
 @constraint(m, e1, x[1]-x[7]+x[37] >= 2.06686275947298)
 @constraint(m, e2, x[2]-x[8]+x[38] >= 0.693147180559945)
 @constraint(m, e3, x[3]-x[9]+x[39] >= 1.64865862558738)
