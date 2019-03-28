@@ -7,28 +7,8 @@ m = Model()
 x_Idx = Any[5, 6, 7, 8]
 @variable(m, x[x_Idx])
 i_Idx = Any[1, 2, 3, 4]
-@variable(m, i[i_Idx])
-setcategory(i[4], :Int)
-setlowerbound(i[4], 0.0)
-setupperbound(i[4], 100.0)
-setcategory(i[3], :Int)
-setlowerbound(i[3], 0.0)
-setupperbound(i[3], 100.0)
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
-setlowerbound(i[1], 1.0)
-setupperbound(i[1], 200.0)
-setlowerbound(i[2], 1.0)
-setupperbound(i[2], 200.0)
-setlowerbound(i[3], 1.0)
-setupperbound(i[3], 20.0)
-setlowerbound(i[4], 1.0)
-setupperbound(i[4], 20.0)
-
+UB = [200, 200, 20, 20]
+@variable(m, 1 <= i[i in i_Idx] <= UB[i], Int)
 
 # ----- Constraints ----- #
 @NLconstraint(m, e1, -4243.28147100424/(i[3]*i[4])+x[5] == 0.0)

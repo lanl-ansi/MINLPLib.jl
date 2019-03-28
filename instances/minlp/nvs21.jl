@@ -5,20 +5,9 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[3]
-@variable(m, x[x_Idx])
+@variable(m, 0 <= x[x_Idx] <= 0.2)
 i_Idx = Any[1, 2]
-@variable(m, i[i_Idx])
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
-setlowerbound(x[3], 0.0)
-setupperbound(i[1], 200.0)
-setupperbound(i[2], 200.0)
-setupperbound(x[3], 0.2)
-
+@variable(m, 0 <= i[i_Idx] <= 200, Int)
 
 # ----- Constraints ----- #
 @NLconstraint(m, e1, - (i[1])^2*i[2] >= -675.0)

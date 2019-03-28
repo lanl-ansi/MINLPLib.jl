@@ -5,35 +5,11 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[6, 7, 8]
-@variable(m, x[x_Idx])
+LB = [0, 90, 20]
+UB = [92, 110, 25]
+@variable(m, LB[i] <= x[i in x_Idx] <= UB[i])
 i_Idx = Any[1, 2, 3, 4, 5]
-@variable(m, i[i_Idx])
-setcategory(i[5], :Int)
-setlowerbound(i[5], 0.0)
-setupperbound(i[5], 100.0)
-setcategory(i[4], :Int)
-setlowerbound(i[4], 0.0)
-setupperbound(i[4], 100.0)
-setcategory(i[3], :Int)
-setlowerbound(i[3], 0.0)
-setupperbound(i[3], 100.0)
-setlowerbound(x[6], 0.0)
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
-setupperbound(i[1], 200.0)
-setupperbound(i[2], 200.0)
-setupperbound(i[3], 200.0)
-setupperbound(i[4], 200.0)
-setupperbound(i[5], 200.0)
-setupperbound(x[6], 92.0)
-setlowerbound(x[7], 90.0)
-setupperbound(x[7], 110.0)
-setlowerbound(x[8], 20.0)
-setupperbound(x[8], 25.0)
+@variable(m, 0 <= i[i_Idx] <= 200, Int)
 
 
 # ----- Constraints ----- #
