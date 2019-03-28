@@ -8,11 +8,11 @@ b_Idx = Any[1, 2, 3, 31, 32, 33, 34, 35, 36, 37, 38, 39]
 @variable(m, b[b_Idx], Bin)
 i_Idx = Any[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 40, 41, 42, 43, 44, 45, 46, 47, 48]
 @variable(m, i[i_Idx], Int)
-for i=4:30
-   setupperbound(x[i], 5)
+for k=4:30
+   setupperbound(i[k], 5)
 end
-for i=40:48
-   setupperbound(x[i], 100)
+for k=40:48
+   setupperbound(i[k], 100)
 end
 
 

@@ -5,35 +5,10 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 b_Idx = Any[1, 2]
-@variable(m, b[b_Idx])
+@variable(m, b[b_Idx], Bin)
 i_Idx = Any[3, 4, 5, 6, 7, 8]
-@variable(m, i[i_Idx])
-setcategory(i[6], :Int)
-setlowerbound(i[6], 0.0)
-setupperbound(i[6], 100.0)
-setcategory(i[5], :Int)
-setlowerbound(i[5], 0.0)
-setupperbound(i[5], 100.0)
-setcategory(i[4], :Int)
-setlowerbound(i[4], 0.0)
-setupperbound(i[4], 100.0)
-setcategory(i[7], :Int)
-setlowerbound(i[7], 0.0)
-setupperbound(i[7], 100.0)
-setcategory(i[3], :Int)
-setlowerbound(i[3], 0.0)
-setupperbound(i[3], 100.0)
-setcategory(i[8], :Int)
-setlowerbound(i[8], 0.0)
-setupperbound(i[8], 100.0)
-setcategory(b[2], :Bin)
-setcategory(b[1], :Bin)
-setupperbound(i[3], 15.0)
-setupperbound(i[4], 15.0)
-setupperbound(i[5], 5.0)
-setupperbound(i[6], 5.0)
-setupperbound(i[7], 5.0)
-setupperbound(i[8], 5.0)
+UB = [15, 15, 5, 5, 5, 5]
+@variable(m, i[i in i_Idx] <= UB[i], Int)
 
 
 # ----- Constraints ----- #
