@@ -80,7 +80,7 @@ end
 
     MINLPLib.add_to_lib("testlib", "minlp2", "blend029")
 
-    @test isdir(joinpath(Pkg.dir("MINLPLib"),"instances","testlib"))
+    @test isdir(joinpath(minlplib_dir,"instances","testlib"))
 
     m = fetch_model("testlib", "blend029")
 
@@ -90,7 +90,7 @@ end
     f = MINLPLib.fetch_meta("testlib", "blend029")
     @test !haskey(f, "INTERNALLINK")
 
-    rm(joinpath(Pkg.dir("MINLPLib"),"instances","testlib"),recursive=true)
-    rm(joinpath(Pkg.dir("MINLPLib"),"meta","testlib"),recursive=true)
+    rm(joinpath(minlplib_dir,"instances","testlib"),recursive=true)
+    rm(joinpath(minlplib_dir,"meta","testlib"),recursive=true)
 
 end

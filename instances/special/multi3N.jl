@@ -7,7 +7,7 @@ function multi3N(;options=Dict())
 	m = Model()
 
 	M = 1+2*N
-	srand(100)
+	Random.seed!(100)(100)
     isa(randomub, Int) ? @variable(m, 0.1<=x[1:M]<=randomub) : @variable(m, 0.1<=x[1:M]<=rand()*100)
 	if exprmode == 1
 		@NLobjective(m, Max, sum(x[i]*x[i+1]*x[i+2] for i in 1:2:(M-1)))

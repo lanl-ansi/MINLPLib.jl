@@ -1,5 +1,8 @@
-using Base.Test
+using Test
 using MINLPLib
 
-# Performe Tests
-include("$(Pkg.dir("MINLPLib"))/test/loading.jl")
+using Pkg 
+minlplib_dir = joinpath(dirname(pathof(MINLPLib)), "..")
+
+# Perform Tests
+include("loading.jl")

@@ -20,8 +20,13 @@ PROTECTED_LIBS = ["bcp", "global", "ibm", "inf", "minlp",
                   "minlp2", "morg", "mpec", "mult3", "mult4",
                   "poly", "prince", "qcqp", "qcqp2", "qcqp3"]
 
-special_instances = readdir("$(Pkg.dir("MINLPLib"))/instances/special")
-for i in special_instances include("$(Pkg.dir("MINLPLib"))/instances/special/$(i)") end
+using Pkg 
+minlplib_dir = joinpath(dirname(pathof(MINLPLib)), "..")
+
+using Random
+
+special_instances = readdir("$minlplib_dir/instances/special")
+for i in special_instances include("$minlplib_dir/instances/special/$(i)") end
 
 export fetch_model
 

@@ -1,14 +1,14 @@
 function fetch_model(instance::AbstractString;options::Dict=Dict())
 
-    pname = replace(splitdir(instance)[end], ".jl", "")
-    nakeinstance = replace(instance, ".jl", "")
+    pname = replace(splitdir(instance)[end], Pair(".jl", ""))
+    nakeinstance = replace(instance, Pair(".jl", ""))
 
     if "$(pname).jl" in special_instances
-        m = eval(parse(pname))(options=options)
-    elseif isfile(joinpath(Pkg.dir("MINLPLib"), "instances", "$(nakeinstance).jl"))
-        m = include(joinpath(Pkg.dir("MINLPLib"), "instances", "$(nakeinstance).jl"))
+        m = getfield(MINLPLib, Symbol(pname))(options=options)
+    elseif isfile(joinpath(minlplib_dir, "instances", "$(nakeinstance).jl"))
+        m = include(joinpath(minlplib_dir, "instances", "$(nakeinstance).jl"))
     else
-        warn("No instances detected...")
+        @warn "No instances detected..."
         return nothing
     end
 
@@ -19,18 +19,18 @@ fetch_model(libname::AbstractString, pname::AbstractString; options::Dict=Dict()
 
 function fetch_meta(instance::AbstractString)
 
-    if !isfile(joinpath(Pkg.dir("MINLPLib"), "meta", "$(instance).json"))
-        warn("No meta information for $(instance) found")
+    if !isfile(joinpath(minlplib_dir, "meta", "$(instance).json"))
+        @warn "No meta information for $(instance) found"
         return Dict()
     end
 
-    m = JSON.parsefile(joinpath(Pkg.dir("MINLPLib"), "meta", "$(instance).json"))
+    m = JSON.parsefile(joinpath(minlplib_dir, "meta", "$(instance).json"))
 
     if haskey(m, "INTERNALLINK")
         sourcelib = m["INTERNALLINK"]
         isempty(sourcelib) && return Dict()
         pname = splitdir(instance)[end]
-        return JSON.parsefile(joinpath(Pkg.dir("MINLPLib"), "meta", sourcelib, "$(pname).json"))
+        return JSON.parsefile(joinpath(minlplib_dir, "meta", sourcelib, "$(pname).json"))
     end
 
     return m
@@ -40,15 +40,15 @@ fetch_meta(libname::AbstractString, pname::AbstractString) = fetch_meta(joinpath
 
 function fetch_names(libname::AbstractString; postfix=false)
 
-    !isdir(joinpath(Pkg.dir("MINLPLib"), "instances", libname)) && error("Library $(libname) does not exist.")
+    !isdir(joinpath(minlplib_dir, "instances", libname)) && error("Library $(libname) does not exist.")
 
-    nraw = readdir(joinpath(Pkg.dir("MINLPLib"), "instances", libname))
+    nraw = readdir(joinpath(minlplib_dir, "instances", libname))
     nlist = []
     inactive = 0
     postfix && return nlist
     for i in 1:length(nraw)
         if !(nraw[i][1] in ['_', '#']) && !(nraw[i] == "README.md")
-            postfix ? push!(nlist, nraw[i]) : push!(nlist, replace(nraw[i], r".tar.gz|.jl", ""))
+            postfix ? push!(nlist, nraw[i]) : push!(nlist, replace(nraw[i], Pair(r".tar.gz|.jl", "")))
         else
             inactive += 1
         end
@@ -57,7 +57,7 @@ function fetch_names(libname::AbstractString; postfix=false)
 end
 
 function fetch_lib_names()
-    libs = readdir(joinpath(Pkg.dir("MINLPLib"), "instances"))
+    libs = readdir(joinpath(minlplib_dir, "instances"))
     return [i for i in libs if i != "special"]
 end
 
@@ -89,9 +89,9 @@ function build_basic_meta(libname::AbstractString, pname::AbstractString; inject
 				"LOAD"=>lt)
 
     if injection
-        warn("Meta injection is ON. Built-in meta info will be over-written!")
-        !isdir(joinpath(Pkg.dir("MINLPLib"), "meta", libname)) && mkdir(joinpath(Pkg.dir("MINLPLib"), "meta", libname))
-        f = open(joinpath(Pkg.dir("MINLPLib"), "meta", libname, "$(pname).json"), "w")
+        @warn "Meta injection is ON. Built-in meta info will be over-written!"
+        !isdir(joinpath(minlplib_dir, "meta", libname)) && mkdir(joinpath(minlplib_dir, "meta", libname))
+        f = open(joinpath(minlplib_dir, "meta", libname, "$(pname).json"), "w")
         JSON.print(f, meta)
         close(f)
         return
@@ -102,32 +102,32 @@ end
 
 function show_basic_dimensions(libname::AbstractString, pname::AbstractString)
 
-    !isfile("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json") && error("No meta file detected...")
+    !isfile("$(minlplib_dir)/meta/$(libname)/$(pname).json") && error("No meta file detected...")
 
-    m = JSON.parsefile("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json")
+    m = JSON.parsefile("$(minlplib_dir)/meta/$(libname)/$(pname).json")
 	println("$(libname) $(pname) $(m["LOAD"]) $(m["OBJSENSE"]) $(m["NVARS"]) $(m["NBINVARS"]) $(m["NINTVARS"]) $(m["NCONS"]) $(m["NLINCONS"]) $(m["NNLCONS"]) $(m["NCONS"]-m["NLINCONS"]-m["NNLCONS"])")
     return
 end
 
 function add_to_meta(libname::AbstractString, pname::AbstractString, attributename::AbstractString, attributevalue::Any; injection::Bool=false)
 
-    jlf_path = "$(Pkg.dir("MINLPLib"))/instances/$(libname)/$(pname).jl"
+    jlf_path = "$(minlplib_dir)/instances/$(libname)/$(pname).jl"
 
     if !isfile(jlf_path)
         error("No problem $(libname)/$(pname) detected...")
     end
 
     # Even with the instance file, meta file can still be missing
-    if !isfile("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json")
+    if !isfile("$(minlplib_dir)/meta/$(libname)/$(pname).json")
         meta = Dict()
     else
-        meta = JSON.parsefile("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json")
+        meta = JSON.parsefile("$(minlplib_dir)/meta/$(libname)/$(pname).json")
     end
     meta[attributename] = attributevalue
     if injection
-        warn("Meta injection is ON. Built-in meta info will be over-written!")
-        isfile("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json") && rm("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json")
-        f = open("$(Pkg.dir("MINLPLib"))/meta/$(libname)/$(pname).json", "w")
+        @warn "Meta injection is ON. Built-in meta info will be over-written!"
+        isfile("$(minlplib_dir)/meta/$(libname)/$(pname).json") && rm("$(minlplib_dir)/meta/$(libname)/$(pname).json")
+        f = open("$(minlplib_dir)/meta/$(libname)/$(pname).json", "w")
         JSON.print(f, meta)
         close(f)
         return
@@ -148,43 +148,43 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
         tolib in PROTECTED_LIBS && error("In-take library is protected by package. Use override=true to change it.")
     end
 
-    pname = replace(splitdir(instance)[end], ".jl", "")
+    pname = replace(splitdir(instance)[end], Pair(".jl", ""))
     isempty(pname) && error("Issue recognizing instance name from string $(instance)...")
 
     # First check if there is actually the library
-    if !isdir(joinpath(Pkg.dir("MINLPLib"), "instances", tolib))
-        info("Initializing user-library $(tolib)...")
-        mkdir(joinpath(Pkg.dir("MINLPLib"), "instances", tolib))
-        mkdir(joinpath(Pkg.dir("MINLPLib"), "meta", tolib))
+    if !isdir(joinpath(minlplib_dir, "instances", tolib))
+        @info "Initializing user-library $(tolib)..."
+        mkdir(joinpath(minlplib_dir, "instances", tolib))
+        mkdir(joinpath(minlplib_dir, "meta", tolib))
     end
 
     # Then check is the intaking lib is already there.
-    if isfile(joinpath(Pkg.dir("MINLPLib"), "instances", tolib, "$(pname).jl"))
-        warn("Instance $(pname) already exist in in-take library $(tolib). Not doing anything...")
+    if isfile(joinpath(minlplib_dir, "instances", tolib, "$(pname).jl"))
+        @warn "Instance $(pname) already exist in in-take library $(tolib). Not doing anything..."
         return
     end
 
     # Check if the source instance exist or not
-    if !isfile(joinpath(Pkg.dir("MINLPLib"), "instances", fromlib, "$(pname).jl"))
-        warn("Instance $(pname) is not detected in library $(fromlib). Not doing anything...")
+    if !isfile(joinpath(minlplib_dir, "instances", fromlib, "$(pname).jl"))
+        @warn "Instance $(pname) is not detected in library $(fromlib). Not doing anything..."
         return
     end
 
     # Check if the source meta exist or not
     nometa = false
-    if !isfile(joinpath(Pkg.dir("MINLPLib"), "meta", fromlib, "$(pname).json"))
-        warn("Instance $(pname) meta info missing in library $(fromlib). Carry on without meta info...")
+    if !isfile(joinpath(minlplib_dir, "meta", fromlib, "$(pname).json"))
+        @warn "Instance $(pname) meta info missing in library $(fromlib). Carry on without meta info..."
         nometa = true
     end
 
     # Adding the instance
-    f = open(joinpath(Pkg.dir("MINLPLib"), "instances", tolib, "$(pname).jl"), "w")
-    write(f, "include(joinpath(Pkg.dir(\"MINLPLib\"),\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
+    f = open(joinpath(minlplib_dir, "instances", tolib, "$(pname).jl"), "w")
+    write(f, "include(joinpath(\"$(minlplib_dir)\",\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
     close(f)
     println("Successfully added instance $(fromlib)/$(pname) to library $(tolib)...")
 
     if !nometa
-        desjson = joinpath(Pkg.dir("MINLPLib"), "meta", tolib, "$(pname).json")
+        desjson = joinpath(minlplib_dir, "meta", tolib, "$(pname).json")
         df = open(desjson, "w")
         md = Dict("INTERNALLINK"=>fromlib)
         JSON.print(df, md)
@@ -203,21 +203,21 @@ function remove_from_lib(libname::AbstractString, pname::AbstractString)
     end
 
     # Finding instance
-    if !isfile(joinpath(Pkg.dir("MINLPLib"), "instances",libname, "$(pname).jl"))
-        warn("No instances detected to remote.")
+    if !isfile(joinpath(minlplib_dir, "instances",libname, "$(pname).jl"))
+        @warn "No instances detected to remote."
         return
     end
 
     nometa = false
-    if !isfile(joinpath(Pkg.dir("MINLPLib"), "meta", libname, "$(pname).json"))
-        warn("No meta detected to remote.")
+    if !isfile(joinpath(minlplib_dir, "meta", libname, "$(pname).json"))
+        @warn "No meta detected to remote."
         nometa = true
     end
 
     # Removing instance
-    warn("Removing instance $(pname) from library $(libname)")
-    rm(joinpath(Pkg.dir("MINLPLib"), "instances", libname, "$(pname).jl"))
-    nometa || rm(joinpath(Pkg.dir("MINLPLib"), "meta", libname, "$(pname).json"))
+    @warn "Removing instance $(pname) from library $(libname)"
+    rm(joinpath(minlplib_dir, "instances", libname, "$(pname).jl"))
+    nometa || rm(joinpath(minlplib_dir, "meta", libname, "$(pname).json"))
 
     return
 end
@@ -225,12 +225,12 @@ end
 function clean_lib_meta(libname::AbstractString)
 
     names = fetch_names(libname)
-    metas = Glob.glob("*.json", joinpath(Pkg.dir("MINLPLib"), "meta", libname))
+    metas = Glob.glob("*.json", joinpath(minlplib_dir, "meta", libname))
 
     for i in metas
-        n = replace(splitdir(i)[end], ".json", "")
-        n in names || rm(joinpath(Pkg.dir("MINLPLib"), "meta", libname, "$(n).json",))
-        info("Cleaning $(n).json meta from library $(libname)")
+        n = replace(splitdir(i)[end], Pair(".json", ""))
+        n in names || rm(joinpath(minlplib_dir, "meta", libname, "$(n).json",))
+        @info "Cleaning $(n).json meta from library $(libname)"
     end
 
     return
@@ -239,13 +239,13 @@ end
 function reconstruct_link_meta(libname::AbstractString)
 
     if libname in PROTECTED_LIBS
-        warn("Meta info cannot be reconstructed in this library since it is protected. Finishing...")
+        @warn "Meta info cannot be reconstructed in this library since it is protected. Finishing..."
         return
     end
 
     names = fetch_names(libname)
     for i in names
-        pf = open(joinpath(Pkg.dir("MINLPLib"), "instances", libname, "$(i).jl"), "r")
+        pf = open(joinpath(minlplib_dir, "instances", libname, "$(i).jl"), "r")
         content = readline(pf)
         sourcelib = ""
         for j in PROTECTED_LIBS
@@ -255,7 +255,7 @@ function reconstruct_link_meta(libname::AbstractString)
         end
         close(pf)
         meta = Dict("INTERNALLINK"=>sourcelib)
-        pf = open(joinpath(Pkg.dir("MINLPLib"), "meta", libname, "$(i).json"), "w")
+        pf = open(joinpath(minlplib_dir, "meta", libname, "$(i).json"), "w")
         JSON.print(pf, meta)
         close(pf)
     end
@@ -265,12 +265,12 @@ end
 
 function convert_minlplib2_meta(pname::AbstractString; outputpath="")
 
-    if !isfile("$(Pkg.dir())/MINLPLib/.solvedata/minlplib2/$(pname).prop")
-        show && info("No $(pname).prop found")
+    if !isfile("$minlplib_dir/MINLPLib/.solvedata/minlplib2/$(pname).prop")
+        show && @info "No $(pname).prop found"
         return
     end
 
-    pf = open("$(Pkg.dir())/MINLPLib/.solvedata/minlplib2/$(pname).prop", "r")
+    pf = open("$minlplib_dir/MINLPLib/.solvedata/minlplib2/$(pname).prop", "r")
     pc = Dict()
 
     for l in readlines(pf)
@@ -286,14 +286,14 @@ function convert_minlplib2_meta(pname::AbstractString; outputpath="")
     end
     close(pf)
 
-    !haskey(pc, :OBJSENSE) && info("No detection of objective sense in $(pname).prop", prefix="MINLPLib: ")
+    !haskey(pc, :OBJSENSE) && @info "No detection of objective sense in $(pname).prop"
     !haskey(pc, :OBJSENSE) && return
     obj_sense = pc[:OBJSENSE]
 
     found = true
     i = 1
-    if isfile("$(Pkg.dir())/MINLPLib/.solvedata/minlplib2/$(pname).prop")
-        pf = open("$(Pkg.dir())/MINLPLib/.solvedata/minlplib2/$(pname).prop", "r")
+    if isfile("$minlplib_dir/MINLPLib/.solvedata/minlplib2/$(pname).prop")
+        pf = open("$minlplib_dir/MINLPLib/.solvedata/minlplib2/$(pname).prop", "r")
         for l in readlines(pf)
             sl = split(l)
             if length(sl) > 2
@@ -303,12 +303,12 @@ function convert_minlplib2_meta(pname::AbstractString; outputpath="")
         end
         close(pf)
     else
-        warn("No detection of the solution p# file $(pname)")
+        @warn "No detection of the solution p# file $(pname)"
     end
 
     obj_sense == :min ? bound = -Inf : bound = +Inf
-    if isfile("$(Pkg.dir())/MINLPLib/.solvedata/minlplib2/$(pname).db")
-        dbf = open("$(Pkg.dir())/MINLPLib/.solvedata/minlplib2/$(pname).db", "r")
+    if isfile("$minlplib_dir/MINLPLib/.solvedata/minlplib2/$(pname).db")
+        dbf = open("$minlplib_dir/MINLPLib/.solvedata/minlplib2/$(pname).db", "r")
         last_l = ""
         for l in readlines(dbf)
             sl = split(l)
@@ -338,7 +338,7 @@ function convert_minlplib2_meta(pname::AbstractString; outputpath="")
     haskey(pc, :SOURCE) || (pc[:SOURCE] = "http://www.gamsworld.org/minlp/minlplib2/html/")
 
     if isempty(outputpath)
-        f = open("$(Pkg.dir())/MINLPLib/meta/PODLib/$(pname).json", "w")
+        f = open("$minlplib_dir/MINLPLib/meta/PODLib/$(pname).json", "w")
     else
         f = open(outputpath, "w")
     end
