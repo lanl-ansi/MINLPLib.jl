@@ -209,13 +209,12 @@ setupperbound(x[98], 1.0)
 setupperbound(x[99], 1.0)
 setupperbound(x[100], 1.0)
 setupperbound(x[101], 1.0)
-setlowerbound(x[102], 1.0)
-setupperbound(x[102], 1.0)
-setlowerbound(x[203], 0.0)
-setupperbound(x[203], 0.0)
+
 
 
 # ----- Constraints ----- #
+@constraint(m, x[102] == 1.0)
+@constraint(m, x[203] == 0.0)
 @constraint(m, e1, -x[202]-x[303]+objvar == -1.0)
 @NLconstraint(m, e2, x[103]-(0.005*(x[1]*(10*x[203]-x[102])+x[2]*(10*x[204]-x[103]))+x[102]) == 0.0)
 @NLconstraint(m, e3, x[104]-(0.005*(x[2]*(10*x[204]-x[103])+x[3]*(10*x[205]-x[104]))+x[103]) == 0.0)

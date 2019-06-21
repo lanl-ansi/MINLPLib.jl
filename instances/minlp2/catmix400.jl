@@ -816,6 +816,8 @@ setupperbound(x[803], 0.0)
 
 
 # ----- Constraints ----- #
+@constraint(m, x[402] == 1.0)
+@constraint(m, x[803] == 0.0)
 @constraint(m, e1, -x[802]-x[1203]+objvar == -1.0)
 @NLconstraint(m, e2, x[403]-(0.00125*(x[1]*(10*x[803]-x[402])+x[2]*(10*x[804]-x[403]))+x[402]) == 0.0)
 @NLconstraint(m, e3, x[404]-(0.00125*(x[2]*(10*x[804]-x[403])+x[3]*(10*x[805]-x[404]))+x[403]) == 0.0)
