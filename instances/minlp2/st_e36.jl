@@ -7,10 +7,7 @@ m = Model()
 x_Idx = Any[2]
 @variable(m, x[x_Idx])
 i_Idx = Any[1]
-@variable(m, i[i_Idx])
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
+@variable(m, i[i_Idx], Int)
 setlowerbound(i[1], 15.0)
 setupperbound(i[1], 25.0)
 setlowerbound(x[2], 3.0)
