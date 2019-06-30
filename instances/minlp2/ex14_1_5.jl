@@ -4,18 +4,9 @@ m = Model()
 
 # ----- Variables ----- #
 @variable(m, objvar)
-x_Idx = Any[1, 2, 3, 4, 5, 6]
-@variable(m, x[x_Idx])
-setlowerbound(x[1], -2.0)
-setupperbound(x[1], 2.0)
-setlowerbound(x[2], -2.0)
-setupperbound(x[2], 2.0)
-setlowerbound(x[3], -2.0)
-setupperbound(x[3], 2.0)
-setlowerbound(x[4], -2.0)
-setupperbound(x[4], 2.0)
-setlowerbound(x[5], -2.0)
-setupperbound(x[5], 2.0)
+x_Idx = Any[1, 2, 3, 4, 5]
+@variable(m, -2 <= x[x_Idx] <= 2)
+@variable(m, x[6])
 
 
 # ----- Constraints ----- #
