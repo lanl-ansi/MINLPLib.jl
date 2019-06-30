@@ -7,8 +7,7 @@ m = Model()
 x_Idx = Any[1, 2]
 @variable(m, x[x_Idx])
 b_Idx = Any[3]
-@variable(m, b[b_Idx])
-setcategory(b[3], :Bin)
+@variable(m, b[b_Idx], Bin)
 setlowerbound(x[1], 0.2)
 setupperbound(x[1], 1.0)
 setlowerbound(x[2], -2.22554)
