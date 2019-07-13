@@ -7,16 +7,7 @@ m = Model()
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 64, 65, 66, 67, 68, 69]
 @variable(m, x[x_Idx])
 b_Idx = Any[55, 56, 57, 58, 59, 60, 61, 62, 63]
-@variable(m, b[b_Idx])
-setcategory(b[61], :Bin)
-setcategory(b[58], :Bin)
-setcategory(b[56], :Bin)
-setcategory(b[57], :Bin)
-setcategory(b[60], :Bin)
-setcategory(b[63], :Bin)
-setcategory(b[55], :Bin)
-setcategory(b[59], :Bin)
-setcategory(b[62], :Bin)
+@variable(m, b[b_Idx], Bin)
 
 
 # ----- Constraints ----- #
