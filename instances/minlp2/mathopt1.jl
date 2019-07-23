@@ -5,11 +5,9 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2]
-@variable(m, x[x_Idx])
+@variable(m, x[x_Idx] <= 20)
 setlowerbound(x[1], -10.0)
-setupperbound(x[1], 20.0)
 setlowerbound(x[2], -15.0)
-setupperbound(x[2], 20.0)
 
 
 # ----- Constraints ----- #
