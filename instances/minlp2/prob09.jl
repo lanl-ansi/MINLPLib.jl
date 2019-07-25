@@ -3,15 +3,9 @@ using JuMP
 m = Model()
 
 # ----- Variables ----- #
-@variable(m, objvar)
+@variable(m, -100 <= objvar <= 100)
 x_Idx = Any[2, 3]
-@variable(m, x[x_Idx])
-setlowerbound(objvar, -100.0)
-setupperbound(objvar, 100.0)
-setlowerbound(x[2], -2.0)
-setupperbound(x[2], 2.0)
-setlowerbound(x[3], -2.0)
-setupperbound(x[3], 2.0)
+@variable(m, -2 <= x[x_Idx] <= 2)
 
 
 # ----- Constraints ----- #
