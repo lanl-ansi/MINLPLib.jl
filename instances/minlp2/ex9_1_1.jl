@@ -5,18 +5,11 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+var_Id = Any[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 @variable(m, x[x_Idx])
-setlowerbound(x[4], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[14], 0.0)
-setlowerbound(x[11], 0.0)
-setlowerbound(x[12], 0.0)
-setlowerbound(x[5], 0.0)
-setlowerbound(x[9], 0.0)
-setlowerbound(x[8], 0.0)
-setlowerbound(x[7], 0.0)
-setlowerbound(x[13], 0.0)
-setlowerbound(x[10], 0.0)
+for i in var_Id
+   setlowerbound(x[i], 0)
+end
 
 
 # ----- Constraints ----- #
