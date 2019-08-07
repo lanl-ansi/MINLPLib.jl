@@ -5,27 +5,7 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 i_Idx = Any[1, 2, 3, 4, 5]
-@variable(m, i[i_Idx])
-setcategory(i[5], :Int)
-setlowerbound(i[5], 0.0)
-setupperbound(i[5], 100.0)
-setcategory(i[4], :Int)
-setlowerbound(i[4], 0.0)
-setupperbound(i[4], 100.0)
-setcategory(i[3], :Int)
-setlowerbound(i[3], 0.0)
-setupperbound(i[3], 100.0)
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
-setupperbound(i[1], 1.0)
-setupperbound(i[2], 1.0)
-setupperbound(i[3], 1.0)
-setupperbound(i[4], 1.0)
-setupperbound(i[5], 1.0)
+@variable(m, i[i_Idx] <= 1, Int)
 
 
 # ----- Constraints ----- #

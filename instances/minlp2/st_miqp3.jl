@@ -5,13 +5,7 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 i_Idx = Any[1, 2]
-@variable(m, i[i_Idx])
-setcategory(i[1], :Int)
-setlowerbound(i[1], 0.0)
-setupperbound(i[1], 100.0)
-setcategory(i[2], :Int)
-setlowerbound(i[2], 0.0)
-setupperbound(i[2], 100.0)
+@variable(m, i[i_Idx], Int)
 setupperbound(i[1], 3.0)
 setupperbound(i[2], 1.0e15)
 
