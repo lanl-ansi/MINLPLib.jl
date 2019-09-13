@@ -6,11 +6,7 @@ m = Model()
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9]
 @variable(m, x[x_Idx])
 b_Idx = Any[10, 11, 12, 13]
-@variable(m, b[b_Idx])
-setcategory(b[10], :Bin)
-setcategory(b[12], :Bin)
-setcategory(b[11], :Bin)
-setcategory(b[13], :Bin)
+@variable(m, b[b_Idx], Bin)
 setlowerbound(x[2], 81.09)
 setupperbound(x[2], 81.09)
 setlowerbound(x[3], 23.92)
