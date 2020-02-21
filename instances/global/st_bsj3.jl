@@ -5,20 +5,7 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4, 5, 6]
-@variable(m, x[x_Idx])
-setlowerbound(x[5], 0.0)
-setlowerbound(x[1], 0.0)
-setlowerbound(x[4], 0.0)
-setlowerbound(x[2], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[3], 0.0)
-setupperbound(x[1], 99.0)
-setupperbound(x[2], 99.0)
-setupperbound(x[3], 99.0)
-setupperbound(x[4], 99.0)
-setupperbound(x[5], 99.0)
-setupperbound(x[6], 99.0)
-
+@variable(m, 0 <= x[x_Idx] <= 99)
 
 # ----- Constraints ----- #
 @constraint(m, e1, x[1]+x[2]+x[3]+x[4]+x[5]+x[6] <= 1.0e10)
