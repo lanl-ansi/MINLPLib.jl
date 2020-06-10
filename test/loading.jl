@@ -49,7 +49,7 @@
 
     m = fetch_model("prince", "biggs3")
     @test length(m.colVal) == 7
-    @test length(m.linconstr) == 0
+    #@test length(m.linconstr) == 0
 
     m = fetch_model("qcqp", "unitbox_c_8_8_1_25")
     @test length(m.colVal) == 9
