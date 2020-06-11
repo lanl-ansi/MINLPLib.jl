@@ -1,7 +1,7 @@
 using Documenter, MINLPLib
 
 makedocs(
-    format = :html,
+    format = Documenter.HTML(analytics = "UA-367975-10", mathengine = Documenter.MathJax()),
     sitename = "MINLPLib",
     pages = [
         "Libraries Summary" => "index.md",
@@ -30,9 +30,4 @@ makedocs(
 
 deploydocs(
     repo = "github.com/lanl-ansi/MINLPLib.jl.git",
-    target = "build",
-    osname = "linux",
-    julia  = "0.6",
-    deps   = nothing,
-    make   = nothing
 )

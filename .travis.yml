@@ -22,6 +22,8 @@ after_success:  # post-processing, if the script passes with no errors
   - julia -e 'using Pkg; Pkg.add("Coverage"); cd(Pkg.dir("MINLPLib")); using Coverage; Codecov.submit(process_folder())'
   
 jobs:
+  allow_failures:
+    - julia: nightly
   include:
     - stage: "Documentation"
       julia: 1.0
