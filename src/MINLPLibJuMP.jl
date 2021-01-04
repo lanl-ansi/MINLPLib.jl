@@ -1,7 +1,6 @@
-__precompile__()
 module MINLPLibJuMP
 
-using JuMP, MathProgBase
+using JuMP #, MathProgBase
 using JSON, Glob
 
 minlp_dir = joinpath(dirname(pathof(MINLPLibJuMP)),"..")
