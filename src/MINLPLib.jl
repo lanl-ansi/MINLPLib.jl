@@ -1,9 +1,9 @@
-module MINLPLibJuMP
+module MINLPLib
 
 using JuMP #, MathProgBase
 using JSON, Glob
 
-minlp_dir = joinpath(dirname(pathof(MINLPLibJuMP)),"..")
+minlp_dir = joinpath(dirname(pathof(MINLPLib)),"..")
 
 include("features.jl")
 
