@@ -1,5 +1,5 @@
 using Test
-using MINLPLibJuMP
+using MINLPLib
 
 # Performe Tests
 include("loading.jl")

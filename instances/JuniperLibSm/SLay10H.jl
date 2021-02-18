@@ -1,1 +1,1 @@
-using MINLPLibJuMP; include(joinpath(dirname(pathof(MINLPLibJuMP)),"..","instances","ibm", "SLay10H.jl"))
+using MINLPLib; include(joinpath(dirname(pathof(MINLPLib)),"..","instances","ibm", "SLay10H.jl"))

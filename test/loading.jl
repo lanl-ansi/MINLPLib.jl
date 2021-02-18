@@ -76,21 +76,21 @@ end
 
 @testset "Built-in functions testing" begin
 
-    @test length(MINLPLibJuMP.fetch_names("ibm")) == 142
+    @test length(MINLPLib.fetch_names("ibm")) == 142
 
-    MINLPLibJuMP.add_to_lib("testlib", "minlp2", "blend029")
+    MINLPLib.add_to_lib("testlib", "minlp2", "blend029")
 
-    @test isdir(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","testlib"))
+    @test isdir(joinpath(Pkg.dir("MINLPLib"),"instances","testlib"))
 
     m = fetch_model("testlib", "blend029")
 
     @test length(m.colVal) == 103
     @test length(m.linconstr) == 202
 
-    f = MINLPLibJuMP.fetch_meta("testlib", "blend029")
+    f = MINLPLib.fetch_meta("testlib", "blend029")
     @test !haskey(f, "INTERNALLINK")
 
-    rm(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","testlib"),recursive=true)
-    rm(joinpath(Pkg.dir("MINLPLibJuMP"),"meta","testlib"),recursive=true)
+    rm(joinpath(Pkg.dir("MINLPLib"),"instances","testlib"),recursive=true)
+    rm(joinpath(Pkg.dir("MINLPLib"),"meta","testlib"),recursive=true)
 
 end

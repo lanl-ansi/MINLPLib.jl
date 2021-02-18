@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLibJuMP"),"instances","global", "bayes2_30.jl"))
+include(joinpath(Pkg.dir("MINLPLib"),"instances","global", "bayes2_30.jl"))

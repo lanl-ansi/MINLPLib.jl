@@ -1,8 +1,8 @@
-using Documenter, MINLPLibJuMP
+using Documenter, MINLPLib
 
 makedocs(
     format = :html,
-    sitename = "MINLPLibJuMP",
+    sitename = "MINLPLib",
     pages = [
         "Libraries Summary" => "index.md",
         "Libraries" => [
@@ -29,7 +29,7 @@ makedocs(
 
 
 deploydocs(
-    repo = "github.com/lanl-ansi/MINLPLibJuMP.jl.git",
+    repo = "github.com/lanl-ansi/MINLPLib.jl.git",
     target = "build",
     osname = "linux",
     julia  = "0.6",

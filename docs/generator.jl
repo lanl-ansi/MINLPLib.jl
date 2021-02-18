@@ -1,4 +1,4 @@
-using MINLPLibJuMP
+using MINLPLib
 
 LIBS = ["bcp","global", "ibm", "inf", "minlp",
         "minlp2", "morg", "mpec", "mult3", "mult4",
@@ -7,9 +7,9 @@ LIBS = ["bcp","global", "ibm", "inf", "minlp",
 LIBS = ["PODLib"]
 function collect_dimension(libname::AbstractString, dat::Dict)
 
-    names = MINLPLibJuMP.fetch_names(libname)
+    names = MINLPLib.fetch_names(libname)
     for i in names
-        meta = MINLPLibJuMP.fetch_meta(libname, i)
+        meta = MINLPLib.fetch_meta(libname, i)
         if !isempty(meta)
             haskey(meta, "LOAD") ? dat[i]["lt"] = meta["LOAD"] : dat[i]["lt"] = -1.0
             dat[i]["sense"] = meta["OBJSENSE"]
@@ -36,7 +36,7 @@ end
 function generate_lib_page(libname::AbstractString)
     isdir("temp") || mkdir("temp")
     f = open(joinpath("temp",libname), "w")
-    names = MINLPLibJuMP.fetch_names(libname)
+    names = MINLPLib.fetch_names(libname)
     N = length(names)
     DAT = Dict(i => Dict() for i in names)
     DAT = collect_dimension(libname, DAT)
