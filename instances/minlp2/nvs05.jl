@@ -8,10 +8,10 @@ x_Idx = Any[3, 4, 5, 6, 7, 8]
 @variable(m, x[x_Idx])
 i_Idx = Any[1, 2]
 @variable(m, 1 <= i[i_Idx] <= 200, Int)
-setlowerbound(x[3], 0.01)
-setupperbound(x[3], 200.0)
-setlowerbound(x[4], 0.01)
-setupperbound(x[4], 200.0)
+set_lower_bound(x[3], 0.01)
+set_upper_bound(x[3], 200.0)
+set_lower_bound(x[4], 0.01)
+set_upper_bound(x[4], 200.0)
 
 
 # ----- Constraints ----- #

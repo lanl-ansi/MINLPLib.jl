@@ -61,45 +61,6 @@ function fetch_lib_names()
     return [i for i in libs if i != "special"]
 end
 
-function build_basic_meta(libname::AbstractString, pname::AbstractString; injection::Bool=false)
-
-	st = time()
-    m = fetch_model(libname, pname)
-	lt = time() - st
-
-    d = JuMP.NLPEvaluator(m)
-    MathProgBase.initialize(d, [:Grad, :Jac, :HessVec, :Hess, :ExprGraph])
-
-    meta = Dict("OBJTYPE"=> d.has_nlobj ? "nonlinear" : "linear",
-                "LIBRARY"=> libname,
-                "OBJSENSE"=> m.objSense,
-                "OBJVAL" => m.objSense == :Max ? -Inf : Inf,
-                "OBJBOUND"=> m.objSense == :Max ? Inf : -Inf,
-                "NCONS"=> length(m.linconstr)+length(m.sosconstr)+length(m.sdpconstr)+length(m.quadconstr)+length(d.constraints),
-                "NLINCONS"=> length(m.linconstr),
-                "NSOSCONS"=> length(m.sosconstr),
-                "NSDPCONS"=> length(m.sdpconstr),
-                "NQUADCONS" => length(m.quadconstr),
-                "NNLCONS" => length(d.constraints),
-                "NAME"=> pname,
-                "NLOPERANDS"=> [],  # TODO: introduce the expression sweeper here
-                "NVARS"=> m.numCols,
-                "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
-                "NBINVARS"=> length([i for i in m.colCat if i == :Bin]),
-				"LOAD"=>lt)
-
-    if injection
-        @warn "Meta injection is ON. Built-in meta info will be over-written!"
-        !isdir(joinpath(minlplib_dir, "meta", libname)) && mkdir(joinpath(minlplib_dir, "meta", libname))
-        f = open(joinpath(minlplib_dir, "meta", libname, "$(pname).json"), "w")
-        JSON.print(f, meta)
-        close(f)
-        return
-    end
-
-    return meta
-end
-
 function show_basic_dimensions(libname::AbstractString, pname::AbstractString)
 
     !isfile("$(minlplib_dir)/meta/$(libname)/$(pname).json") && error("No meta file detected...")
@@ -348,3 +309,43 @@ function convert_minlplib2_meta(pname::AbstractString; outputpath="")
 
     return pc
 end
+
+
+# function build_basic_meta(libname::AbstractString, pname::AbstractString; injection::Bool=false)
+
+# 	st = time()
+#     m = fetch_model(libname, pname)
+# 	lt = time() - st
+
+#     d = JuMP.NLPEvaluator(m)
+#     MathProgBase.initialize(d, [:Grad, :Jac, :HessVec, :Hess, :ExprGraph])
+
+#     meta = Dict("OBJTYPE"=> d.has_nlobj ? "nonlinear" : "linear",
+#                 "LIBRARY"=> libname,
+#                 "OBJSENSE"=> m.objSense,
+#                 "OBJVAL" => m.objSense == :Max ? -Inf : Inf,
+#                 "OBJBOUND"=> m.objSense == :Max ? Inf : -Inf,
+#                 "NCONS"=> length(m.linconstr)+length(m.sosconstr)+length(m.sdpconstr)+length(m.quadconstr)+length(d.constraints),
+#                 "NLINCONS"=> length(m.linconstr),
+#                 "NSOSCONS"=> length(m.sosconstr),
+#                 "NSDPCONS"=> length(m.sdpconstr),
+#                 "NQUADCONS" => length(m.quadconstr),
+#                 "NNLCONS" => length(d.constraints),
+#                 "NAME"=> pname,
+#                 "NLOPERANDS"=> [],  # TODO: introduce the expression sweeper here
+#                 "NVARS"=> m.numCols,
+#                 "NINTVARS"=> length([i for i in m.colCat if i == :Int]),
+#                 "NBINVARS"=> length([i for i in m.colCat if i == :Bin]),
+# 				"LOAD"=>lt)
+
+#     if injection
+#         @warn "Meta injection is ON. Built-in meta info will be over-written!"
+#         !isdir(joinpath(minlplib_dir, "meta", libname)) && mkdir(joinpath(minlplib_dir, "meta", libname))
+#         f = open(joinpath(minlplib_dir, "meta", libname, "$(pname).json"), "w")
+#         JSON.print(f, meta)
+#         close(f)
+#         return
+#     end
+
+#     return meta
+# end

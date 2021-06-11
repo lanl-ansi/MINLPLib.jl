@@ -6,8 +6,8 @@ m = Model()
 @variable(m, objvar)
 x_Idx = Any[2, 3]
 @variable(m, x[x_Idx] >= -10)
-setupperbound(x[2], 5.0)
-setupperbound(x[3], 10.0)
+set_upper_bound(x[2], 5.0)
+set_upper_bound(x[3], 10.0)
 
 
 # ----- Constraints ----- #

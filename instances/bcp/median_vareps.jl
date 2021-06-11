@@ -5,7 +5,7 @@ m = Model()
 # ----- Variables ----- #
 x_Idx = Any[1, 2, 3]
 @variable(m, x[x_Idx])
-setlowerbound(x[1], 1.0e-8)
+set_lower_bound(x[1], 1.0e-8)
 
 
 # ----- Constraints ----- #

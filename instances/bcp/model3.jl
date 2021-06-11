@@ -5,12 +5,12 @@ m = Model()
 # ----- Variables ----- #
 x_Idx = Any[1, 2, 3, 4]
 @variable(m, x[x_Idx])
-setlowerbound(x[1], 0.001)
-setupperbound(x[1], 1.0)
-setlowerbound(x[2], 1.0e-5)
-setupperbound(x[2], 0.01)
-setlowerbound(x[3], 1.0e-5)
-setupperbound(x[3], 0.1)
+set_lower_bound(x[1], 0.001)
+set_upper_bound(x[1], 1.0)
+set_lower_bound(x[2], 1.0e-5)
+set_upper_bound(x[2], 0.01)
+set_lower_bound(x[3], 1.0e-5)
+set_upper_bound(x[3], 0.1)
 
 
 # ----- Constraints ----- #

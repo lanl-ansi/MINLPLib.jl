@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","morg", "UC_ZondervanE.jl"))
+include(joinpath(minlplib_dir,"instances","morg", "UC_ZondervanE.jl"))

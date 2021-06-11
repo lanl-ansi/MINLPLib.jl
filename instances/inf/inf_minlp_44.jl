@@ -4,7 +4,7 @@ m = Model()
 
 # ----- Variables ----- #
 b_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-@variable(m, b[b_Idx])
+@variable(m, b[b_Idx],  Bin)
 x_Idx = Any[25]
 @variable(m, x[x_Idx])
 i_Idx = Any[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]

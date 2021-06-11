@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","minlp2", "crudeoil_li06.jl"))
+include(joinpath(minlplib_dir,"instances","minlp2", "crudeoil_li06.jl"))

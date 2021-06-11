@@ -6,7 +6,7 @@ m = Model()
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3]
 @variable(m, x[x_Idx])
-setlowerbound(x[3], 1.0e-8)
+set_lower_bound(x[3], 1.0e-8)
 
 
 # ----- Constraints ----- #

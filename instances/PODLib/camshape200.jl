@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","global", "camshape200.jl"))
+include(joinpath(minlplib_dir,"instances","global", "camshape200.jl"))

@@ -10,11 +10,11 @@ b_Idx = Any[7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 @variable(m, b[b_Idx], Bin)
 i_Idx = Any[4]
 @variable(m, 1 <= i[i_Idx] <= 100, Int)
-setlowerbound(x[1], 0.414)
-setlowerbound(x[2], 0.207)
-setlowerbound(x[3], 0.00178571428571429)
-setupperbound(x[3], 0.02)
-setlowerbound(x[5], 1.1)
+set_lower_bound(x[1], 0.414)
+set_lower_bound(x[2], 0.207)
+set_lower_bound(x[3], 0.00178571428571429)
+set_upper_bound(x[3], 0.02)
+set_lower_bound(x[5], 1.1)
 
 
 # ----- Constraints ----- #

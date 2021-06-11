@@ -4,18 +4,18 @@ m = Model()
 
 # ----- Variables ----- #
 b_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9]
-@variable(m, b[b_Idx])
+@variable(m, b[b_Idx],  Bin)
 x_Idx = Any[10]
 @variable(m, x[x_Idx])
-setcategory(b[9], :Bin)
-setcategory(b[8], :Bin)
-setcategory(b[3], :Bin)
-setcategory(b[4], :Bin)
-setcategory(b[6], :Bin)
-setcategory(b[2], :Bin)
-setcategory(b[5], :Bin)
-setcategory(b[7], :Bin)
-setcategory(b[1], :Bin)
+# settcategory(b[9], :Bin)
+# settcategory(b[8], :Bin)
+# settcategory(b[3], :Bin)
+# settcategory(b[4], :Bin)
+# settcategory(b[6], :Bin)
+# settcategory(b[2], :Bin)
+# settcategory(b[5], :Bin)
+# settcategory(b[7], :Bin)
+# settcategory(b[1], :Bin)
 
 
 # ----- Constraints ----- #

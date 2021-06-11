@@ -1,3 +1,3 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-MINLPLib = "b0b0b5d3-2df8-53db-80e4-39e14ee2390b"
+DocumenterTools = "35a29f4d-8980-5a13-9543-d66fff28ecb8"

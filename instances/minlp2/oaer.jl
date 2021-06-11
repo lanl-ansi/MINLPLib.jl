@@ -7,16 +7,16 @@ m = Model()
 x_Idx = Any[1, 2, 3, 4, 5, 6]
 @variable(m, x[x_Idx])
 b_Idx = Any[7, 8, 9]
-@variable(m, b[b_Idx])
-setlowerbound(x[5], 0.0)
-setlowerbound(x[1], 0.0)
-setcategory(b[8], :Bin)
-setlowerbound(x[4], 0.0)
-setlowerbound(x[2], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[3], 0.0)
-setcategory(b[7], :Bin)
-setcategory(b[9], :Bin)
+@variable(m, b[b_Idx],  Bin)
+set_lower_bound(x[5], 0.0)
+set_lower_bound(x[1], 0.0)
+# settcategory(b[8], :Bin)
+set_lower_bound(x[4], 0.0)
+set_lower_bound(x[2], 0.0)
+set_lower_bound(x[6], 0.0)
+set_lower_bound(x[3], 0.0)
+# settcategory(b[7], :Bin)
+# settcategory(b[9], :Bin)
 
 
 # ----- Constraints ----- #

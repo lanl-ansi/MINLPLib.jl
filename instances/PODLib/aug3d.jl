@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","prince", "aug3d.jl"))
+include(joinpath(minlplib_dir,"instances","prince", "aug3d.jl"))

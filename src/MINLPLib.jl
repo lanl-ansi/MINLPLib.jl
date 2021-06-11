@@ -1,8 +1,9 @@
 __precompile__()
 module MINLPLib
 
-using JuMP, MathProgBase
-using JSON, Glob
+using JuMP
+using JSON 
+using Glob
 
 include("features.jl")
 
@@ -20,13 +21,15 @@ PROTECTED_LIBS = ["bcp", "global", "ibm", "inf", "minlp",
                   "minlp2", "morg", "mpec", "mult3", "mult4",
                   "poly", "prince", "qcqp", "qcqp2", "qcqp3"]
 
-using Pkg 
 minlplib_dir = joinpath(dirname(pathof(MINLPLib)), "..")
 
-using Random
-
 special_instances = readdir("$minlplib_dir/instances/special")
-for i in special_instances include("$minlplib_dir/instances/special/$(i)") end
+for i in special_instances 
+    if !(i in ["multi3N.jl", "multi4N.jl", "multiKND.jl"]) 
+        include("$minlplib_dir/instances/special/$(i)") 
+    end
+end
+
 
 export fetch_model
 

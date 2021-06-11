@@ -9,10 +9,10 @@ b_Idx = Any[1, 2, 3, 4, 5]
 i_Idx = Any[6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
 @variable(m, i[i_Idx], Int)
 for k=6:10
-   setupperbound(i[k], 15)
+   set_upper_bound(i[k], 15)
 end
 for k=11:35
-   setupperbound(i[k], 5)
+   set_upper_bound(i[k], 5)
 end
 
 

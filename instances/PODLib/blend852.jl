@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","minlp2", "blend852.jl"))
+include(joinpath(minlplib_dir,"instances","minlp2", "blend852.jl"))

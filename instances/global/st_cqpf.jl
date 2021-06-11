@@ -6,7 +6,7 @@ m = Model()
 @variable(m, objvar)
 x_Idx = Any[1, 2, 3, 4]
 @variable(m, x[x_Idx] >= 0)
-setupperbound(x[1], 10000.0)
+set_upper_bound(x[1], 10000.0)
 
 
 # ----- Constraints ----- #

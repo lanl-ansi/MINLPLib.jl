@@ -9,12 +9,12 @@ x_Idx = Any[3, 4]
 i_Idx = Any[1, 2]
 @variable(m, i[i_Idx] <= 100, Int)
 
-setlowerbound(i[1], 18.0)
-setlowerbound(i[2], 10.0)
-setlowerbound(x[3], 40.0)
-setupperbound(x[3], 80.0)
-setlowerbound(x[4], 20.0)
-setupperbound(x[4], 60.0)
+set_lower_bound(i[1], 18.0)
+set_lower_bound(i[2], 10.0)
+set_lower_bound(x[3], 40.0)
+set_upper_bound(x[3], 80.0)
+set_lower_bound(x[4], 20.0)
+set_upper_bound(x[4], 60.0)
 
 
 # ----- Constraints ----- #

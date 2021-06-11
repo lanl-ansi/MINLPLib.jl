@@ -1,7 +1,8 @@
 using Test
 using MINLPLib
 
-using Pkg 
+import JuMP
+
 minlplib_dir = joinpath(dirname(pathof(MINLPLib)), "..")
 
 # Perform Tests

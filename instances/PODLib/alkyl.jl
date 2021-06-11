@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","global", "alkyl.jl"))
+include(joinpath(minlplib_dir,"instances","global", "alkyl.jl"))

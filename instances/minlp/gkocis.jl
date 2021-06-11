@@ -8,16 +8,16 @@ x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8]
 @variable(m, x[x_Idx])
 b_Idx = Any[9, 10, 11]
 @variable(m, b[b_Idx], Bin)
-setlowerbound(x[4], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[3], 0.0)
-setlowerbound(x[5], 0.0)
-setlowerbound(x[2], 0.0)
-setlowerbound(x[1], 0.0)
-setlowerbound(x[7], 0.0)
-setlowerbound(x[8], 0.0)
-setupperbound(x[6], 5.0)
-setupperbound(x[8], 1.0)
+set_lower_bound(x[4], 0.0)
+set_lower_bound(x[6], 0.0)
+set_lower_bound(x[3], 0.0)
+set_lower_bound(x[5], 0.0)
+set_lower_bound(x[2], 0.0)
+set_lower_bound(x[1], 0.0)
+set_lower_bound(x[7], 0.0)
+set_lower_bound(x[8], 0.0)
+set_upper_bound(x[6], 5.0)
+set_upper_bound(x[8], 1.0)
 
 
 # ----- Constraints ----- #

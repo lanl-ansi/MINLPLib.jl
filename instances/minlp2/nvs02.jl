@@ -8,12 +8,12 @@ x_Idx = Any[6, 7, 8]
 @variable(m, x[x_Idx])
 i_Idx = Any[1, 2, 3, 4, 5]
 @variable(m, i[i_Idx] <= 200, Int)
-setlowerbound(x[6], 0.0)
-setupperbound(x[6], 92.0)
-setlowerbound(x[7], 90.0)
-setupperbound(x[7], 110.0)
-setlowerbound(x[8], 20.0)
-setupperbound(x[8], 25.0)
+set_lower_bound(x[6], 0.0)
+set_upper_bound(x[6], 92.0)
+set_lower_bound(x[7], 90.0)
+set_upper_bound(x[7], 110.0)
+set_lower_bound(x[8], 20.0)
+set_upper_bound(x[8], 25.0)
 
 
 # ----- Constraints ----- #

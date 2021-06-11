@@ -6,12 +6,12 @@ m = Model()
 @variable(m, objvar)
 x_Idx = Any[2, 3]
 @variable(m, x[x_Idx])
-setlowerbound(objvar, -100.0)
-setupperbound(objvar, 100.0)
-setlowerbound(x[2], -2.0)
-setupperbound(x[2], 2.0)
-setlowerbound(x[3], -2.0)
-setupperbound(x[3], 2.0)
+set_lower_bound(objvar, -100.0)
+set_upper_bound(objvar, 100.0)
+set_lower_bound(x[2], -2.0)
+set_upper_bound(x[2], 2.0)
+set_lower_bound(x[3], -2.0)
+set_upper_bound(x[3], 2.0)
 
 
 # ----- Constraints ----- #

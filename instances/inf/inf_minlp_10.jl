@@ -7,17 +7,17 @@ x_Idx = Any[1, 6, 7, 8, 9, 10, 11, 12]
 @variable(m, x[x_Idx])
 i_Idx = Any[2, 3, 4, 5]
 @variable(m, 1 <= i[i_Idx] <= 10, Int)
-setlowerbound(x[11], 0.0)
-setlowerbound(x[10], 0.0)
-setlowerbound(x[12], 0.0)
-setlowerbound(x[6], 0.5)
-setupperbound(x[6], 0.99999)
-setlowerbound(x[7], 0.5)
-setupperbound(x[7], 0.99999)
-setlowerbound(x[8], 0.5)
-setupperbound(x[8], 0.99999)
-setlowerbound(x[9], 0.5)
-setupperbound(x[9], 0.99999)
+set_lower_bound(x[11], 0.0)
+set_lower_bound(x[10], 0.0)
+set_lower_bound(x[12], 0.0)
+set_lower_bound(x[6], 0.5)
+set_upper_bound(x[6], 0.99999)
+set_lower_bound(x[7], 0.5)
+set_upper_bound(x[7], 0.99999)
+set_lower_bound(x[8], 0.5)
+set_upper_bound(x[8], 0.99999)
+set_lower_bound(x[9], 0.5)
+set_upper_bound(x[9], 0.99999)
 
 
 # ----- Constraints ----- #

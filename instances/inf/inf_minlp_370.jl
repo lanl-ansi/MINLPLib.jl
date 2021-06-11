@@ -4,23 +4,23 @@ m = Model()
 
 # ----- Variables ----- #
 b_Idx = Any[1, 2, 3, 4, 5, 6]
-@variable(m, b[b_Idx])
+@variable(m, b[b_Idx],  Bin)
 x_Idx = Any[7, 8, 9, 10, 11, 12, 13]
 @variable(m, x[x_Idx])
-setlowerbound(x[9], 0.0)
-setlowerbound(x[8], 0.0)
-setcategory(b[3], :Bin)
-setcategory(b[4], :Bin)
-setlowerbound(x[11], 0.0)
-setcategory(b[2], :Bin)
-setcategory(b[6], :Bin)
-setlowerbound(x[10], 0.0)
-setcategory(b[5], :Bin)
-setcategory(b[1], :Bin)
-setupperbound(x[8], 2.0)
-setupperbound(x[9], 2.0)
-setupperbound(x[10], 2.0)
-setupperbound(x[11], 2.0)
+set_lower_bound(x[9], 0.0)
+set_lower_bound(x[8], 0.0)
+# settcategory(b[3], :Bin)
+# settcategory(b[4], :Bin)
+set_lower_bound(x[11], 0.0)
+# settcategory(b[2], :Bin)
+# settcategory(b[6], :Bin)
+set_lower_bound(x[10], 0.0)
+# settcategory(b[5], :Bin)
+# settcategory(b[1], :Bin)
+set_upper_bound(x[8], 2.0)
+set_upper_bound(x[9], 2.0)
+set_upper_bound(x[10], 2.0)
+set_upper_bound(x[11], 2.0)
 
 
 # ----- Constraints ----- #

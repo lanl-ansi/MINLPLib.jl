@@ -8,7 +8,7 @@ x_Idx = Any[1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 var_Id = Any[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 @variable(m, x[x_Idx])
 for i in var_Id
-   setlowerbound(x[i], 0)
+   set_lower_bound(x[i], 0)
 end
 
 

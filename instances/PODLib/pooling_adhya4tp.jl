@@ -1,1 +1,1 @@
-include(joinpath(Pkg.dir("MINLPLib"),"instances","minlp2", "pooling_adhya4tp.jl"))
+include(joinpath(minlplib_dir,"instances","minlp2", "pooling_adhya4tp.jl"))

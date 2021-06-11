@@ -8,15 +8,15 @@ x_Idx = Any[6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 @variable(m, x[x_Idx])
 i_Idx = Any[1, 2, 3, 4, 5]
 @variable(m, i[i_Idx] <= 200, Int)
-setlowerbound(x[16], 0.0)
-setlowerbound(x[6], 0.0)
-setlowerbound(x[14], 0.0)
-setlowerbound(x[9], 0.0)
-setlowerbound(x[15], 0.0)
-setlowerbound(x[8], 0.0)
-setlowerbound(x[7], 0.0)
-setlowerbound(x[13], 0.0)
-setlowerbound(x[10], 0.0)
+set_lower_bound(x[16], 0.0)
+set_lower_bound(x[6], 0.0)
+set_lower_bound(x[14], 0.0)
+set_lower_bound(x[9], 0.0)
+set_lower_bound(x[15], 0.0)
+set_lower_bound(x[8], 0.0)
+set_lower_bound(x[7], 0.0)
+set_lower_bound(x[13], 0.0)
+set_lower_bound(x[10], 0.0)
 
 
 # ----- Constraints ----- #

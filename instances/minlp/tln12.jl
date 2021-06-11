@@ -10,10 +10,10 @@ i_Idx = Any[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
 @variable(m, i[i_Idx], Int)
 
 for k=13:24
-   setupperbound(i[k], 48)
+   set_upper_bound(i[k], 48)
 end
 for k=25:168
-   setupperbound(i[k], 5)
+   set_upper_bound(i[k], 5)
 end
 
 

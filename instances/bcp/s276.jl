@@ -5,8 +5,8 @@ m = Model()
 # ----- Variables ----- #
 x_Idx = Any[1, 2, 3, 4, 5, 6, 7]
 @variable(m, x[x_Idx])
-setupperbound(x[5], 0.0)
-setupperbound(x[5], -0.8)
+set_upper_bound(x[5], 0.0)
+set_upper_bound(x[5], -0.8)
 
 
 # ----- Constraints ----- #
