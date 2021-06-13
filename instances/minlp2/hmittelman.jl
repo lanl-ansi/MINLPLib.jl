@@ -6,23 +6,6 @@ m = Model()
 @variable(m, objvar)
 b_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 @variable(m, b[b_Idx],  Bin)
-# settcategory(b[12], :Bin)
-# settcategory(b[2], :Bin)
-# settcategory(b[14], :Bin)
-# settcategory(b[8], :Bin)
-# settcategory(b[15], :Bin)
-# settcategory(b[11], :Bin)
-# settcategory(b[7], :Bin)
-# settcategory(b[9], :Bin)
-# settcategory(b[3], :Bin)
-# settcategory(b[5], :Bin)
-# settcategory(b[16], :Bin)
-# settcategory(b[10], :Bin)
-# settcategory(b[4], :Bin)
-# settcategory(b[6], :Bin)
-# settcategory(b[13], :Bin)
-# settcategory(b[1], :Bin)
-
 
 # ----- Constraints ----- #
 @NLconstraint(m, e1, -(10*b[5]*b[7]*b[9]*b[10]*b[14]*b[15]*b[16]+7*b[1]*b[2]*b[3]*b[4]*b[8]*b[11]+b[3]*b[4]*b[6]*b[7]*b[8]+12*b[3]*b[4]*b[8]*b[11]+8*b[6]*b[7]*b[8]*b[12]+3*b[6]*b[7]*b[9]*b[14]*b[16]+b[9]*b[10]*b[14]*b[16]+5*b[5]*b[10]*b[14]*b[15]*b[16]+3*b[1]*b[2]*b[11]*b[12])+objvar == 0.0)
@@ -33,7 +16,6 @@ b_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 @NLconstraint(m, e6, (-4*b[3]*b[4]*b[6]*b[7]*b[8])-2*b[3]*b[4]*b[8]*b[11]-5*b[6]*b[7]*b[9]*b[14]*b[16]+b[9]*b[10]*b[14]*b[16]-9*b[5]*b[10]*b[14]*b[15]*b[16]-2*b[1]*b[2]*b[11]*b[12] <= -3.0)
 @NLconstraint(m, e7, 9*b[1]*b[2]*b[3]*b[4]*b[8]*b[11]-12*b[3]*b[4]*b[8]*b[11]-7*b[6]*b[7]*b[8]*b[12]+6*b[6]*b[7]*b[9]*b[14]*b[16]+2*b[5]*b[10]*b[14]*b[15]*b[16]-15*b[1]*b[2]*b[11]*b[12]+3*b[13]*b[14]*b[15]*b[16] <= -7.0)
 @NLconstraint(m, e8, 5*b[1]*b[2]*b[3]*b[4]*b[8]*b[11]-8*b[5]*b[7]*b[9]*b[10]*b[14]*b[15]*b[16]+2*b[3]*b[4]*b[6]*b[7]*b[8]-7*b[3]*b[4]*b[8]*b[11]-b[6]*b[7]*b[8]*b[12]-5*b[9]*b[10]*b[14]*b[16]-10*b[1]*b[2]*b[11]*b[12] <= -1.0)
-
 
 # ----- Objective ----- #
 @objective(m, Min, objvar)

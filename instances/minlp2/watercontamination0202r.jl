@@ -8,13 +8,6 @@ x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 @variable(m, x[x_Idx])
 b_Idx = Any[189, 190, 191, 192, 193, 194, 195]
 @variable(m, b[b_Idx],  Bin)
-# settcategory(b[191], :Bin)
-# settcategory(b[194], :Bin)
-# settcategory(b[190], :Bin)
-# settcategory(b[195], :Bin)
-# settcategory(b[192], :Bin)
-# settcategory(b[193], :Bin)
-# settcategory(b[189], :Bin)
 
 
 # ----- Constraints ----- #

@@ -9,13 +9,10 @@ b_Idx = Any[1, 2, 3]
 x_Idx = Any[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 @variable(m, x[x_Idx])
 set_lower_bound(x[13], 0.0)
-# settcategory(b[3], :Bin)
 set_lower_bound(x[11], 0.0)
 set_lower_bound(x[14], 0.0)
-# settcategory(b[2], :Bin)
 set_lower_bound(x[10], 0.0)
 set_lower_bound(x[12], 0.0)
-# settcategory(b[1], :Bin)
 set_lower_bound(x[7], 50.0)
 set_upper_bound(x[7], 700.0)
 set_lower_bound(x[8], 50.0)
