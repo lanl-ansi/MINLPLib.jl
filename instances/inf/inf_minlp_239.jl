@@ -9,7 +9,6 @@ b_Idx = Any[12, 13]
 @variable(m, b[b_Idx],  Bin)
 set_lower_bound(x[4], 0.0)
 set_lower_bound(x[6], 0.0)
-# settcategory(b[12], :Bin)
 set_lower_bound(x[3], 0.0)
 set_lower_bound(x[11], 0.0)
 set_lower_bound(x[5], 0.0)
@@ -18,7 +17,6 @@ set_lower_bound(x[9], 0.0)
 set_lower_bound(x[8], 0.0)
 set_lower_bound(x[7], 0.0)
 set_lower_bound(x[10], 0.0)
-# settcategory(b[13], :Bin)
 
 
 # ----- Constraints ----- #

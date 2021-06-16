@@ -9,8 +9,6 @@ x_Idx = Any[3, 4, 5]
 @variable(m, x[x_Idx])
 set_lower_bound(x[5], 0.0)
 set_lower_bound(x[4], 0.0)
-# settcategory(b[2], :Bin)
-# settcategory(b[1], :Bin)
 set_upper_bound(x[4], 2.0)
 set_upper_bound(x[5], 2.0)
 

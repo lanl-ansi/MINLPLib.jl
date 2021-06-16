@@ -7,9 +7,7 @@ x_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 @variable(m, x[x_Idx])
 b_Idx = Any[50, 51]
 @variable(m, b[b_Idx],  Bin)
-# settcategory(b[51], :Bin)
 set_upper_bound(x[16], 0.0)
-# settcategory(b[50], :Bin)
 set_upper_bound(x[14], 0.0)
 set_upper_bound(x[17], 0.0)
 set_lower_bound(x[11], 0.0)
