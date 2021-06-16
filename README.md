@@ -96,7 +96,7 @@ for lib in ["bcp", "global", "ibm", "inf", "minlp", "minlp2"]
         Meta = MINLPLib.fetch_meta(lib, i)  # Fetch instance meta
         isempty(Meta) && continue
         !haskey(Meta, "NLOPERATOR") && continue
-        if "exp" in M["NLOPERATOR"][1]
+        if occursin("exp", in Meta["NLOPERATOR"][1])
             MINLPLib.add_to_lib("USERLib", lib, i)  # Collect instance
         else
             continue
