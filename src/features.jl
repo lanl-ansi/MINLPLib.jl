@@ -140,7 +140,7 @@ function add_to_lib(tolib::AbstractString, fromlib::AbstractString, instance::Ab
 
     # Adding the instance
     f = open(joinpath(minlplib_dir, "instances", tolib, "$(pname).jl"), "w")
-    write(f, "include(joinpath(\"$(minlplib_dir)\",\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
+    write(f, "include(joinpath(raw\"$(minlplib_dir)\",\"instances\",\"$(fromlib)\", \"$(pname).jl\"))")
     close(f)
     println("Successfully added instance $(fromlib)/$(pname) to library $(tolib)...")
 
