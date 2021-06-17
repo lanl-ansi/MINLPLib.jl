@@ -10,8 +10,6 @@ b_Idx = Any[50, 51]
 set_lower_bound(x[9], 0.0)
 set_lower_bound(x[8], 0.0)
 set_lower_bound(x[7], 0.0)
-# settcategory(b[51], :Bin)
-# settcategory(b[50], :Bin)
 set_lower_bound(x[11], 0.0)
 set_lower_bound(x[10], 0.0)
 set_lower_bound(x[12], 0.0)

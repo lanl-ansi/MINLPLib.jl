@@ -7,10 +7,8 @@ x_Idx = Any[1]
 @variable(m, x[x_Idx])
 i_Idx = Any[2, 3]
 @variable(m, i[i_Idx], Int)
-# settcategory(i[3], :Int)
 set_lower_bound(i[3], 0.0)
 set_upper_bound(i[3], 100.0)
-# settcategory(i[2], :Int)
 set_lower_bound(i[2], 0.0)
 set_upper_bound(i[2], 100.0)
 set_lower_bound(i[2], 1.0)
