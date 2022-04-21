@@ -6,7 +6,7 @@ function multi4N(;options=Dict())
 
 	m = Model()
 	M = 1+3*N
-	Random.seed!(100)(100)
+	Random.seed!(100)
 	isa(randomub, Bool) ? @variable(m, 0.1 <= x[1:M] <= 100*rand()) : @variable(m, 0.1 <= x[1:M] <= randomub)
 
 	if exprmode == 1

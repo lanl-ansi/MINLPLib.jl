@@ -1,6 +1,8 @@
 __precompile__()
 module MINLPLib
 
+import Random 
+
 using JuMP
 using JSON 
 using Glob
@@ -25,11 +27,8 @@ minlplib_dir = joinpath(dirname(pathof(MINLPLib)), "..")
 
 special_instances = readdir("$minlplib_dir/instances/special")
 for i in special_instances 
-    if !(i in ["multi3N.jl", "multi4N.jl", "multiKND.jl"]) 
-        include("$minlplib_dir/instances/special/$(i)") 
-    end
+    include("$minlplib_dir/instances/special/$(i)")
 end
-
 
 export fetch_model
 

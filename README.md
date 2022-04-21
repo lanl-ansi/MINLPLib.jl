@@ -4,7 +4,7 @@ STATUS: [![CI](https://github.com/lanl-ansi/MINLPLib.jl/actions/workflows/ci.yml
 
 MINLPLib.jl is an extensive collection of Mixed-Integer and Continuous Nonlinear Programming Instances in the native [`JuMP.jl`](https://github.com/JuliaOpt/JuMP.jl) format. Numerous instances in this library are based on the standard [MINLPLib.org](http://www.minlplib.org) instances in addition to hundreds of global optimization instances which appear in the litearature. This library can be useful for: 
 
-* Benchmarking your Julia-based MINLP solvers, like [Alpine.jl](https://github.com/lanl-ansi/Alpine.jl) and [Juniper.jl](https://github.com/lanl-ansi/Juniper.jl), by performing rigorous numerical experiments
+* Benchmarking the Julia-based MINLP solvers, like [Alpine.jl](https://github.com/lanl-ansi/Alpine.jl) and [Juniper.jl](https://github.com/lanl-ansi/Juniper.jl), by performing rigorous numerical experiments
 
 * Viewing meta information of each instance to assist your analyses and experiments
 
@@ -35,7 +35,7 @@ using MINLPLib
 m = fetch_model("special", "multiKND", options=Dict(:K=>3, :N=>3, :D=>1))
 ```
 
-The above scrip initializes an optimization [JuMP](https://github.com/JuliaOpt/JuMP.jl) model `multiKND`. The formulation is controlled with parameter `:K`, `:N`, and `:D`, which yields the following problem:
+The above script initializes an optimization [JuMP](https://github.com/JuliaOpt/JuMP.jl) model `multiKND`. The formulation is controlled with parameter `:K`, `:N`, and `:D`, which yields the following problem:
 
 ```
 Max x[1] * x[2] * x[3] + x[3] * x[4] * x[5] + x[5] * x[6] * x[7]
