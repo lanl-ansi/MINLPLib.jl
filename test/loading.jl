@@ -66,15 +66,15 @@
     # @test length(m.linconstr) == 0
 end
 
-# @testset "Basic Loading and Basic Dimension Measurement :: Special instances" begin
-#     m = fetch_model("special", "multiKND")
-#     @test length(JuMP.all_variables(m)) == 5
-#     @test length(m.linconstr) == 2
+@testset "Basic Loading and Basic Dimension Measurement :: Special instances" begin
+    m = fetch_model("special", "multiKND")
+    @test length(JuMP.all_variables(m)) == 5
+    # @test length(m.linconstr) == 2
 
-#     m = fetch_model("special", "multiKND", options=Dict(:K=>4, :N=>10))
-#     @test length(JuMP.all_variables(m)) == 31
-#     @test length(m.linconstr) == 10
-# end
+    m = fetch_model("special", "multiKND", options=Dict(:K=>4, :N=>10))
+    @test length(JuMP.all_variables(m)) == 31
+    # @test length(m.linconstr) == 10
+end
 
 @testset "Built-in functions testing" begin
 

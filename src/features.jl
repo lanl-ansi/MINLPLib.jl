@@ -11,8 +11,12 @@ function fetch_model(instance::AbstractString;options::Dict=Dict())
         @warn "No instances detected..."
         return nothing
     end
-
-    return m
+    
+    if typeof(m) == JuMP.Model
+        return m
+    else
+        return m.model
+    end
 end
 
 fetch_model(libname::AbstractString, pname::AbstractString; options::Dict=Dict()) = fetch_model(joinpath(libname,pname); options=options)
