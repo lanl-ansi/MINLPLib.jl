@@ -17,4 +17,4 @@ x_Idx = Any[22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 39, 
 # ----- Objective ----- #
 @objective(m, Max, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

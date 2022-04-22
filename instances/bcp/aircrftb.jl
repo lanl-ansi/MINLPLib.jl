@@ -20,6 +20,3 @@ set_upper_bound(x[6], -0.05)
 
 # ----- Objective ----- #
 @objective(m, Min, x[9])
-
-# == Ending section == #
-m=m 

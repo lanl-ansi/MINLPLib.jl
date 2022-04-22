@@ -49,4 +49,4 @@ set_upper_bound(i[4], 100.0)
 # ----- Objective ----- #
 @objective(m, Max, x[5])
 
-m = m 		 # model get returned when including this script. 
+ 

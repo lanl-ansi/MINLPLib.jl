@@ -147,4 +147,4 @@ set_lower_bound(x[15], 0.0)
 # ----- Objective ----- #
 @objective(m, Max, x[69])
 
-m = m 		 # model get returned when including this script. 
+ 

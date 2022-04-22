@@ -14,4 +14,4 @@ x_Idx = Any[1, 2, 3, 4, 5, 6]
 # ----- Objective ----- #
 @objective(m, Min, x[6])
 
-m = m 		 # model get returned when including this script.
+

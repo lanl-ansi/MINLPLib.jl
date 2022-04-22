@@ -82,4 +82,4 @@ set_upper_bound(x[23], 1.0e6)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

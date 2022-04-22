@@ -2206,4 +2206,4 @@ set_lower_bound(x[1095], 3.05)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

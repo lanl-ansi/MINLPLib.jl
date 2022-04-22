@@ -2222,4 +2222,4 @@ set_upper_bound(x[97], 295.15)
 # ----- Objective ----- #
 @objective(m, Min, x[1])
 
-m = m 		 # model get returned when including this script. 
+ 

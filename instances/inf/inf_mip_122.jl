@@ -79,4 +79,4 @@ b_Idx = Any[14, 15, 16, 17, 18, 19, 20, 21]
 # ----- Objective ----- #
 @objective(m, Min, x[22])
 
-m = m 		 # model get returned when including this script. 
+ 

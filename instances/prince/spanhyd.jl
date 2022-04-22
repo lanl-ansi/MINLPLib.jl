@@ -246,4 +246,4 @@ set_upper_bound(x[97], 252.01)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

@@ -3440,4 +3440,4 @@ b_Idx = Any[1522, 1523, 1524, 1525, 1526, 1527, 1528, 1529, 1530, 1531, 1532, 15
 # ----- Objective ----- #
 @objective(m, Max, x[1])
 
-m = m 		 # model get returned when including this script. 
+ 

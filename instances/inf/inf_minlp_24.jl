@@ -37,4 +37,4 @@ i_Idx = Any[1, 2, 3, 4]
 # ----- Objective ----- #
 @objective(m, Max, x[5])
 
-m = m 		 # model get returned when including this script. 
+ 

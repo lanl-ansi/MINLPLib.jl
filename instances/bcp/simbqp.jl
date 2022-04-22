@@ -16,4 +16,4 @@ set_upper_bound(x[2], 0.5)
 # ----- Objective ----- #
 @objective(m, Min, x[3])
 
-m = m 		 # model get returned when including this script. 
+ 

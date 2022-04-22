@@ -3571,4 +3571,4 @@ set_upper_bound(x[1045], 20.0)
 # ----- Objective ----- #
 @objective(m, Max, x[1])
 
-m = m 		 # model get returned when including this script. 
+ 

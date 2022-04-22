@@ -90,4 +90,4 @@ set_lower_bound(objvar, -1.0e7)
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

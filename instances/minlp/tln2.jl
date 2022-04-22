@@ -30,4 +30,4 @@ UB = [15, 15, 5, 5, 5, 5]
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

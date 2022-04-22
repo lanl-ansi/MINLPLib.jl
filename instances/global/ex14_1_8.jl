@@ -21,4 +21,4 @@ UB = [1, 1, Inf]
 # ----- Objective ----- #
 @objective(m, Min, objvar)
 
-m = m 		 # model get returned when including this script. 
+ 

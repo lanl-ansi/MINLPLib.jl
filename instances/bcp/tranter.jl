@@ -26,4 +26,4 @@ set_lower_bound(x[6], -10.0)
 # ----- Objective ----- #
 @objective(m, Min, x[7])
 
-m = m 		 # model get returned when including this script. 
+ 
