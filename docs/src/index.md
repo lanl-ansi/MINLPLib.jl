@@ -1,11 +1,10 @@
 # MINLPLib Libraries
 
-Sor far, MINLPLib includes `16` libraries in `.jl` format converted from `.gms` format.
+Sor far, MINLPLib includes `15` libraries in `.jl` format converted from `.gms` format.
 Here is a simple chart showing the status of each instance libraries.
 
 | Lib Name           | Converted   | All | % |
 |--------------------|--------|------|-------|
-| [MINLPLib](@ref)     | 82     | -    | -     |
 | [bcp](@ref)        | 327    | 327  | 100%  |
 | [global](@ref)     | 367    | 369  | 99.5% |
 | [ibm](@ref)        | 142    | 142  | 100%  |
@@ -22,6 +21,4 @@ Here is a simple chart showing the status of each instance libraries.
 | [qcqp2](@ref)      | 700    | 700  | 100%  |
 | [qcqp3](@ref)      | 320    | 320  | 100%  |
 
-It important to obtain fair benchmark results that is justifiable for projects in academia or industry.
-Therefore, MINLPLib.jl values validation of the instances and record detail issues that causes
-unconverted instances, loading errors, or inaccurate results in the [Issues](@ref) page.
+It is important to obtain fair benchmark results that is justifiable for projects in academia or industry. Therefore, MINLPLib.jl values validation of the instances and records detailed issues that cause unaccounted instances, loading errors, or inaccurate results in the [Issues](@ref) page.

@@ -1,4 +1,4 @@
-# AlpineLib - Instance Statistics
+# PODLib/AlpineLib - Instance Statistics
 
 ## Description
 This is a library with selected instances from a various existing libraries tested with [Alpine.jl](https://github.com/lanl-ansi/Alpine.jl), a JuMP-based global optimization solver. It also includes some customized instances with various formulations. There are in total `3062` instances listed here. 
