@@ -7,7 +7,7 @@ m = Model()
 x_Idx = Any[11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 @variable(m, 0 <= x[x_Idx] <= 5)
 i_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-@variable(m, i[i_Idx] <= 5, Int)
+@variable(m, 0 <= i[i_Idx] <= 5, Int)
 
 
 # ----- Constraints ----- #
