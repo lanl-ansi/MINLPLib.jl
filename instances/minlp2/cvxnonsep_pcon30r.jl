@@ -5,9 +5,13 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
-@variable(m, 0 <= x[x_Idx] <= 5)
+@variable(m, x[x_Idx])
 i_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-@variable(m, i[i_Idx] <= 5, Int)
+@variable(m, 0 <= i[i_Idx] <= 5, Int)
+for j in 16:30
+	set_lower_bound(x[j], 0)
+	set_upper_bound(x[j], 5)
+end
 
 
 # ----- Constraints ----- #
