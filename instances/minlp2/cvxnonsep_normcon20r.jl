@@ -5,10 +5,13 @@ m = Model()
 # ----- Variables ----- #
 @variable(m, objvar)
 x_Idx = Any[11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
-@variable(m, 0 <= x[x_Idx] <= 5)
+@variable(m, x[x_Idx])
 i_Idx = Any[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 @variable(m, i[i_Idx] <= 5, Int)
-
+for j in 11:20
+	set_lower_bound(x[j], 0)
+	set_upper_bound(x[j], 5)
+end
 
 # ----- Constraints ----- #
 @constraint(m, e1, x[22]+x[23]+x[24]+x[25]+x[26]+x[27]+x[28]+x[29]+x[30]+x[31]+x[32]+x[33]+x[34]+x[35]+x[36]+x[37]+x[38]+x[39]+x[40]+x[41] <= 99.9999)
